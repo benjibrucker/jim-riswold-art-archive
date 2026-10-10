@@ -116,24 +116,29 @@
       margin-top: 4px;
     }
 
-    /* Tabs */
+    /* Navigation Tabs */
     .wiki-tabs {
       display: flex;
       gap: 4px;
       border-bottom: 1px solid var(--wiki-border);
       margin-bottom: 24px;
+      overflow-x: auto;
+      white-space: nowrap;
     }
     .wiki-tab-btn {
-      padding: 8px 16px;
+      padding: 9px 18px;
       background: none;
       border: 1px solid transparent;
       border-bottom: none;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13.5px;
       font-family: var(--font-sans);
       color: var(--wiki-link);
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .wiki-tab-btn.active {
       background: #fff;
@@ -259,7 +264,7 @@
       letter-spacing: 0.04em;
     }
 
-    /* Controls Panel */
+    /* Filter Controls Panel */
     .filter-panel {
       background: #fff;
       border: 1px solid var(--wiki-border);
@@ -271,20 +276,23 @@
       display: flex;
       gap: 12px;
       margin-bottom: 16px;
-      position: relative;
+      align-items: center;
+      flex-wrap: wrap;
     }
     .search-input-wrapper {
       position: relative;
       flex: 1;
+      min-width: 280px;
     }
     .search-input {
       width: 100%;
       padding: 10px 14px 10px 36px;
-      font-size: 15px;
+      font-size: 14.5px;
       border: 1px solid var(--wiki-border);
-      border-radius: 3px;
+      border-radius: 20px;
       outline: none;
       font-family: var(--font-sans);
+      background: #fff;
     }
     .search-input:focus {
       border-color: #3366cc;
@@ -296,7 +304,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--wiki-text-muted);
-      font-size: 16px;
+      font-size: 15px;
     }
     .clear-search-btn {
       position: absolute;
@@ -309,6 +317,27 @@
       color: var(--wiki-text-muted);
       font-size: 16px;
       display: none;
+    }
+
+    /* Reset All Pill Button */
+    .reset-all-pill {
+      padding: 8px 16px;
+      font-size: 13px;
+      border: 1px solid #d33;
+      background: #fff;
+      color: #d33;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .reset-all-pill:hover {
+      background: #fce8e6;
+      border-color: #c5221f;
     }
 
     /* Pills Section */
@@ -796,6 +825,55 @@
       font-size: 13px;
     }
 
+    /* Zany Ideas Styles */
+    .idea-tier {
+      border: 1px solid var(--wiki-border-light);
+      background: #fff;
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .idea-tier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--wiki-border-light);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tier-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .badge-tier1 { background: #e8f0fe; color: #1967d2; border: 1px solid #c2e7ff; }
+    .badge-tier2 { background: #e6f4ea; color: #137333; border: 1px solid #ceead6; }
+    .badge-tier3 { background: #fef7e0; color: #b06000; border: 1px solid #feefc3; }
+    .badge-tier4 { background: #fce8e6; color: #c5221f; border: 1px solid #fad2cf; }
+    .idea-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .idea-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f2f2f2;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .idea-item:last-child { border-bottom: none; }
+    .idea-icon { font-size: 20px; line-height: 1.3; }
+    .idea-content strong { color: #000; font-size: 14.5px; }
+    .idea-content p { color: var(--wiki-text-muted); font-size: 13.5px; margin-top: 3px; }
+
     /* Footer */
     footer.wiki-footer {
       border-top: 1px solid var(--wiki-border);
@@ -849,10 +927,12 @@
 
     <!-- Navigation Tabs -->
     <nav class="wiki-tabs">
-      <button class="wiki-tab-btn active" onclick="switchTab('inventory')">Inventory Index (578 Works)</button>
-      <button class="wiki-tab-btn" onclick="switchTab('overview')">Overview & Biography</button>
-      <button class="wiki-tab-btn" onclick="switchTab('provenance')">Exhibition Provenance (Four Oceans, One Family)</button>
-      <button class="wiki-tab-btn" onclick="switchTab('reconcile')">Reconciliation & Sheet Sync</button>
+      <button class="wiki-tab-btn active" id="tabbtn-inventory" onclick="switchTab('inventory')">🎨 Inventory Index (578 Works)</button>
+      <button class="wiki-tab-btn" id="tabbtn-family-ask" onclick="switchTab('family-ask')">📋 Family Objectives & The Ask</button>
+      <button class="wiki-tab-btn" id="tabbtn-next-steps" onclick="switchTab('next-steps')">💡 Next Steps & Zany Ideas</button>
+      <button class="wiki-tab-btn" id="tabbtn-overview" onclick="switchTab('overview')">📖 Overview & Biography</button>
+      <button class="wiki-tab-btn" id="tabbtn-provenance" onclick="switchTab('provenance')">🏛️ Provenance (Four Oceans Gallery)</button>
+      <button class="wiki-tab-btn" id="tabbtn-reconcile" onclick="switchTab('reconcile')">🔄 Sheet Reconciliation (4 Sources)</button>
     </nav>
 
     <!-- TAB 1: INVENTORY (Default Active) -->
@@ -874,13 +954,13 @@
         </div>
         <div class="metric-card sold" onclick="filterStatus('sold')">
           <div class="metric-val" id="metric-sold" style="color:var(--color-sold-text);">13</div>
-          <div class="metric-label">Definitely Sold / In Private Hands</div>
+          <div class="metric-label">Definitely Sold / Private Hands</div>
         </div>
       </div>
 
       <!-- Filter Controls Panel -->
       <section class="filter-panel">
-        <!-- Search Row with Autofill Datalist -->
+        <!-- Search Row with Autofill Datalist + Reset All Button -->
         <div class="search-row">
           <div class="search-input-wrapper">
             <span class="search-icon">🔍</span>
@@ -892,10 +972,15 @@
               list="artworks-datalist"
               autocomplete="off"
             >
-            <button id="clear-search" class="clear-search-btn" title="Clear search">&times;</button>
+            <button id="clear-search" class="clear-search-btn" title="Clear search text">&times;</button>
           </div>
           <!-- Native HTML5 Datalist for Autofill suggestions -->
           <datalist id="artworks-datalist"></datalist>
+
+          <!-- The Reset All Pill Button -->
+          <button class="reset-all-pill" onclick="resetAllFilters()" title="Reset all search terms, pills, and dropdown filters to default">
+            ↺ Reset All Filters
+          </button>
         </div>
 
         <!-- Sales Status Pills -->
@@ -1043,7 +1128,236 @@
 
     </div><!-- End Tab 1 -->
 
-    <!-- TAB 2: OVERVIEW & BIOGRAPHY -->
+    <!-- TAB: FAMILY OBJECTIVES & THE ASK -->
+    <div id="tab-family-ask" style="display:none;">
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:32px; border-radius:4px;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:16px; margin-bottom:24px;">
+          <h2 style="font-family:var(--font-serif); font-size:26px; font-weight:normal; color:#000;">Family Objectives & The Ask</h2>
+          <div style="font-size:13px; color:var(--wiki-text-muted); margin-top:4px;">
+            Working brief from Jake Riswold & Haley Riswold with Peter Yue, Guy Overfelt, and Benji Brucker. <em>(Living document — continually refined as discussions progress)</em>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; margin-bottom:28px;">
+          
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:8px;">📦</div>
+            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">1. Physical Storage & Vault Consolidation</h3>
+            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
+              The physical collection encompasses <strong>578 items</strong> across 245 framed works, 246 flat-file prints, 37 monumental XL pieces, and 50 sculptures/rugs. Currently dispersed across multiple vault rooms (Rooms 2.A2 through 3.C1) and flat files. The immediate family priority is consolidating and securing these assets in a cost-efficient, climate-controlled preservation space.
+            </p>
+          </div>
+
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:8px;">💰</div>
+            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">2. Strategic Monetization & Sales Framework</h3>
+            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
+              Establish an active, dignified sales mechanism to generate estate proceeds and fund ongoing storage and preservation. The family seeks to balance liquidating accessible pieces with retaining key cultural masterpieces for museum and foundation bequests.
+            </p>
+          </div>
+
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:8px;">🔍</div>
+            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">3. Definitive Title & Discrepancy Resolution</h3>
+            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
+              Transition from conflicting, fragmented spreadsheets into this single verified source of truth. Resolve ambiguities: confirm completed sales (Drew Martin, Alicia Kuna, Benji, Jake, Haley), account for works currently checked out (such as the 7 pieces at Hot Box Betty), and verify clear title for remaining works.
+            </p>
+          </div>
+
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:8px;">🏛️</div>
+            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">4. Institutional Placement & Curatorial Legacy</h3>
+            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
+              Ensure Jim's place as an advertising icon and subversive fine artist is cemented in American art history. Target prominent placements in the Portland Art Museum, Seattle Art Museum, The One Club Archive, and hospital oncology wings (e.g. OHSU Knight Cancer Institute).
+            </p>
+          </div>
+
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--wiki-border); padding:20px; border-radius:4px;">
+          <h3 style="font-size:16px; font-weight:bold; margin-bottom:10px;">Immediate Working Questions for the Next Family & Gallery Check-In</h3>
+          <ul style="padding-left:20px; font-size:14px; line-height:1.8; color:var(--wiki-text);">
+            <li><strong>Storage Budget & Footprint:</strong> What is the current monthly overhead for the existing vault rooms, and what target monthly budget does the estate wish to achieve?</li>
+            <li><strong>Immediate Liquidation Target:</strong> Should we identify a first "Wave 1" cohort of 30–50 works (focusing on accessible sizes in flat files) for private placement to establish early liquidity?</li>
+            <li><strong>Checking Out Status:</strong> Has "Hot Box Betty" officially purchased the 7 works from <em>Stalin Sketches Great</em>, or should they be returned to vault storage?</li>
+            <li><strong>Pricing Standard:</strong> Should we establish fixed public price tiers by size and edition (e.g., Small Prints $1,500; Large Framed $4,500; XL Works $8,500–$15,000; Sculptures $3,500)?</li>
+            <li><strong>Direct Estate Contact Protocol:</strong> All inquiries currently route to <a href="mailto:jimriswoldart@gmail.com">jimriswoldart@gmail.com</a>. Would Jake & Haley like automated inquiry logging or a shared inbox review?</li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Tab Family Ask -->
+
+    <!-- TAB: NEXT STEPS & ZANY IDEAS -->
+    <div id="tab-next-steps" style="display:none;">
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:32px; border-radius:4px;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:16px; margin-bottom:24px;">
+          <h2 style="font-family:var(--font-serif); font-size:26px; font-weight:normal; color:#000;">Next Steps: From Pragmatic Baseline to Outlandish Horizons</h2>
+          <div style="font-size:13px; color:var(--wiki-text-muted); margin-top:4px;">
+            A strategic spectrum of possibilities—starting with low-lift estate operations and progressing into bold, subversive, Riswoldian conceptual ideas.
+          </div>
+        </div>
+
+        <!-- Tier 1: Low-Lift & Practical -->
+        <div class="idea-tier">
+          <div class="idea-tier-header">
+            <div>
+              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 1: Pragmatic Ground Game & Low-Lift Execution</h3>
+              <div style="font-size:12.5px; color:var(--wiki-text-muted);">The immediate operational foundation — sell some, store some, clean up the books.</div>
+            </div>
+            <span class="tier-badge badge-tier1">Foundation / Immediate</span>
+          </div>
+          <ul class="idea-list">
+            <li class="idea-item">
+              <span class="idea-icon">📦</span>
+              <div class="idea-content">
+                <strong>The "Sell a Batch, Store the Rest" Consolidation Model</strong>
+                <p>Curate a targeted first drop of 40–60 accessible works (unframed flat-file prints and popular series like <em>Andy in Heaven</em> and <em>Selling Jesus</em>). Channel initial sale proceeds into pre-paying a dedicated, high-security 3-year climate-controlled storage space for the core archival collection.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🏷️</span>
+              <div class="idea-content">
+                <strong>Physical Barcode / QR Vault Audit</strong>
+                <p>Conduct a physical walkthrough of Rooms 2.A2 through 3.C1 with this web catalog on an iPad. Affix tamper-evident archival barcode labels to crate exteriors and drawer folders, linking directly to each piece's digital URL in this archive.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">✉️</span>
+              <div class="idea-content">
+                <strong>Wieden+Kennedy Alumni & VIP Collector Preview</strong>
+                <p>Send a bespoke, private preview link of this archive to Jim's former colleagues, Nike creative leaders, Four Oceans patrons, and Pacific Northwest collectors with a simple one-click acquisition portal.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">📜</span>
+              <div class="idea-content">
+                <strong>Official Estate Certificate of Authenticity (COA)</strong>
+                <p>Produce an embossed, serialized Riswold Estate certificate signed by Jake & Haley Riswold, providing collectors with airtight provenance and catalog accession verification.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tier 2: Institutional & Curatorial -->
+        <div class="idea-tier">
+          <div class="idea-tier-header">
+            <div>
+              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 2: Curatorial Placement & Institutional Legacy</h3>
+              <div style="font-size:12.5px; color:var(--wiki-text-muted);">Cementing Jim's place in American art history and cancer philanthropy.</div>
+            </div>
+            <span class="tier-badge badge-tier2">Institutional / Medium Lift</span>
+          </div>
+          <ul class="idea-list">
+            <li class="idea-item">
+              <span class="idea-icon">🏥</span>
+              <div class="idea-content">
+                <strong>Oncology Center Bequests & Charity Benefit</strong>
+                <p>Place Jim's poignant <em>Art for Oncologists</em> works (e.g. <em>Riswold's Owies</em>, <em>Cytoxan</em>) in major cancer research centers (OHSU Knight Cancer Institute in Portland, Fred Hutchinson in Seattle). Pair the installation with a limited estate print drop raising money for adult leukemia research.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🖼️</span>
+              <div class="idea-content">
+                <strong>"Things People Don't Want" — Major Museum Retrospective</strong>
+                <p>Curate a comprehensive posthumous retrospective titled after Jim's iconic quote: <em>"I went from selling people things they don't need to making things people don't want."</em> Co-curated with Peter Yue and Guy Overfelt, debuting in Portland/Seattle and traveling to SF/NYC.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">📚</span>
+              <div class="idea-content">
+                <strong>The Definitive Monograph & Catalogue Raisonné Book</strong>
+                <p>Publish a deluxe hardcover monograph documenting all 23 conceptual series, accompanied by high-resolution imagery, essays by contemporary critics, and Jim's sharp artist texts (such as his famous 2005 Esquire essay <em>Hitler Saved My Life</em>).</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tier 3: Audacious & Cultural Interventions -->
+        <div class="idea-tier">
+          <div class="idea-tier-header">
+            <div>
+              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 3: Audacious Cultural & Commercial Interventions</h3>
+              <div style="font-size:12.5px; color:var(--wiki-text-muted);">Bold campaigns bridging Jim's advertising mastery and art subversion.</div>
+            </div>
+            <span class="tier-badge badge-tier3">Audacious / High Impact</span>
+          </div>
+          <ul class="idea-list">
+            <li class="idea-item">
+              <span class="idea-icon">📢</span>
+              <div class="idea-content">
+                <strong>Posthumous "Anti-Ad" Billboard Campaign</strong>
+                <p>Lease prominent billboard spaces near Nike World Headquarters in Beaverton and the Pearl District in Portland. Feature Jim's dictators and pop works paired with biting Riswoldian copywriting: <em>"Buy This Art Because I'm Dead and Can't Stop You"</em> or <em>"Stop Buying Stuff You Don't Need."</em></p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🏢</span>
+              <div class="idea-content">
+                <strong>The "Rent-a-Dictator" Corporate Art Lending Program</strong>
+                <p>Establish a subscription lease program renting framed photographs of Stalin, Mao, Göring, and Putin to high-flying tech startups, creative agencies, and law firms. Condition: each leased artwork must hang next to an official estate plaque satirizing corporate executive power.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🎁</span>
+              <div class="idea-content">
+                <strong>The Vault Mystery Crate / Blind Box Sale</strong>
+                <p>Offer collectors a sealed vault crate at a flat fee ($3,500) containing an unrevealed original work from the flat files, accompanied by an audio reading or manifesto letter in Jim's voice.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tier 4: Zany & Outlandish Riswold-Level Satire -->
+        <div class="idea-tier">
+          <div class="idea-tier-header">
+            <div>
+              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 4: Pure Riswoldian Absurdism & Outlandish Performance</h3>
+              <div style="font-size:12.5px; color:var(--wiki-text-muted);">Radical, headline-grabbing conceptual stunts honoring Jim's fearless sense of humor.</div>
+            </div>
+            <span class="tier-badge badge-tier4">Outlandish / Legendary</span>
+          </div>
+          <ul class="idea-list">
+            <li class="idea-item">
+              <span class="idea-icon">🔥</span>
+              <div class="idea-content">
+                <strong>The "Burn-to-Earn" Posthumous Incineration Performance</strong>
+                <p>Mint ultra-high-resolution 1-of-1 digital editions of select works. Host a black-tie gala in Portland or San Francisco with Peter Yue and Guy Overfelt. Auction the tokenized edition, and publicly incinerate the physical original in an ornate incinerator (Damien Hirst's <em>The Currency</em> meets Banksy's shredded frame). The physical ashes are canned and sold as limited-edition <em>"Riswold's Canned Owies"</em> to benefit charity.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">📫</span>
+              <div class="idea-content">
+                <strong>The Dictator Repatriation & "Childcare Invoices"</strong>
+                <p>Ship framed miniature prints of Hitler, Göring, and Stalin to authoritarian embassies worldwide, accompanied by an official invoice for 20 years of "Toy Babysitting & Psychological Upkeep Fees."</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🏆</span>
+              <div class="idea-content">
+                <strong>The Wieden+Kennedy Atrium Trophy Guerrilla Heist</strong>
+                <p>Stage an unannounced guerrilla pop-up exhibition in the W+K atrium, secretly swapping out the agency's gold Cannes Lions and One Show pencils with miniature plastic figurines of Hermann Göring eating lunch and Chairman Mao in a jester hat.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">📉</span>
+              <div class="idea-content">
+                <strong>The Reverse "Dutch Auction" Liquidation Event</strong>
+                <p>Hold a live performance auction where artwork prices start high and <em>drop</em> $100 every 10 seconds until someone can't stand the anxiety and bids. Only accepted forms of currency: vintage 1985 Air Jordans, half-empty chemotherapy vials, or expired 1990s issues of Adweek.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🤖</span>
+              <div class="idea-content">
+                <strong>The "Jim Riswold AI Creative Director" Bot</strong>
+                <p>Train an interactive AI persona strictly on Jim's sarcastic emails, legendary rejection letters, and irreverent obituaries. Prospective art buyers must submit a justification for why they deserve the artwork, and the AI Jim ruthlessly roasts them before approving the sale.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div><!-- End Tab Next Steps -->
+
+    <!-- TAB: OVERVIEW & BIOGRAPHY -->
     <div id="tab-overview" style="display:none;">
       <div class="lead-section">
         <div class="lead-text">
@@ -1081,9 +1395,9 @@
           </table>
         </aside>
       </div>
-    </div><!-- End Tab 2 -->
+    </div><!-- End Tab Overview -->
 
-    <!-- TAB 3: PROVENANCE & FOUR OCEANS GALLERY -->
+    <!-- TAB: PROVENANCE & FOUR OCEANS GALLERY -->
     <div id="tab-provenance" style="display:none;">
       <div style="background:#fff; border:1px solid var(--wiki-border); padding:28px; border-radius:4px;">
         <h2 style="font-family:var(--font-serif); font-size:24px; margin-bottom:12px;">Exhibition History & Four Oceans, One Family Gallery</h2>
@@ -1113,9 +1427,9 @@
           </div>
         </div>
       </div>
-    </div><!-- End Tab 3 -->
+    </div><!-- End Tab Provenance -->
 
-    <!-- TAB 4: RECONCILIATION & SHEET SYNC -->
+    <!-- TAB: RECONCILIATION & SHEET SYNC -->
     <div id="tab-reconcile" style="display:none;">
       <div style="background:#fff; border:1px solid var(--wiki-border); padding:28px; border-radius:4px;">
         <h2 style="font-family:var(--font-serif); font-size:24px; margin-bottom:12px;">Multi-Sheet Master Reconciliation Engine</h2>
@@ -1173,7 +1487,7 @@
           </p>
         </div>
       </div>
-    </div><!-- End Tab 4 -->
+    </div><!-- End Tab Reconcile -->
 
   </div><!-- End Main Container -->
 
@@ -1350,6 +1664,31 @@
       });
     }
 
+    // Reset All Filters Function
+    function resetAllFilters() {
+      // Clear search
+      const searchInput = document.getElementById('search-input');
+      searchInput.value = '';
+      document.getElementById('clear-search').style.display = 'none';
+
+      // Reset status filter
+      setStatusPill('all');
+
+      // Reset genre filter
+      setGenrePill('all');
+
+      // Reset all select dropdowns
+      document.getElementById('select-collection').value = 'all';
+      document.getElementById('select-series').value = 'all';
+      document.getElementById('select-size').value = 'all';
+      document.getElementById('select-framed').value = 'all';
+      document.getElementById('select-signed').value = 'all';
+      document.getElementById('select-sort').value = 'default';
+
+      currentPage = 1;
+      applyFilters();
+    }
+
     // Filter status pills
     function setStatusPill(status) {
       currentStatusFilter = status;
@@ -1458,7 +1797,7 @@
       const grid = document.getElementById('art-grid-view');
       grid.innerHTML = '';
       if (!items.length) {
-        grid.innerHTML = '<div style="grid-column:1/-1; padding:48px; text-align:center; color:var(--wiki-text-muted); font-size:16px;">No artworks found matching your filter criteria. Try clearing search or filters.</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1; padding:48px; text-align:center; color:var(--wiki-text-muted); font-size:16px;">No artworks found matching your filter criteria. Try clicking <strong>"↺ Reset All Filters"</strong>.</div>';
         return;
       }
       items.forEach(item => {
@@ -1495,7 +1834,7 @@
       const tbody = document.getElementById('art-table-body');
       tbody.innerHTML = '';
       if (!items.length) {
-        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:32px; color:var(--wiki-text-muted);">No artworks match your search criteria.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:32px; color:var(--wiki-text-muted);">No artworks match your search criteria. Try clicking <strong>"↺ Reset All Filters"</strong>.</td></tr>';
         return;
       }
       items.forEach(item => {
@@ -1695,12 +2034,15 @@ Thank you!`);
     // Tabs Switcher
     function switchTab(tabId) {
       document.querySelectorAll('.wiki-tab-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      const activeBtn = document.getElementById(`tabbtn-${tabId}`);
+      if (activeBtn) activeBtn.classList.add('active');
 
-      document.getElementById('tab-inventory').style.display = tabId === 'inventory' ? 'block' : 'none';
-      document.getElementById('tab-overview').style.display = tabId === 'overview' ? 'block' : 'none';
-      document.getElementById('tab-provenance').style.display = tabId === 'provenance' ? 'block' : 'none';
-      document.getElementById('tab-reconcile').style.display = tabId === 'reconcile' ? 'block' : 'none';
+      const tabs = ['inventory', 'family-ask', 'next-steps', 'overview', 'provenance', 'reconcile'];
+      tabs.forEach(t => {
+        const el = document.getElementById(`tab-${t}`);
+        if (el) el.style.display = (t === tabId ? 'block' : 'none');
+      });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     // Export to CSV
