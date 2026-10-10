@@ -43,7 +43,7 @@
     a { color: var(--wiki-link); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--wiki-link-hover); }
 
-    /* Top Bar: NOT STICKY. Scrolls away naturally with the page so it never covers content! */
+    /* Top Bar: Static, scrolls away naturally with page so it never clutters */
     .wiki-topbar {
       border-bottom: 1px solid var(--wiki-border-light);
       background: #fff;
@@ -52,7 +52,7 @@
     .topbar-inner {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 10px 16px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -61,15 +61,15 @@
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .wiki-globe {
-      font-size: 22px;
+      font-size: 24px;
       line-height: 1;
     }
     .wiki-site-title {
       font-family: var(--font-serif);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: bold;
       color: #000;
       letter-spacing: -0.01em;
@@ -86,8 +86,8 @@
       .wiki-site-subtitle { display: block; }
     }
     .topbar-contact-btn {
-      padding: 5px 12px;
-      font-size: 12px;
+      padding: 6px 14px;
+      font-size: 12.5px;
       font-weight: 600;
       background: #3366cc;
       color: #fff !important;
@@ -100,17 +100,17 @@
     .main-container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 12px 14px;
+      padding: 16px 20px;
     }
     @media (min-width: 768px) {
       .main-container { padding: 20px 24px; }
     }
 
-    /* Article Title Header (Desktop) */
+    /* Desktop Article Title */
     .article-header {
       border-bottom: 1px solid var(--wiki-border);
       padding-bottom: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -119,93 +119,158 @@
     }
     .article-title {
       font-family: var(--font-serif);
-      font-size: 26px;
+      font-size: 28px;
       font-weight: normal;
       color: #000;
       line-height: 1.2;
     }
     .article-subline {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--wiki-text-muted);
-      margin-top: 2px;
-    }
-    @media (max-width: 640px) {
-      .article-header { display: none; } /* On mobile, eliminate giant banner so art shows immediately */
+      margin-top: 3px;
     }
 
-    /* Tabs Bar: Scrolls away with page, clean touch-friendly buttons */
+    /* SOLIDIFIED FRAME TABS WITH NAVIGATION ARROWS */
+    .tabs-nav-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
     .wiki-tabs {
       display: flex;
-      gap: 4px;
-      border-bottom: 1px solid var(--wiki-border);
-      margin-bottom: 12px;
+      gap: 10px;
       overflow-x: auto;
+      scroll-behavior: smooth;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      padding: 4px 2px 8px 2px;
+      width: 100%;
     }
     .wiki-tabs::-webkit-scrollbar { display: none; }
-    .wiki-tab-btn {
-      padding: 8px 14px;
-      background: none;
-      border: 1px solid transparent;
-      border-bottom: none;
+
+    /* Solid Frame Tab Cards: Matching the Metric Frame Art Style */
+    .wiki-tab-frame {
+      background: #fff;
+      border: 1px solid var(--wiki-border-light);
+      border-radius: 6px;
+      padding: 10px 16px;
       cursor: pointer;
-      font-size: 13px;
-      font-family: var(--font-sans);
-      color: var(--wiki-link);
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 12px;
       user-select: none;
-      white-space: nowrap;
-      transition: background 0.15s ease;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      text-align: left;
     }
-    .wiki-tab-btn:hover { background: var(--wiki-bg-hover); text-decoration: none; }
-    .wiki-tab-btn.active {
-      background: #fff;
-      color: #000;
+    .wiki-tab-frame:hover {
       border-color: var(--wiki-border);
-      font-weight: bold;
-      border-bottom: 1px solid #fff;
-      margin-bottom: -1px;
+      background: var(--wiki-bg-subtle);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    }
+    .wiki-tab-frame.active {
+      border-color: #3366cc;
+      background: #f0f6ff;
+      border-bottom: 3.5px solid #3366cc;
+      box-shadow: 0 2px 6px rgba(51, 102, 204, 0.12);
+    }
+    .tab-frame-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+    .tab-frame-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .tab-frame-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #000;
+      line-height: 1.2;
+    }
+    .wiki-tab-frame.active .tab-frame-title {
+      color: #0b57d0;
+    }
+    .tab-frame-sub {
+      font-size: 11px;
+      color: var(--wiki-text-muted);
+      margin-top: 2px;
     }
 
-    /* Horizontal Metrics Row: Tight 4-Pill Row */
+    /* Scroll Indicator Arrows */
+    .tabs-scroll-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--wiki-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--wiki-text);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+    .tabs-scroll-arrow:hover {
+      background: var(--wiki-bg-hover);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .tabs-scroll-arrow.left {
+      left: -8px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .tabs-scroll-arrow.right {
+      right: -8px;
+      opacity: 1;
+    }
+
+    /* Metrics Bar - 4 Framed Metric Cards */
     .metrics-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      margin-bottom: 10px;
+      gap: 10px;
+      margin-bottom: 18px;
     }
     .metric-card {
       background: #fff;
       border: 1px solid var(--wiki-border-light);
-      padding: 6px 2px;
-      border-radius: 4px;
+      padding: 10px 14px;
+      border-radius: 6px;
       cursor: pointer;
       text-align: center;
-      transition: all 0.12s ease;
+      transition: all 0.15s ease;
       user-select: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
     .metric-card:hover, .metric-card.active {
       background: var(--wiki-bg-subtle);
       border-color: var(--wiki-border);
+      transform: translateY(-1px);
     }
     .metric-val {
-      font-size: 16px;
+      font-size: 22px;
       font-weight: 800;
       line-height: 1.1;
       font-family: var(--font-sans);
     }
     .metric-label {
-      font-size: 10px;
+      font-size: 11px;
       color: var(--wiki-text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.02em;
-      margin-top: 2px;
+      letter-spacing: 0.03em;
+      margin-top: 3px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -213,22 +278,33 @@
     .metric-card.avail .metric-val { color: var(--color-avail-text); }
     .metric-card.pending .metric-val { color: var(--color-pending-text); }
     .metric-card.sold .metric-val { color: var(--color-sold-text); }
-    .metric-card.avail { border-bottom: 3px solid var(--color-avail-border); }
-    .metric-card.pending { border-bottom: 3px solid var(--color-pending-border); }
-    .metric-card.sold { border-bottom: 3px solid var(--color-sold-border); }
+    .metric-card.avail { border-bottom: 3.5px solid var(--color-avail-border); }
+    .metric-card.pending { border-bottom: 3.5px solid var(--color-pending-border); }
+    .metric-card.sold { border-bottom: 3.5px solid var(--color-sold-border); }
 
-    /* Compact Search & Filter Control Bar */
+    /* Comprehensive & Compact Filter Panel */
     .filter-panel {
       background: #fff;
       border: 1px solid var(--wiki-border);
       border-radius: 6px;
-      padding: 10px 12px;
-      margin-bottom: 12px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
     }
-    .search-row {
+
+    /* Top Row: Search on Left, Theme/Genre Pills on Right */
+    .search-and-pills-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .search-col {
       display: flex;
       gap: 8px;
       align-items: center;
+      flex: 1 1 320px;
     }
     .search-input-wrapper {
       position: relative;
@@ -236,8 +312,8 @@
     }
     .search-input {
       width: 100%;
-      padding: 7px 12px 7px 32px;
-      font-size: 13.5px;
+      padding: 8px 12px 8px 34px;
+      font-size: 14px;
       border: 1px solid var(--wiki-border);
       border-radius: 20px;
       outline: none;
@@ -250,11 +326,11 @@
     }
     .search-icon {
       position: absolute;
-      left: 10px;
+      left: 11px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--wiki-text-muted);
-      font-size: 13px;
+      font-size: 14px;
       pointer-events: none;
     }
     .clear-search-btn {
@@ -270,8 +346,8 @@
       display: none;
     }
     .reset-all-pill {
-      padding: 7px 12px;
-      font-size: 12px;
+      padding: 8px 14px;
+      font-size: 12.5px;
       border: 1px solid #d33;
       border-radius: 20px;
       background: #fff5f5;
@@ -283,49 +359,122 @@
       gap: 4px;
       white-space: nowrap;
       user-select: none;
+      transition: background 0.12s ease;
     }
     .reset-all-pill:hover { background: #fce8e6; }
 
-    /* Elegant, Compact Dropdowns Row (Replaces bulky drawers) */
-    .filter-selects-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* The Genre/Theme Pills alongside Search */
+    .pills-col {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 2 1 480px;
+    }
+    .pills-label-inline {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--wiki-text-muted);
+      white-space: nowrap;
+    }
+    .pills-flex {
+      display: flex;
+      flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+    }
+    .pill-btn {
+      padding: 5px 11px;
+      font-size: 12px;
+      border: 1px solid var(--wiki-border-light);
+      border-radius: 16px;
+      background: #fff;
+      color: var(--wiki-text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      user-select: none;
+      transition: all 0.12s ease;
+    }
+    .pill-btn:hover {
+      background: var(--wiki-bg-hover);
+      border-color: var(--wiki-border);
+    }
+    .pill-btn.active {
+      background: #3366cc;
+      border-color: #3366cc;
+      color: #fff;
+      font-weight: 600;
+    }
+    .pill-count {
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.06);
+    }
+    .pill-btn.active .pill-count {
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+    }
+
+    /* Bottom Row: All Specific Dropdowns Always Visible and Compact */
+    .dropdowns-grid-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--wiki-border-light);
+    }
+    .select-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .select-group label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--wiki-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
     .select-dropdown {
       width: 100%;
-      padding: 6px 6px;
-      font-size: 11.5px;
+      padding: 6px 8px;
+      font-size: 12.5px;
       border: 1px solid var(--wiki-border);
       border-radius: 4px;
       background: #fff;
       outline: none;
       font-family: var(--font-sans);
       color: var(--wiki-text);
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    }
+    .select-dropdown:focus {
+      border-color: #3366cc;
     }
 
-    /* View and Count Bar */
+    /* Views and Action Bar */
     .view-actions-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      font-size: 12px;
+      margin-bottom: 12px;
+      font-size: 12.5px;
       color: var(--wiki-text-muted);
       gap: 8px;
+      flex-wrap: wrap;
     }
     .view-toggles {
       display: flex;
-      gap: 4px;
+      align-items: center;
+      gap: 6px;
     }
     .view-toggle-btn {
-      padding: 3px 8px;
+      padding: 4px 10px;
       border: 1px solid var(--wiki-border);
       background: #fff;
-      font-size: 11.5px;
+      font-size: 12px;
       cursor: pointer;
       border-radius: 3px;
     }
@@ -340,18 +489,18 @@
     .art-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 10px;
     }
-    @media (min-width: 640px) {
+    @media (min-width: 680px) {
       .art-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 14px;
+        gap: 16px;
       }
     }
-    @media (min-width: 1024px) {
+    @media (min-width: 1080px) {
       .art-grid {
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 18px;
+        gap: 20px;
       }
     }
 
@@ -369,12 +518,12 @@
     }
     .art-card:hover {
       border-color: #72777d;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
     }
     .art-img-box {
       width: 100%;
-      height: 150px;
+      height: 160px;
       background: #f7f8f9;
       position: relative;
       overflow: hidden;
@@ -382,9 +531,9 @@
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--wiki-border-light);
-      padding: 4px;
+      padding: 6px;
     }
-    @media (min-width: 640px) {
+    @media (min-width: 680px) {
       .art-img-box { height: 210px; }
     }
     .art-img {
@@ -394,14 +543,14 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
     }
     .art-card-body {
-      padding: 8px 8px;
+      padding: 10px 12px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
     .art-card-series {
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 700;
       color: #777;
       text-transform: uppercase;
@@ -413,7 +562,7 @@
     }
     .art-card-title {
       font-family: var(--font-serif);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: bold;
       color: #000;
       line-height: 1.25;
@@ -422,13 +571,13 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      min-height: 32px;
+      min-height: 35px;
     }
-    @media (min-width: 640px) {
-      .art-card-title { font-size: 15.5px; min-height: 38px; }
+    @media (min-width: 680px) {
+      .art-card-title { font-size: 16px; min-height: 40px; }
     }
     .art-card-meta {
-      font-size: 10.5px;
+      font-size: 11px;
       color: var(--wiki-text-muted);
       display: flex;
       flex-direction: column;
@@ -443,9 +592,9 @@
     }
     .status-badge {
       display: inline-block;
-      padding: 1px 6px;
+      padding: 2px 7px;
       border-radius: 10px;
-      font-size: 9.5px;
+      font-size: 10px;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.02em;
@@ -509,7 +658,7 @@
       justify-content: center;
       align-items: center;
       gap: 6px;
-      margin: 18px 0;
+      margin: 20px 0;
       flex-wrap: wrap;
     }
     .page-btn {
@@ -527,10 +676,7 @@
       font-weight: bold;
     }
 
-    /* CLEAN MODAL DIALOG:
-       STRICT RULE: When not [open], it is 100% DISPLAY: NONE !important.
-       It will NEVER show or take space on mobile unless an artwork is explicitly clicked!
-    */
+    /* Clean Modal Dialog: Strictly hidden when closed */
     dialog:not([open]) {
       display: none !important;
     }
@@ -554,7 +700,7 @@
       backdrop-filter: blur(2px);
     }
     .modal-header {
-      padding: 10px 16px;
+      padding: 12px 18px;
       background: var(--wiki-bg-subtle);
       border-bottom: 1px solid var(--wiki-border-light);
       display: flex;
@@ -563,7 +709,7 @@
     }
     .modal-header-title {
       font-family: var(--font-serif);
-      font-size: 16px;
+      font-size: 17px;
       font-weight: bold;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -584,10 +730,10 @@
       line-height: 1;
     }
     .modal-body {
-      padding: 16px;
+      padding: 18px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 18px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       max-height: 80vh;
@@ -613,7 +759,7 @@
     }
     .modal-artwork-img {
       max-width: 100%;
-      max-height: 360px;
+      max-height: 380px;
       object-fit: contain;
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
       cursor: zoom-in;
@@ -669,7 +815,7 @@
       background: #fff;
       border: 1px solid var(--wiki-border);
       border-radius: 6px;
-      padding: 16px;
+      padding: 20px;
       margin-bottom: 20px;
     }
     @media (min-width: 768px) {
@@ -678,7 +824,7 @@
     .storage-metric-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 10px;
       margin: 14px 0 18px 0;
     }
     @media (min-width: 768px) {
@@ -692,13 +838,16 @@
       border: 1px solid var(--wiki-border-light);
       border-radius: 4px;
       padding: 12px;
-      border-top: 3px solid #3366cc;
+      border-top: 3.5px solid #3366cc;
     }
     .storage-stat-num {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: bold;
       color: #000;
       line-height: 1.1;
+    }
+    @media (min-width: 768px) {
+      .storage-stat-num { font-size: 24px; }
     }
     .storage-stat-label {
       font-size: 10.5px;
@@ -802,7 +951,7 @@
       background: #fff;
       border: 1px solid var(--wiki-border);
       border-radius: 6px;
-      padding: 16px;
+      padding: 20px;
       margin-bottom: 18px;
     }
     @media (min-width: 768px) {
@@ -875,7 +1024,7 @@
 </head>
 <body>
 
-  <!-- Top Bar: Static, scrolls away with page -->
+  <!-- Top Bar: Static, scrolls away naturally with page -->
   <header class="wiki-topbar">
     <div class="topbar-inner">
       <div class="logo-area">
@@ -904,18 +1053,55 @@
       </div>
     </div>
 
-    <!-- Navigation Tabs: Scrolls away naturally with content -->
-    <nav class="wiki-tabs">
-      <button class="wiki-tab-btn active" id="tabbtn-inventory" onclick="switchTab('inventory')">🎨 Artworks (578)</button>
-      <button class="wiki-tab-btn" id="tabbtn-family-ask" onclick="switchTab('family-ask')">📋 Family Ask</button>
-      <button class="wiki-tab-btn" id="tabbtn-next-steps" onclick="switchTab('next-steps')">💡 Next Steps & Space</button>
-      <button class="wiki-tab-btn" id="tabbtn-notes" onclick="switchTab('notes')">📝 Notes & Provenance</button>
-    </nav>
+    <!-- SOLIDIFIED FRAME TABS WITH LEFT & RIGHT ARROWS -->
+    <div class="tabs-nav-wrapper">
+      <button class="tabs-scroll-arrow left" id="tabs-arrow-left" onclick="scrollTabs('left')" title="Scroll tabs left" aria-label="Scroll tabs left">
+        ‹
+      </button>
+
+      <nav class="wiki-tabs" id="wiki-tabs-container">
+        <button class="wiki-tab-frame active" id="tabbtn-inventory" onclick="switchTab('inventory')">
+          <span class="tab-frame-icon">🎨</span>
+          <div class="tab-frame-text">
+            <span class="tab-frame-title">Inventory Index</span>
+            <span class="tab-frame-sub">578 Works Cataloged</span>
+          </div>
+        </button>
+
+        <button class="wiki-tab-frame" id="tabbtn-family-ask" onclick="switchTab('family-ask')">
+          <span class="tab-frame-icon">📋</span>
+          <div class="tab-frame-text">
+            <span class="tab-frame-title">Family Ask</span>
+            <span class="tab-frame-sub">Objectives & Brief</span>
+          </div>
+        </button>
+
+        <button class="wiki-tab-frame" id="tabbtn-next-steps" onclick="switchTab('next-steps')">
+          <span class="tab-frame-icon">💡</span>
+          <div class="tab-frame-text">
+            <span class="tab-frame-title">Next Steps & Space</span>
+            <span class="tab-frame-sub">Storage & Strategies</span>
+          </div>
+        </button>
+
+        <button class="wiki-tab-frame" id="tabbtn-notes" onclick="switchTab('notes')">
+          <span class="tab-frame-icon">📝</span>
+          <div class="tab-frame-text">
+            <span class="tab-frame-title">Notes & Provenance</span>
+            <span class="tab-frame-sub">Bio, Gallery & Sheets</span>
+          </div>
+        </button>
+      </nav>
+
+      <button class="tabs-scroll-arrow right" id="tabs-arrow-right" onclick="scrollTabs('right')" title="Scroll tabs right" aria-label="Scroll tabs right">
+        ›
+      </button>
+    </div>
 
     <!-- TAB 1: INVENTORY (Default Active) -->
     <div id="tab-inventory">
 
-      <!-- Metrics: Tight Horizontal Row of 4 Pills -->
+      <!-- Metrics Bar: 4 Framed Status Cards -->
       <div class="metrics-bar">
         <div class="metric-card active" id="mcard-all" onclick="filterStatus('all')">
           <div class="metric-val" id="metric-total">578</div>
@@ -935,57 +1121,97 @@
         </div>
       </div>
 
-      <!-- Compact Search & Graceful Quick Dropdowns Bar -->
+      <!-- Comprehensive, Compact Filter Panel -->
       <section class="filter-panel">
-        <div class="search-row">
-          <div class="search-input-wrapper">
-            <span class="search-icon">🔍</span>
-            <input 
-              type="search" 
-              id="search-input" 
-              class="search-input" 
-              placeholder="Search by title, series, room..." 
-              list="artworks-datalist"
-              autocomplete="off"
-            >
-            <button id="clear-search" class="clear-search-btn" title="Clear search text">&times;</button>
-          </div>
-          <datalist id="artworks-datalist"></datalist>
+        <!-- Top Row: Search on Left, All Genre/Theme Pills on Right -->
+        <div class="search-and-pills-row">
+          <div class="search-col">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="search" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Search title, series, room, accession..." 
+                list="artworks-datalist"
+                autocomplete="off"
+              >
+              <button id="clear-search" class="clear-search-btn" title="Clear search text">&times;</button>
+            </div>
+            <datalist id="artworks-datalist"></datalist>
 
-          <!-- Reset All Filters Pill Button -->
-          <button class="reset-all-pill" onclick="resetAllFilters()" title="Reset all filters">
-            ↺ Reset
-          </button>
+            <button class="reset-all-pill" onclick="resetAllFilters()" title="Reset all search terms, pills, and dropdowns">
+              ↺ Reset
+            </button>
+          </div>
+
+          <!-- The Genre/Theme Pills alongside Search (Visible All The Time) -->
+          <div class="pills-col">
+            <div class="pills-label-inline">Themes:</div>
+            <div class="pills-flex" id="genre-pills-container"></div>
+          </div>
         </div>
 
-        <!-- Graceful Quick Selects (3 Dropdowns in 1 row: Section, Genre, Sort) -->
-        <div class="filter-selects-row">
-          <select id="select-collection" class="select-dropdown" onchange="applyFilters()">
-            <option value="all">📁 All Sections (578)</option>
-            <option value="Framed Art">Framed Art (245)</option>
-            <option value="Unframed Prints">Flat Prints (246)</option>
-            <option value="Extra Large (XL) Art">XL Art (37)</option>
-            <option value="Sculptures & Rugs">Sculptures (50)</option>
-          </select>
+        <!-- Bottom Row: Specific Dropdowns Always Visible and Compact -->
+        <div class="dropdowns-grid-row">
+          <div class="select-group">
+            <label for="select-collection">Section</label>
+            <select id="select-collection" class="select-dropdown" onchange="applyFilters()">
+              <option value="all">📁 All Sections (578)</option>
+              <option value="Framed Art">Framed Art on Racks (245)</option>
+              <option value="Unframed Prints">Flat Files / Prints (246)</option>
+              <option value="Extra Large (XL) Art">Extra Large (XL) Art (37)</option>
+              <option value="Sculptures & Rugs">Sculptures & Rugs (50)</option>
+            </select>
+          </div>
 
-          <select id="select-genre" class="select-dropdown" onchange="applyFilters()">
-            <option value="all">🎭 All Genres</option>
-            <option value="Dictators & Tyrants">Dictators</option>
-            <option value="War & Military">War / Military</option>
-            <option value="Art History & Parody">Art Parody</option>
-            <option value="Philosophy & Religion">Religion</option>
-            <option value="Medicine & Mortality">Medicine</option>
-            <option value="American Politics">Politics</option>
-            <option value="Objects & Sculptures">Objects</option>
-          </select>
+          <div class="select-group">
+            <label for="select-series">Series Title</label>
+            <select id="select-series" class="select-dropdown" onchange="applyFilters()">
+              <option value="all">All Series</option>
+            </select>
+          </div>
 
-          <select id="select-sort" class="select-dropdown" onchange="applyFilters()">
-            <option value="default">↕ Default Order</option>
-            <option value="title-asc">Title (A–Z)</option>
-            <option value="year-desc">Year (Newest)</option>
-            <option value="year-asc">Year (Oldest)</option>
-            <option value="status">Status (Avail 1st)</option>
-          </select>
+          <div class="select-group">
+            <label for="select-size">Size Class</label>
+            <select id="select-size" class="select-dropdown" onchange="applyFilters()">
+              <option value="all">All Sizes</option>
+              <option value="Small (< 30 in)">Small (< 30")</option>
+              <option value="Medium (30–50 in)">Medium (30–50")</option>
+              <option value="Large (50–70 in)">Large (50–70")</option>
+              <option value="Extra Large (> 70 in)">Extra Large (> 70")</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label for="select-framed">Framing</label>
+            <select id="select-framed" class="select-dropdown" onchange="applyFilters()">
+              <option value="all">Framed & Unframed</option>
+              <option value="Framed">Framed Only</option>
+              <option value="Unframed">Unframed Only</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label for="select-signed">Signature</label>
+            <select id="select-signed" class="select-dropdown" onchange="applyFilters()">
+              <option value="all">All Signatures</option>
+              <option value="Signed">Signed Only</option>
+              <option value="Unsigned / Unconfirmed">Unsigned Only</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label for="select-sort">Sort Order</label>
+            <select id="select-sort" class="select-dropdown" onchange="applyFilters()">
+              <option value="default">Default Catalog Order</option>
+              <option value="title-asc">Title (A to Z)</option>
+              <option value="title-desc">Title (Z to A)</option>
+              <option value="year-desc">Year (Newest First)</option>
+              <option value="year-asc">Year (Oldest First)</option>
+              <option value="status">Status (Available First)</option>
+            </select>
+          </div>
         </div>
       </section>
 
@@ -993,12 +1219,12 @@
       <div class="view-actions-bar">
         <div id="results-count-text">Showing 578 of 578 works</div>
         <div class="view-toggles">
-          <button class="view-toggle-btn active" id="btn-view-grid" onclick="setView('grid')">🖼️ 2-Grid</button>
-          <button class="view-toggle-btn" id="btn-view-table" onclick="setView('table')">📑 Table</button>
+          <button class="view-toggle-btn active" id="btn-view-grid" onclick="setView('grid')">🖼️ Grid View</button>
+          <button class="view-toggle-btn" id="btn-view-table" onclick="setView('table')">📑 Table View</button>
         </div>
       </div>
 
-      <!-- Container for Artworks (Grid View: Exactly 2-Across on Mobile) -->
+      <!-- Container for Artworks (Grid View: 2-across on phone, 3–4 across on desktop) -->
       <div class="art-grid" id="art-grid-view"></div>
 
       <!-- Container for Artworks (Table View) -->
@@ -1011,7 +1237,7 @@
               <th onclick="setTableSort('series')">Series ↕</th>
               <th onclick="setTableSort('year')">Year ↕</th>
               <th>Dimensions</th>
-              <th>Vault</th>
+              <th>Vault Location</th>
               <th onclick="setTableSort('status')">Status ↕</th>
             </tr>
           </thead>
@@ -1026,51 +1252,51 @@
 
     <!-- TAB 2: FAMILY OBJECTIVES & THE ASK -->
     <div id="tab-family-ask" style="display:none;">
-      <div style="background:#fff; border:1px solid var(--wiki-border); padding:20px; border-radius:6px;">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:18px;">
-          <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">Family Objectives & The Ask</h2>
-          <div style="font-size:12px; color:var(--wiki-text-muted); margin-top:3px;">
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:24px; border-radius:6px;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:20px;">
+          <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000;">Family Objectives & The Ask</h2>
+          <div style="font-size:12.5px; color:var(--wiki-text-muted); margin-top:3px;">
             Working brief from Jake Riswold & Haley Riswold with Peter Yue, Guy Overfelt, and Benji Brucker.
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:20px;">
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
-            <div style="font-size:18px; margin-bottom:6px;">📦</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-bottom:24px;">
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:6px;">📦</div>
             <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">1. Storage & Vault Consolidation</h3>
-            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.6;">
               The physical collection spans <strong>578 items</strong> across 245 framed works, 246 flat-file prints, 37 monumental XL pieces, and 50 sculptures/rugs. Currently dispersed across multiple vault rooms (Rooms 2.A2 through 3.C1) and flat files. The immediate family priority is consolidating into a single cost-effective, climate-controlled space.
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
-            <div style="font-size:18px; margin-bottom:6px;">💰</div>
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:6px;">💰</div>
             <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">2. Strategic Estate Liquidation</h3>
-            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.6;">
               Establish an active sales mechanism to generate estate proceeds and fund ongoing storage and preservation. Balancing liquidating accessible pieces with retaining key cultural masterpieces for museum and foundation bequests.
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
-            <div style="font-size:18px; margin-bottom:6px;">🔍</div>
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:6px;">🔍</div>
             <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">3. Definitive Title Resolution</h3>
-            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.6;">
               Transition from fragmented spreadsheets into this single verified source of truth. Confirm completed sales (Drew Martin, Alicia Kuna, Benji, Jake, Haley), account for works currently checked out (7 pieces at Hot Box Betty), and verify clear title for remaining works.
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
-            <div style="font-size:18px; margin-bottom:6px;">🏛️</div>
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
+            <div style="font-size:20px; margin-bottom:6px;">🏛️</div>
             <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">4. Museum & Institutional Legacy</h3>
-            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.6;">
               Cement Jim's place as an advertising icon and subversive fine artist. Target permanent placements in the Portland Art Museum, Seattle Art Museum, The One Club, and hospital oncology wings (OHSU Knight Cancer Institute).
             </p>
           </div>
         </div>
 
-        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
-          <h3 style="font-size:14px; font-weight:bold; margin-bottom:8px;">Key Questions for Family Check-In</h3>
-          <ul style="padding-left:18px; font-size:12.5px; line-height:1.7; color:var(--wiki-text);">
+        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
+          <h3 style="font-size:14.5px; font-weight:bold; margin-bottom:8px;">Key Questions for Family Check-In</h3>
+          <ul style="padding-left:20px; font-size:13px; line-height:1.7; color:var(--wiki-text);">
             <li><strong>Storage Budget:</strong> What target monthly overhead does the estate wish to achieve?</li>
             <li><strong>Wave 1 Drop:</strong> Should we identify an initial cohort of 30–50 flat-file prints to establish early liquidity?</li>
             <li><strong>Hot Box Betty Status:</strong> Have the 7 works from <em>Stalin Sketches Great</em> been purchased, or should they return to storage?</li>
@@ -1085,19 +1311,19 @@
 
       <!-- Physical Storage Footprint & Space Calculator -->
       <section class="storage-dashboard">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:14px;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:16px;">
           <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px;">
-            <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">
+            <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000;">
               Physical Storage Footprint & Space Calculator
             </h2>
             <span class="status-badge available" style="font-size:11px;">Archival Analysis</span>
           </div>
-          <p style="font-size:12.5px; color:var(--wiki-text-muted); margin-top:4px;">
+          <p style="font-size:13px; color:var(--wiki-text-muted); margin-top:4px;">
             Spatial calculations based on actual piece measurements, protective crating buffers, vertical picture racks, and walkway clearance.
           </p>
         </div>
 
-        <!-- 4-Stat Metric Cluster (2x2 on Mobile, 4x1 on Desktop) -->
+        <!-- 4-Stat Metric Cluster -->
         <div class="storage-metric-grid">
           <div class="storage-stat-card">
             <div class="storage-stat-num">578 Pieces</div>
@@ -1122,8 +1348,8 @@
         </div>
 
         <!-- Spatial Breakdown Table -->
-        <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#555;">Collection Space Distribution:</div>
-        <div class="table-container" style="margin-bottom:18px;">
+        <div style="font-size:12.5px; font-weight:bold; margin-bottom:8px; color:#555;">Collection Space Distribution:</div>
+        <div class="table-container" style="margin-bottom:20px;">
           <table class="wiki-table">
             <thead>
               <tr>
@@ -1187,7 +1413,7 @@
         </div>
 
         <!-- Real-World Storage Equivalents Cards -->
-        <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#555;">Real-World Storage & Transport Comparisons:</div>
+        <div style="font-size:12.5px; font-weight:bold; margin-bottom:8px; color:#555;">Real-World Storage & Transport Comparisons:</div>
         <div class="equivalents-grid">
           <div class="equiv-card">
             <div class="equiv-card-header">
@@ -1239,11 +1465,11 @@
         </div>
 
         <!-- Strategic Takeaway Box -->
-        <div style="background:#eaf3ff; border:1px solid #b6d4fe; border-radius:6px; padding:14px; margin-top:16px;">
-          <h4 style="font-size:13.5px; font-weight:bold; color:#0b57d0; margin-bottom:4px;">
+        <div style="background:#eaf3ff; border:1px solid #b6d4fe; border-radius:6px; padding:16px; margin-top:18px;">
+          <h4 style="font-size:14px; font-weight:bold; color:#0b57d0; margin-bottom:4px;">
             💡 Storage Takeaway: The 85% vs. 3% Footprint Disparity
           </h4>
-          <p style="font-size:12.5px; color:#1e293b; line-height:1.5;">
+          <p style="font-size:13px; color:#1e293b; line-height:1.6;">
             <strong>Framed (245) and XL (37) works account for >83% of the total storage footprint</strong> (~1,075 cu. ft.) and drive almost all monthly rent. In contrast, <strong>all 246 Unframed Prints occupy less than 16 sq. ft.</strong> (two architectural flat file cabinets).
             <br><br>
             <strong>Implication:</strong> Placing or liquidating 40–50 large framed pieces immediately cuts storage overhead in half, while preserving all 246 prints costs almost nothing.
@@ -1252,8 +1478,8 @@
       </section>
 
       <!-- Strategic Action Tiers -->
-      <div style="background:#fff; border:1px solid var(--wiki-border); padding:20px; border-radius:6px;">
-        <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000; margin-bottom:14px;">
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:24px; border-radius:6px;">
+        <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000; margin-bottom:16px;">
           Strategic Next Steps: Pragmatic to Subversive
         </h2>
 
@@ -1373,10 +1599,10 @@
       <!-- SECTION A: BIOGRAPHY & OVERVIEW -->
       <section class="notes-section" id="notes-bio">
         <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:10px; margin-bottom:14px;">
-          <h2 style="font-family:var(--font-serif); font-size:20px; font-weight:normal; color:#000;">
+          <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">
             Overview & Encyclopedic Biography
           </h2>
-          <div style="font-size:11.5px; color:var(--wiki-text-muted);">Wikipedia, The One Club Hall of Fame, and estate archival records</div>
+          <div style="font-size:12px; color:var(--wiki-text-muted);">Wikipedia, The One Club Hall of Fame, and estate archival records</div>
         </div>
 
         <div class="lead-section">
@@ -1418,10 +1644,10 @@
       <!-- SECTION B: FOUR OCEANS ONE FAMILY GALLERY PROVENANCE -->
       <section class="notes-section" id="notes-fouroceans">
         <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:10px; margin-bottom:14px;">
-          <h2 style="font-family:var(--font-serif); font-size:20px; font-weight:normal; color:#000;">
+          <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">
             Exhibition Provenance: Four Oceans, One Family Gallery
           </h2>
-          <div style="font-size:11.5px; color:var(--wiki-text-muted);">Collaborative exhibition history and physical custody context</div>
+          <div style="font-size:12px; color:var(--wiki-text-muted);">Collaborative exhibition history and physical custody context</div>
         </div>
 
         <p style="font-size:13.5px; line-height:1.6; margin-bottom:12px;">
@@ -1431,19 +1657,19 @@
           This digital archive acts as the master provenance bridge connecting the physical pieces stored in the gallery vault, drawers, and rooms with the estate administration spearheaded by Jake and Haley Riswold.
         </p>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
-            <h3 style="font-size:14px; font-weight:bold; margin-bottom:6px;">Physical Vault Coordinates</h3>
-            <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+            <h3 style="font-size:14.5px; font-weight:bold; margin-bottom:6px;">Physical Vault Coordinates</h3>
+            <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.6;">
               • <strong>Framed Works:</strong> Rooms 2.A2, 2.S1, 2.V1, 2.Y1, 2.CC1, 2.HH1, 3.C1<br>
               • <strong>Flat File Works:</strong> Architectural Red Flat File Drawers D1–D14<br>
               • <strong>Sculptures & Rugs:</strong> Vault Shelving Racks & Crates
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
-            <h3 style="font-size:14px; font-weight:bold; margin-bottom:6px;">Collaborative Team</h3>
-            <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+            <h3 style="font-size:14.5px; font-weight:bold; margin-bottom:6px;">Collaborative Team</h3>
+            <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.6;">
               • <strong>Estate Executors:</strong> Jake Riswold & Haley Riswold<br>
               • <strong>Curators & Partners:</strong> Peter Yue, Guy Overfelt, Benji Brucker<br>
               • <strong>Official Channel:</strong> <a href="mailto:jimriswoldart@gmail.com">jimriswoldart@gmail.com</a>
@@ -1455,17 +1681,17 @@
       <!-- SECTION C: CANONICAL GOOGLE SHEETS REGISTRY -->
       <section class="notes-section" id="notes-sheets">
         <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:10px; margin-bottom:14px;">
-          <h2 style="font-family:var(--font-serif); font-size:20px; font-weight:normal; color:#000;">
+          <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">
             Source Data: Canonical Google Spreadsheets
           </h2>
-          <div style="font-size:11.5px; color:var(--wiki-text-muted);">Direct links to verified estate spreadsheets and reconciliation</div>
+          <div style="font-size:12px; color:var(--wiki-text-muted);">Direct links to verified estate spreadsheets and reconciliation</div>
         </div>
 
-        <p style="font-size:13px; color:var(--wiki-text-muted); margin-bottom:14px;">
+        <p style="font-size:13.5px; color:var(--wiki-text-muted); margin-bottom:16px;">
           Click any link below to open the canonical source-of-truth spreadsheet in Google Docs:
         </p>
 
-        <div class="table-container" style="margin-bottom:16px;">
+        <div class="table-container" style="margin-bottom:18px;">
           <table class="wiki-table">
             <thead>
               <tr>
@@ -1525,9 +1751,9 @@
           </table>
         </div>
 
-        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
-          <h3 style="font-size:13.5px; font-weight:bold; margin-bottom:6px;">Status Discrepancy Protocol</h3>
-          <p style="font-size:12px; color:var(--wiki-text-muted); line-height:1.6;">
+        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+          <h3 style="font-size:14px; font-weight:bold; margin-bottom:6px;">Status Discrepancy Protocol</h3>
+          <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.6;">
             • <strong>Definitely Sold (13 Works):</strong> Formally logged with buyer names (Drew Martin, Alicia Kuna, Benji, Jake Riswold, Sheila & Dave, James Porter, Hallie).<br>
             • <strong>Might Be Sold / In Review (7 Works):</strong> Logged with <em>Checked Out = 1</em> (all 7 works from <em>Stalin Sketches Great</em> checked out to Hot Box Betty).<br>
             • <strong>Definitely Available (558 Works):</strong> Fully cataloged inventory available for estate allocation.
@@ -1539,7 +1765,7 @@
 
   </div><!-- End Main Container -->
 
-  <!-- Accessible Modal (<dialog>): Strictly hidden when closed with display: none !important -->
+  <!-- Accessible Modal (<dialog>): Strictly hidden when closed -->
   <dialog id="art-modal" class="wiki-modal" closedby="any">
     <div class="modal-header">
       <div class="modal-header-title" id="modal-title">Artwork Details</div>
@@ -1557,7 +1783,7 @@
           <span style="font-size:11px; font-weight:bold; color:#777; text-transform:uppercase;" id="modal-series">SERIES</span>
           <span id="modal-status-badge" class="status-badge available">AVAILABLE</span>
         </div>
-        <h2 style="font-family:var(--font-serif); font-size:18px; margin-bottom:10px; line-height:1.3;" id="modal-art-title">Artwork Title</h2>
+        <h2 style="font-family:var(--font-serif); font-size:19px; margin-bottom:10px; line-height:1.3;" id="modal-art-title">Artwork Title</h2>
         <table class="modal-table">
           <tr><th>Year</th><td id="modal-year">—</td></tr>
           <tr><th>Genre</th><td id="modal-genre">—</td></tr>
@@ -1575,7 +1801,7 @@
         <!-- Interactive Status Updater -->
         <div style="margin-top:12px; padding:10px; background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); border-radius:4px;">
           <div style="font-size:10.5px; font-weight:bold; text-transform:uppercase; color:var(--wiki-text-muted); margin-bottom:6px;">Update Status (Session):</div>
-          <div style="display:flex; gap:12px; font-size:12px;">
+          <div style="display:flex; gap:14px; font-size:12.5px;">
             <label><input type="radio" name="modal-status-radio" value="available" onchange="updateItemStatus('available')"> Avail</label>
             <label><input type="radio" name="modal-status-radio" value="pending" onchange="updateItemStatus('pending')"> Review</label>
             <label><input type="radio" name="modal-status-radio" value="sold" onchange="updateItemStatus('sold')"> Sold</label>
@@ -1593,7 +1819,7 @@
 
   <!-- Wikipedia-style Footer -->
   <footer class="wiki-footer">
-    <div style="display:flex; justify-content:center; gap:14px; margin-bottom:6px;">
+    <div style="display:flex; justify-content:center; gap:16px; margin-bottom:6px;">
       <a href="https://en.wikipedia.org/wiki/Jim_Riswold" target="_blank">Wikipedia</a>
       <span>•</span>
       <a href="https://www.jimriswold.com" target="_blank">JimRiswold.com</a>
@@ -1613,6 +1839,7 @@
   <script>
     // State
     let currentStatusFilter = 'all';
+    let currentGenreFilter = 'all';
     let currentView = 'grid';
     let currentPage = 1;
     const itemsPerPage = 48;
@@ -1621,10 +1848,25 @@
     let tableSortCol = 'default';
     let tableSortAsc = true;
 
+    // Genres configuration
+    const GENRES = [
+      { id: 'all', name: 'All Themes' },
+      { id: 'Dictators & Tyrants', name: 'Dictators' },
+      { id: 'War & Military', name: 'Military' },
+      { id: 'Art History & Parody', name: 'Art Parody' },
+      { id: 'Philosophy & Religion', name: 'Religion' },
+      { id: 'Medicine & Mortality', name: 'Medicine' },
+      { id: 'American Politics', name: 'Politics' },
+      { id: 'Objects & Sculptures', name: 'Objects' }
+    ];
+
     // Initialization
     document.addEventListener('DOMContentLoaded', () => {
       initDatalist();
+      initGenrePills();
+      initSeriesDropdown();
       initSearch();
+      initTabsScrollListener();
       applyFilters();
     });
 
@@ -1642,6 +1884,80 @@
         opt.value = name;
         datalist.appendChild(opt);
       });
+    }
+
+    // Populate Genre Pills (Visible alongside Search)
+    function initGenrePills() {
+      const container = document.getElementById('genre-pills-container');
+      container.innerHTML = '';
+      GENRES.forEach(g => {
+        const btn = document.createElement('button');
+        btn.className = `pill-btn ${g.id === 'all' ? 'active' : ''}`;
+        btn.dataset.genre = g.id;
+        const count = g.id === 'all' ? INVENTORY_DATA.length : INVENTORY_DATA.filter(x => x.genre === g.id).length;
+        btn.innerHTML = `${g.name} <span class="pill-count">${count}</span>`;
+        btn.onclick = () => setGenrePill(g.id);
+        container.appendChild(btn);
+      });
+    }
+
+    // Populate Series Dropdown
+    function initSeriesDropdown() {
+      const sel = document.getElementById('select-series');
+      const seriesCounts = {};
+      INVENTORY_DATA.forEach(x => {
+        const s = x.series || 'Independent Works';
+        seriesCounts[s] = (seriesCounts[s] || 0) + 1;
+      });
+      const sorted = Object.keys(seriesCounts).sort();
+      sorted.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = `${s} (${seriesCounts[s]})`;
+        sel.appendChild(opt);
+      });
+    }
+
+    // Tabs Scroll Navigation & Arrow Visibility
+    function initTabsScrollListener() {
+      const container = document.getElementById('wiki-tabs-container');
+      if (!container) return;
+      container.addEventListener('scroll', updateTabArrows);
+      window.addEventListener('resize', updateTabArrows);
+      updateTabArrows();
+    }
+
+    function updateTabArrows() {
+      const container = document.getElementById('wiki-tabs-container');
+      const arrowLeft = document.getElementById('tabs-arrow-left');
+      const arrowRight = document.getElementById('tabs-arrow-right');
+      if (!container || !arrowLeft || !arrowRight) return;
+
+      const scrollLeft = container.scrollLeft;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+
+      if (scrollLeft > 10) {
+        arrowLeft.style.opacity = '1';
+        arrowLeft.style.pointerEvents = 'auto';
+      } else {
+        arrowLeft.style.opacity = '0';
+        arrowLeft.style.pointerEvents = 'none';
+      }
+
+      if (maxScroll - scrollLeft > 10) {
+        arrowRight.style.opacity = '1';
+        arrowRight.style.pointerEvents = 'auto';
+      } else {
+        arrowRight.style.opacity = '0';
+        arrowRight.style.pointerEvents = 'none';
+      }
+    }
+
+    function scrollTabs(direction) {
+      const container = document.getElementById('wiki-tabs-container');
+      const amount = 240;
+      container.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
+      setTimeout(updateTabArrows, 300);
     }
 
     // Search Box Listener
@@ -1667,8 +1983,13 @@
       document.getElementById('clear-search').style.display = 'none';
 
       setStatusPill('all');
+      setGenrePill('all');
+
       document.getElementById('select-collection').value = 'all';
-      document.getElementById('select-genre').value = 'all';
+      document.getElementById('select-series').value = 'all';
+      document.getElementById('select-size').value = 'all';
+      document.getElementById('select-framed').value = 'all';
+      document.getElementById('select-signed').value = 'all';
       document.getElementById('select-sort').value = 'default';
 
       applyFilters();
@@ -1687,17 +2008,33 @@
       applyFilters();
     }
 
+    // Filter Trigger: Genre Pills
+    function setGenrePill(genre) {
+      currentGenreFilter = genre;
+      document.querySelectorAll('#genre-pills-container .pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.genre === genre);
+      });
+      applyFilters();
+    }
+
     // Main Filtering Function
     function applyFilters() {
       const query = (document.getElementById('search-input').value || '').trim().toLowerCase();
       const colFilter = document.getElementById('select-collection').value;
-      const genreFilter = document.getElementById('select-genre').value;
+      const seriesFilter = document.getElementById('select-series').value;
+      const sizeFilter = document.getElementById('select-size').value;
+      const framedFilter = document.getElementById('select-framed').value;
+      const signedFilter = document.getElementById('select-signed').value;
       const sortOrder = document.getElementById('select-sort').value;
 
       filteredItems = INVENTORY_DATA.filter(item => {
         if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) return false;
+        if (currentGenreFilter !== 'all' && item.genre !== currentGenreFilter) return false;
         if (colFilter !== 'all' && item.collection_category !== colFilter) return false;
-        if (genreFilter !== 'all' && item.genre !== genreFilter) return false;
+        if (seriesFilter !== 'all' && item.series !== seriesFilter) return false;
+        if (sizeFilter !== 'all' && item.size_category !== sizeFilter) return false;
+        if (framedFilter !== 'all' && item.framed !== framedFilter) return false;
+        if (signedFilter !== 'all' && item.signed !== signedFilter) return false;
 
         if (query) {
           const matchTitle = (item.title || '').toLowerCase().includes(query);
@@ -1723,6 +2060,8 @@
     function sortFilteredItems(sortOrder) {
       if (sortOrder === 'title-asc') {
         filteredItems.sort((a,b) => (a.title || '').localeCompare(b.title || ''));
+      } else if (sortOrder === 'title-desc') {
+        filteredItems.sort((a,b) => (b.title || '').localeCompare(a.title || ''));
       } else if (sortOrder === 'year-desc') {
         filteredItems.sort((a,b) => (b.year || '').localeCompare(a.year || ''));
       } else if (sortOrder === 'year-asc') {
@@ -1762,7 +2101,7 @@
       renderPagination();
     }
 
-    // Render 2-Across Grid
+    // Render Grid
     function renderGrid(items) {
       const grid = document.getElementById('art-grid-view');
       grid.innerHTML = '';
@@ -1800,7 +2139,7 @@
           </div>
           <div class="art-card-meta">
             <div class="card-meta-row">
-              <span style="font-size:10.5px;">${item.year ? escapeHtml(item.year) : 'c. 2005–24'}</span>
+              <span style="font-size:11px;">${item.year ? escapeHtml(item.year) : 'c. 2005–24'}</span>
               <span class="status-badge ${item.status}">${item.status === 'available' ? 'Avail' : (item.status === 'pending' ? 'Review' : 'Sold')}</span>
             </div>
             ${locText ? `<div style="font-size:10px; font-family:var(--font-mono); color:#666; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(locText)}</div>` : ''}
@@ -1960,7 +2299,7 @@
 
     // Switch Tabs
     function switchTab(tabId) {
-      document.querySelectorAll('.wiki-tabs .wiki-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.wiki-tabs .wiki-tab-frame').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tabbtn-${tabId}`);
       if (activeBtn) activeBtn.classList.add('active');
 
