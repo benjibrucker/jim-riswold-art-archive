@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jim Riswold (1957–2024) — Complete Art Inventory & Estate Catalog</title>
   <meta name="description" content="Comprehensive estate catalog and art inventory index for contemporary artist Jim Riswold. Curated with Jake Riswold, Haley Riswold, Peter Yue, and Guy Overfelt.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💣</text></svg>">
@@ -26,7 +26,7 @@
       --color-sold-text: #c5221f;
       --color-sold-border: #ea4335;
       --font-serif: "Linux Libertine", "Georgia", "Times New Roman", serif;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, -apple-system, system-ui, Helvetica, Arial, sans-serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
     }
 
@@ -43,19 +43,16 @@
     a { color: var(--wiki-link); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--wiki-link-hover); }
 
-    /* Top Navigation Header */
+    /* Top Bar: NOT STICKY. Scrolls away naturally with the page so it never covers content! */
     .wiki-topbar {
       border-bottom: 1px solid var(--wiki-border-light);
       background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      position: static;
     }
     .topbar-inner {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 8px 16px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -79,7 +76,7 @@
       white-space: nowrap;
     }
     .wiki-site-subtitle {
-      font-size: 10.5px;
+      font-size: 11px;
       color: var(--wiki-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -103,7 +100,7 @@
     .main-container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 12px 16px;
+      padding: 12px 14px;
     }
     @media (min-width: 768px) {
       .main-container { padding: 20px 24px; }
@@ -133,10 +130,10 @@
       margin-top: 2px;
     }
     @media (max-width: 640px) {
-      .article-header { display: none; } /* Hide large title on mobile to maximize image viewport */
+      .article-header { display: none; } /* On mobile, eliminate giant banner so art shows immediately */
     }
 
-    /* Tabs Bar */
+    /* Tabs Bar: Scrolls away with page, clean touch-friendly buttons */
     .wiki-tabs {
       display: flex;
       gap: 4px;
@@ -176,17 +173,17 @@
       margin-bottom: -1px;
     }
 
-    /* Metrics Bar - Tight Horizontal Row */
+    /* Horizontal Metrics Row: Tight 4-Pill Row */
     .metrics-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .metric-card {
       background: #fff;
       border: 1px solid var(--wiki-border-light);
-      padding: 6px 4px;
+      padding: 6px 2px;
       border-radius: 4px;
       cursor: pointer;
       text-align: center;
@@ -198,7 +195,7 @@
       border-color: var(--wiki-border);
     }
     .metric-val {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
       line-height: 1.1;
       font-family: var(--font-sans);
@@ -207,7 +204,7 @@
       font-size: 10px;
       color: var(--wiki-text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       margin-top: 2px;
       white-space: nowrap;
       overflow: hidden;
@@ -226,7 +223,7 @@
       border: 1px solid var(--wiki-border);
       border-radius: 6px;
       padding: 10px 12px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .search-row {
       display: flex;
@@ -239,8 +236,8 @@
     }
     .search-input {
       width: 100%;
-      padding: 8px 12px 8px 32px;
-      font-size: 14px;
+      padding: 7px 12px 7px 32px;
+      font-size: 13.5px;
       border: 1px solid var(--wiki-border);
       border-radius: 20px;
       outline: none;
@@ -257,7 +254,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--wiki-text-muted);
-      font-size: 14px;
+      font-size: 13px;
       pointer-events: none;
     }
     .clear-search-btn {
@@ -272,29 +269,8 @@
       cursor: pointer;
       display: none;
     }
-
-    /* Filter Action Buttons */
-    .filter-toggle-btn {
-      padding: 8px 12px;
-      font-size: 12.5px;
-      font-weight: 600;
-      border: 1px solid var(--wiki-border);
-      border-radius: 20px;
-      background: #fff;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-      user-select: none;
-    }
-    .filter-toggle-btn.has-filters {
-      background: #eaf3ff;
-      border-color: #3366cc;
-      color: #3366cc;
-    }
     .reset-all-pill {
-      padding: 8px 10px;
+      padding: 7px 12px;
       font-size: 12px;
       border: 1px solid #d33;
       border-radius: 20px;
@@ -310,115 +286,46 @@
     }
     .reset-all-pill:hover { background: #fce8e6; }
 
-    /* Collapsible Advanced Filters Drawer */
-    #advanced-filters-drawer {
-      display: none;
-      padding-top: 12px;
-      margin-top: 10px;
-      border-top: 1px solid var(--wiki-border-light);
-    }
-    #advanced-filters-drawer.open {
-      display: block;
-    }
-
-    /* Pills Groups */
-    .pills-group {
-      margin-bottom: 10px;
-    }
-    .pills-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--wiki-text-muted);
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .pills-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-    .pill-btn {
-      padding: 4px 10px;
-      font-size: 11.5px;
-      border: 1px solid var(--wiki-border-light);
-      border-radius: 14px;
-      background: #fff;
-      color: var(--wiki-text);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      user-select: none;
-    }
-    .pill-btn.active {
-      background: #3366cc;
-      border-color: #3366cc;
-      color: #fff;
-      font-weight: 600;
-    }
-    .pill-count {
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 8px;
-      background: rgba(0,0,0,0.06);
-    }
-    .pill-btn.active .pill-count {
-      background: rgba(255,255,255,0.25);
-      color: #fff;
-    }
-
-    /* Dropdowns Row */
-    .dropdowns-row {
+    /* Elegant, Compact Dropdowns Row (Replaces bulky drawers) */
+    .filter-selects-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
       margin-top: 8px;
     }
-    .select-group {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .select-group label {
-      font-size: 10.5px;
-      font-weight: bold;
-      color: var(--wiki-text-muted);
-      text-transform: uppercase;
-    }
     .select-dropdown {
-      padding: 6px 8px;
-      font-size: 12.5px;
+      width: 100%;
+      padding: 6px 6px;
+      font-size: 11.5px;
       border: 1px solid var(--wiki-border);
-      border-radius: 3px;
+      border-radius: 4px;
       background: #fff;
       outline: none;
       font-family: var(--font-sans);
+      color: var(--wiki-text);
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    /* Views Bar */
+    /* View and Count Bar */
     .view-actions-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-size: 12px;
       color: var(--wiki-text-muted);
-      flex-wrap: wrap;
       gap: 8px;
     }
     .view-toggles {
       display: flex;
-      gap: 6px;
+      gap: 4px;
     }
     .view-toggle-btn {
-      padding: 4px 8px;
+      padding: 3px 8px;
       border: 1px solid var(--wiki-border);
       background: #fff;
-      font-size: 12px;
+      font-size: 11.5px;
       cursor: pointer;
       border-radius: 3px;
     }
@@ -429,7 +336,7 @@
       font-weight: bold;
     }
 
-    /* Artworks Grid: Exactly 2-Across on Mobile, 3–4 across on larger screens */
+    /* Artworks Grid: 2-Across on Mobile, 3–4 across on Desktop */
     .art-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -448,7 +355,7 @@
       }
     }
 
-    /* Artwork Card: Mobile Optimized */
+    /* Artwork Card */
     .art-card {
       background: #fff;
       border: 1px solid var(--wiki-border-light);
@@ -487,7 +394,7 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
     }
     .art-card-body {
-      padding: 8px 10px;
+      padding: 8px 8px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -506,7 +413,7 @@
     }
     .art-card-title {
       font-family: var(--font-serif);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: bold;
       color: #000;
       line-height: 1.25;
@@ -515,13 +422,13 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      min-height: 34px;
+      min-height: 32px;
     }
     @media (min-width: 640px) {
-      .art-card-title { font-size: 16px; min-height: 40px; }
+      .art-card-title { font-size: 15.5px; min-height: 38px; }
     }
     .art-card-meta {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--wiki-text-muted);
       display: flex;
       flex-direction: column;
@@ -602,7 +509,7 @@
       justify-content: center;
       align-items: center;
       gap: 6px;
-      margin: 20px 0;
+      margin: 18px 0;
       flex-wrap: wrap;
     }
     .page-btn {
@@ -620,53 +527,31 @@
       font-weight: bold;
     }
 
-    /* Modal / Bottom Sheet on Mobile */
+    /* CLEAN MODAL DIALOG:
+       STRICT RULE: When not [open], it is 100% DISPLAY: NONE !important.
+       It will NEVER show or take space on mobile unless an artwork is explicitly clicked!
+    */
+    dialog:not([open]) {
+      display: none !important;
+    }
     .wiki-modal {
       border: none;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
       padding: 0;
       overflow: hidden;
       background: #fff;
+      border-radius: 8px;
+      max-width: 900px;
+      width: 92vw;
+      margin: auto;
+    }
+    .wiki-modal[open] {
+      display: flex;
+      flex-direction: column;
     }
     .wiki-modal::backdrop {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(2px);
-    }
-    /* Mobile: Slide-Up Bottom Sheet */
-    @media (max-width: 768px) {
-      .wiki-modal {
-        position: fixed;
-        bottom: 0;
-        top: auto;
-        left: 0;
-        right: 0;
-        width: 100vw;
-        max-width: 100vw;
-        max-height: 90vh;
-        margin: 0;
-        border-radius: 18px 18px 0 0;
-        display: flex;
-        flex-direction: column;
-      }
-    }
-    /* Desktop: Centered Dialog */
-    @media (min-width: 769px) {
-      .wiki-modal {
-        border-radius: 6px;
-        max-width: 900px;
-        width: 90vw;
-        margin: auto;
-      }
-    }
-    .bottom-sheet-handle {
-      width: 40px;
-      height: 4px;
-      background: #d1d5db;
-      border-radius: 2px;
-      margin: 8px auto 2px auto;
-    }
-    @media (min-width: 769px) {
-      .bottom-sheet-handle { display: none; }
     }
     .modal-header {
       padding: 10px 16px;
@@ -678,19 +563,24 @@
     }
     .modal-header-title {
       font-family: var(--font-serif);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     .modal-close-btn {
-      background: none;
+      background: #eaecf0;
       border: none;
-      font-size: 22px;
+      font-size: 18px;
+      width: 28px;
+      height: 28px;
+      border-radius: 14px;
       cursor: pointer;
-      color: var(--wiki-text-muted);
-      padding: 0 6px;
+      color: var(--wiki-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 1;
     }
     .modal-body {
@@ -700,7 +590,7 @@
       gap: 16px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      max-height: calc(88vh - 60px);
+      max-height: 80vh;
     }
     @media (min-width: 769px) {
       .modal-body {
@@ -719,11 +609,11 @@
       border: 1px solid var(--wiki-border-light);
       border-radius: 4px;
       padding: 12px;
-      min-height: 220px;
+      min-height: 200px;
     }
     .modal-artwork-img {
       max-width: 100%;
-      max-height: 380px;
+      max-height: 360px;
       object-fit: contain;
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
       cursor: zoom-in;
@@ -756,10 +646,6 @@
     }
     .modal-actions {
       margin-top: 16px;
-      position: sticky;
-      bottom: 0;
-      background: #fff;
-      padding-top: 8px;
     }
     .btn-inquire {
       width: 100%;
@@ -813,9 +699,6 @@
       font-weight: bold;
       color: #000;
       line-height: 1.1;
-    }
-    @media (min-width: 768px) {
-      .storage-stat-num { font-size: 22px; }
     }
     .storage-stat-label {
       font-size: 10.5px;
@@ -992,7 +875,7 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
+  <!-- Top Bar: Static, scrolls away with page -->
   <header class="wiki-topbar">
     <div class="topbar-inner">
       <div class="logo-area">
@@ -1003,7 +886,7 @@
         </div>
       </div>
       <div style="display:flex; gap:8px; align-items:center;">
-        <a href="mailto:jimriswoldart@gmail.com" class="topbar-contact-btn">✉️ Contact Estate</a>
+        <a href="mailto:jimriswoldart@gmail.com" class="topbar-contact-btn">✉️ Contact</a>
       </div>
     </div>
   </header>
@@ -1021,7 +904,7 @@
       </div>
     </div>
 
-    <!-- Top Navigation Tabs -->
+    <!-- Navigation Tabs: Scrolls away naturally with content -->
     <nav class="wiki-tabs">
       <button class="wiki-tab-btn active" id="tabbtn-inventory" onclick="switchTab('inventory')">🎨 Artworks (578)</button>
       <button class="wiki-tab-btn" id="tabbtn-family-ask" onclick="switchTab('family-ask')">📋 Family Ask</button>
@@ -1032,7 +915,7 @@
     <!-- TAB 1: INVENTORY (Default Active) -->
     <div id="tab-inventory">
 
-      <!-- Metrics: Tight Horizontal Row -->
+      <!-- Metrics: Tight Horizontal Row of 4 Pills -->
       <div class="metrics-bar">
         <div class="metric-card active" id="mcard-all" onclick="filterStatus('all')">
           <div class="metric-val" id="metric-total">578</div>
@@ -1052,7 +935,7 @@
         </div>
       </div>
 
-      <!-- Compact Search & Controls Bar -->
+      <!-- Compact Search & Graceful Quick Dropdowns Bar -->
       <section class="filter-panel">
         <div class="search-row">
           <div class="search-input-wrapper">
@@ -1061,7 +944,7 @@
               type="search" 
               id="search-input" 
               class="search-input" 
-              placeholder="Search 578 works, series, room..." 
+              placeholder="Search by title, series, room..." 
               list="artworks-datalist"
               autocomplete="off"
             >
@@ -1069,88 +952,40 @@
           </div>
           <datalist id="artworks-datalist"></datalist>
 
-          <!-- Toggle Advanced Filters Drawer Button -->
-          <button class="filter-toggle-btn" id="filter-toggle-btn" onclick="toggleAdvancedFilters()">
-            ⚙️ <span id="filter-btn-label">Filters</span>
-          </button>
-
           <!-- Reset All Filters Pill Button -->
           <button class="reset-all-pill" onclick="resetAllFilters()" title="Reset all filters">
             ↺ Reset
           </button>
         </div>
 
-        <!-- Collapsible Drawer for Advanced Filters -->
-        <div id="advanced-filters-drawer">
-          <!-- Conceptual Genres Filter Pills -->
-          <div class="pills-group">
-            <div class="pills-label">
-              <span>Conceptual Themes / Genres:</span>
-            </div>
-            <div class="pills-flex" id="genre-pills-container"></div>
-          </div>
+        <!-- Graceful Quick Selects (3 Dropdowns in 1 row: Section, Genre, Sort) -->
+        <div class="filter-selects-row">
+          <select id="select-collection" class="select-dropdown" onchange="applyFilters()">
+            <option value="all">📁 All Sections (578)</option>
+            <option value="Framed Art">Framed Art (245)</option>
+            <option value="Unframed Prints">Flat Prints (246)</option>
+            <option value="Extra Large (XL) Art">XL Art (37)</option>
+            <option value="Sculptures & Rugs">Sculptures (50)</option>
+          </select>
 
-          <!-- Dropdowns Selection Row -->
-          <div class="dropdowns-row">
-            <div class="select-group">
-              <label for="select-collection">Section</label>
-              <select id="select-collection" class="select-dropdown" onchange="applyFilters()">
-                <option value="all">All Sections (578)</option>
-                <option value="Framed Art">Framed Art (245)</option>
-                <option value="Unframed Prints">Flat Prints (246)</option>
-                <option value="Extra Large (XL) Art">XL Monumental (37)</option>
-                <option value="Sculptures & Rugs">Sculptures & Rugs (50)</option>
-              </select>
-            </div>
+          <select id="select-genre" class="select-dropdown" onchange="applyFilters()">
+            <option value="all">🎭 All Genres</option>
+            <option value="Dictators & Tyrants">Dictators</option>
+            <option value="War & Military">War / Military</option>
+            <option value="Art History & Parody">Art Parody</option>
+            <option value="Philosophy & Religion">Religion</option>
+            <option value="Medicine & Mortality">Medicine</option>
+            <option value="American Politics">Politics</option>
+            <option value="Objects & Sculptures">Objects</option>
+          </select>
 
-            <div class="select-group">
-              <label for="select-series">Series</label>
-              <select id="select-series" class="select-dropdown" onchange="applyFilters()">
-                <option value="all">All Series</option>
-              </select>
-            </div>
-
-            <div class="select-group">
-              <label for="select-size">Size Class</label>
-              <select id="select-size" class="select-dropdown" onchange="applyFilters()">
-                <option value="all">All Sizes</option>
-                <option value="Small (< 30 in)">Small (< 30")</option>
-                <option value="Medium (30–50 in)">Medium (30–50")</option>
-                <option value="Large (50–70 in)">Large (50–70")</option>
-                <option value="Extra Large (> 70 in)">Extra Large (> 70")</option>
-              </select>
-            </div>
-
-            <div class="select-group">
-              <label for="select-framed">Framing</label>
-              <select id="select-framed" class="select-dropdown" onchange="applyFilters()">
-                <option value="all">All</option>
-                <option value="Framed">Framed</option>
-                <option value="Unframed">Unframed</option>
-              </select>
-            </div>
-
-            <div class="select-group">
-              <label for="select-signed">Signature</label>
-              <select id="select-signed" class="select-dropdown" onchange="applyFilters()">
-                <option value="all">All</option>
-                <option value="Signed">Signed</option>
-                <option value="Unsigned / Unconfirmed">Unsigned</option>
-              </select>
-            </div>
-
-            <div class="select-group">
-              <label for="select-sort">Sort Order</label>
-              <select id="select-sort" class="select-dropdown" onchange="applyFilters()">
-                <option value="default">Default Catalog Order</option>
-                <option value="title-asc">Title (A to Z)</option>
-                <option value="title-desc">Title (Z to A)</option>
-                <option value="year-desc">Year (Newest First)</option>
-                <option value="year-asc">Year (Oldest First)</option>
-                <option value="status">Status (Available First)</option>
-              </select>
-            </div>
-          </div>
+          <select id="select-sort" class="select-dropdown" onchange="applyFilters()">
+            <option value="default">↕ Default Order</option>
+            <option value="title-asc">Title (A–Z)</option>
+            <option value="year-desc">Year (Newest)</option>
+            <option value="year-asc">Year (Oldest)</option>
+            <option value="status">Status (Avail 1st)</option>
+          </select>
         </div>
       </section>
 
@@ -1163,7 +998,7 @@
         </div>
       </div>
 
-      <!-- Container for Artworks (Grid View: 2 across on mobile) -->
+      <!-- Container for Artworks (Grid View: Exactly 2-Across on Mobile) -->
       <div class="art-grid" id="art-grid-view"></div>
 
       <!-- Container for Artworks (Table View) -->
@@ -1200,7 +1035,6 @@
         </div>
 
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:20px;">
-          
           <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
             <div style="font-size:18px; margin-bottom:6px;">📦</div>
             <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">1. Storage & Vault Consolidation</h3>
@@ -1232,7 +1066,6 @@
               Cement Jim's place as an advertising icon and subversive fine artist. Target permanent placements in the Portland Art Museum, Seattle Art Museum, The One Club, and hospital oncology wings (OHSU Knight Cancer Institute).
             </p>
           </div>
-
         </div>
 
         <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
@@ -1356,7 +1189,6 @@
         <!-- Real-World Storage Equivalents Cards -->
         <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#555;">Real-World Storage & Transport Comparisons:</div>
         <div class="equivalents-grid">
-          
           <div class="equiv-card">
             <div class="equiv-card-header">
               <span class="equiv-icon">🏢</span>
@@ -1404,7 +1236,6 @@
             </div>
             <span class="equiv-tag tag-alt">Intermodal Freight</span>
           </div>
-
         </div>
 
         <!-- Strategic Takeaway Box -->
@@ -1533,8 +1364,6 @@
 
     <!-- TAB 4: NOTES & PROVENANCE -->
     <div id="tab-notes" style="display:none;">
-
-      <!-- Sub-Nav Pills -->
       <div class="notes-nav-pills">
         <button class="notes-nav-btn" onclick="scrollToNote('notes-bio')">📖 Biography</button>
         <button class="notes-nav-btn" onclick="scrollToNote('notes-fouroceans')">🏛️ Four Oceans Gallery</button>
@@ -1710,18 +1539,17 @@
 
   </div><!-- End Main Container -->
 
-  <!-- Accessible Modal / Mobile Bottom Sheet (<dialog>) -->
+  <!-- Accessible Modal (<dialog>): Strictly hidden when closed with display: none !important -->
   <dialog id="art-modal" class="wiki-modal" closedby="any">
-    <div class="bottom-sheet-handle"></div>
     <div class="modal-header">
       <div class="modal-header-title" id="modal-title">Artwork Details</div>
-      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <button class="modal-close-btn" onclick="closeModal()" title="Close details">&times;</button>
     </div>
     <div class="modal-body">
       <!-- Image side -->
       <div class="modal-img-area">
         <img id="modal-img" src="" alt="" class="modal-artwork-img">
-        <div class="modal-img-zoom-hint">Tap image to open high-resolution photo</div>
+        <div class="modal-img-zoom-hint">Tap photo to view in high resolution</div>
       </div>
       <!-- Spec side -->
       <div>
@@ -1785,7 +1613,6 @@
   <script>
     // State
     let currentStatusFilter = 'all';
-    let currentGenreFilter = 'all';
     let currentView = 'grid';
     let currentPage = 1;
     const itemsPerPage = 48;
@@ -1793,25 +1620,10 @@
     let activeModalItem = null;
     let tableSortCol = 'default';
     let tableSortAsc = true;
-    let advancedFiltersOpen = false;
-
-    // Genres configuration
-    const GENRES = [
-      { id: 'all', name: 'All' },
-      { id: 'Dictators & Tyrants', name: 'Dictators' },
-      { id: 'War & Military', name: 'Military' },
-      { id: 'Art History & Parody', name: 'Art Parody' },
-      { id: 'Philosophy & Religion', name: 'Religion' },
-      { id: 'Medicine & Mortality', name: 'Medicine' },
-      { id: 'American Politics', name: 'Politics' },
-      { id: 'Objects & Sculptures', name: 'Objects' }
-    ];
 
     // Initialization
     document.addEventListener('DOMContentLoaded', () => {
       initDatalist();
-      initGenrePills();
-      initSeriesDropdown();
       initSearch();
       applyFilters();
     });
@@ -1830,67 +1642,6 @@
         opt.value = name;
         datalist.appendChild(opt);
       });
-    }
-
-    // Populate Genre Pills
-    function initGenrePills() {
-      const container = document.getElementById('genre-pills-container');
-      container.innerHTML = '';
-      GENRES.forEach(g => {
-        const btn = document.createElement('button');
-        btn.className = `pill-btn ${g.id === 'all' ? 'active' : ''}`;
-        btn.dataset.genre = g.id;
-        const count = g.id === 'all' ? INVENTORY_DATA.length : INVENTORY_DATA.filter(x => x.genre === g.id).length;
-        btn.innerHTML = `${g.name} <span class="pill-count">${count}</span>`;
-        btn.onclick = () => setGenrePill(g.id);
-        container.appendChild(btn);
-      });
-    }
-
-    // Populate Series Dropdown
-    function initSeriesDropdown() {
-      const sel = document.getElementById('select-series');
-      const seriesCounts = {};
-      INVENTORY_DATA.forEach(x => {
-        const s = x.series || 'Independent Works';
-        seriesCounts[s] = (seriesCounts[s] || 0) + 1;
-      });
-      const sorted = Object.keys(seriesCounts).sort();
-      sorted.forEach(s => {
-        const opt = document.createElement('option');
-        opt.value = s;
-        opt.textContent = `${s} (${seriesCounts[s]})`;
-        sel.appendChild(opt);
-      });
-    }
-
-    // Toggle Advanced Filters Drawer
-    function toggleAdvancedFilters() {
-      advancedFiltersOpen = !advancedFiltersOpen;
-      const drawer = document.getElementById('advanced-filters-drawer');
-      const btn = document.getElementById('filter-toggle-btn');
-      drawer.classList.toggle('open', advancedFiltersOpen);
-      updateFilterButtonState();
-    }
-
-    function updateFilterButtonState() {
-      const btn = document.getElementById('filter-toggle-btn');
-      const label = document.getElementById('filter-btn-label');
-      let activeCount = 0;
-      if (currentGenreFilter !== 'all') activeCount++;
-      if (document.getElementById('select-collection').value !== 'all') activeCount++;
-      if (document.getElementById('select-series').value !== 'all') activeCount++;
-      if (document.getElementById('select-size').value !== 'all') activeCount++;
-      if (document.getElementById('select-framed').value !== 'all') activeCount++;
-      if (document.getElementById('select-signed').value !== 'all') activeCount++;
-
-      if (activeCount > 0) {
-        btn.classList.add('has-filters');
-        label.textContent = `Filters (${activeCount})`;
-      } else {
-        btn.classList.remove('has-filters');
-        label.textContent = advancedFiltersOpen ? 'Close Filters ▴' : 'Filters ▾';
-      }
     }
 
     // Search Box Listener
@@ -1916,16 +1667,10 @@
       document.getElementById('clear-search').style.display = 'none';
 
       setStatusPill('all');
-      setGenrePill('all');
-
       document.getElementById('select-collection').value = 'all';
-      document.getElementById('select-series').value = 'all';
-      document.getElementById('select-size').value = 'all';
-      document.getElementById('select-framed').value = 'all';
-      document.getElementById('select-signed').value = 'all';
+      document.getElementById('select-genre').value = 'all';
       document.getElementById('select-sort').value = 'default';
 
-      updateFilterButtonState();
       applyFilters();
     }
 
@@ -1942,34 +1687,17 @@
       applyFilters();
     }
 
-    // Filter Trigger: Genre
-    function setGenrePill(genre) {
-      currentGenreFilter = genre;
-      document.querySelectorAll('#genre-pills-container .pill-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.genre === genre);
-      });
-      updateFilterButtonState();
-      applyFilters();
-    }
-
     // Main Filtering Function
     function applyFilters() {
       const query = (document.getElementById('search-input').value || '').trim().toLowerCase();
       const colFilter = document.getElementById('select-collection').value;
-      const seriesFilter = document.getElementById('select-series').value;
-      const sizeFilter = document.getElementById('select-size').value;
-      const framedFilter = document.getElementById('select-framed').value;
-      const signedFilter = document.getElementById('select-signed').value;
+      const genreFilter = document.getElementById('select-genre').value;
       const sortOrder = document.getElementById('select-sort').value;
 
       filteredItems = INVENTORY_DATA.filter(item => {
         if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) return false;
-        if (currentGenreFilter !== 'all' && item.genre !== currentGenreFilter) return false;
         if (colFilter !== 'all' && item.collection_category !== colFilter) return false;
-        if (seriesFilter !== 'all' && item.series !== seriesFilter) return false;
-        if (sizeFilter !== 'all' && item.size_category !== sizeFilter) return false;
-        if (framedFilter !== 'all' && item.framed !== framedFilter) return false;
-        if (signedFilter !== 'all' && item.signed !== signedFilter) return false;
+        if (genreFilter !== 'all' && item.genre !== genreFilter) return false;
 
         if (query) {
           const matchTitle = (item.title || '').toLowerCase().includes(query);
@@ -1989,15 +1717,12 @@
       currentPage = 1;
       updateMetrics();
       renderCurrentView();
-      updateFilterButtonState();
     }
 
     // Sort items
     function sortFilteredItems(sortOrder) {
       if (sortOrder === 'title-asc') {
         filteredItems.sort((a,b) => (a.title || '').localeCompare(b.title || ''));
-      } else if (sortOrder === 'title-desc') {
-        filteredItems.sort((a,b) => (b.title || '').localeCompare(a.title || ''));
       } else if (sortOrder === 'year-desc') {
         filteredItems.sort((a,b) => (b.year || '').localeCompare(a.year || ''));
       } else if (sortOrder === 'year-asc') {
@@ -2153,7 +1878,7 @@
       container.appendChild(nextBtn);
     }
 
-    // Open Modal
+    // Open Modal ONLY when clicked
     function openModal(item) {
       activeModalItem = item;
       const modal = document.getElementById('art-modal');
