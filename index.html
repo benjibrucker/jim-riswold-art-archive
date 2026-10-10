@@ -904,7 +904,7 @@
     .tag-alt { background: #eaf3ff; color: #1a73e8; border: 1px solid #4285f4; }
     .tag-transport { background: #fef7e0; color: #b06000; border: 1px solid #fbbc04; }
 
-    /* Next Steps Idea Tiers */
+    /* Tactical Idea Tiers */
     .idea-tier {
       margin-bottom: 20px;
       border: 1px solid var(--wiki-border-light);
@@ -935,16 +935,83 @@
     .badge-tier4 { background: #fce8e6; color: #c5221f; border: 1px solid #ea4335; }
     .idea-list { list-style: none; padding: 0; margin: 0; }
     .idea-item {
-      padding: 12px 16px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--wiki-border-light);
       display: flex;
-      gap: 12px;
+      gap: 14px;
       align-items: flex-start;
     }
     .idea-item:last-child { border-bottom: none; }
-    .idea-icon { font-size: 20px; line-height: 1.2; flex-shrink: 0; }
-    .idea-content h4 { font-size: 14px; font-weight: bold; color: #000; margin-bottom: 3px; }
-    .idea-content p { font-size: 12.5px; color: var(--wiki-text-muted); line-height: 1.5; }
+    .idea-icon { font-size: 22px; line-height: 1.2; flex-shrink: 0; }
+    .idea-content h4 { font-size: 14.5px; font-weight: bold; color: #000; margin-bottom: 4px; }
+    .idea-content p { font-size: 13px; color: var(--wiki-text-muted); line-height: 1.6; }
+
+    /* Special Styling for Tab 4: Subversive Ideas & Jim's Voice */
+    .instagram-quote-card {
+      background: #000;
+      color: #fff;
+      padding: 32px 24px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .instagram-quote-text {
+      font-family: var(--font-sans);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .instagram-quote-sub {
+      font-size: 12px;
+      color: #a0a0a0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .jims-voice-manifesto {
+      background: #fffdfa;
+      border: 1.5px solid #d4c5b9;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .jims-voice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e8ded4;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .jims-voice-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: bold;
+      color: #332211;
+    }
+    .jims-voice-badge {
+      background: #f2ebe3;
+      color: #664422;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 12px;
+      border: 1px solid #d4c5b9;
+    }
+    .jims-voice-body p {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2b2016;
+      margin-bottom: 14px;
+    }
+    .jims-voice-body p:last-child { margin-bottom: 0; }
 
     /* Notes Sections Layout */
     .notes-section {
@@ -1060,6 +1127,7 @@
       </button>
 
       <nav class="wiki-tabs" id="wiki-tabs-container">
+        <!-- Tab 1 -->
         <button class="wiki-tab-frame active" id="tabbtn-inventory" onclick="switchTab('inventory')">
           <span class="tab-frame-icon">🎨</span>
           <div class="tab-frame-text">
@@ -1068,6 +1136,7 @@
           </div>
         </button>
 
+        <!-- Tab 2 -->
         <button class="wiki-tab-frame" id="tabbtn-family-ask" onclick="switchTab('family-ask')">
           <span class="tab-frame-icon">📋</span>
           <div class="tab-frame-text">
@@ -1076,14 +1145,25 @@
           </div>
         </button>
 
+        <!-- Tab 3 -->
         <button class="wiki-tab-frame" id="tabbtn-next-steps" onclick="switchTab('next-steps')">
           <span class="tab-frame-icon">💡</span>
           <div class="tab-frame-text">
             <span class="tab-frame-title">Next Steps & Space</span>
-            <span class="tab-frame-sub">Storage & Strategies</span>
+            <span class="tab-frame-sub">Storage & Operations</span>
           </div>
         </button>
 
+        <!-- Tab 4: NEW DEDICATED TAB -->
+        <button class="wiki-tab-frame" id="tabbtn-zany" onclick="switchTab('zany')">
+          <span class="tab-frame-icon">🔥</span>
+          <div class="tab-frame-text">
+            <span class="tab-frame-title">Subversive Ideas & Voice</span>
+            <span class="tab-frame-sub">Embassies, Brands & Jim</span>
+          </div>
+        </button>
+
+        <!-- Tab 5 -->
         <button class="wiki-tab-frame" id="tabbtn-notes" onclick="switchTab('notes')">
           <span class="tab-frame-icon">📝</span>
           <div class="tab-frame-text">
@@ -1306,7 +1386,7 @@
       </div>
     </div><!-- End Tab 2 -->
 
-    <!-- TAB 3: NEXT STEPS & STORAGE PLAN -->
+    <!-- TAB 3: NEXT STEPS & STORAGE PLAN (Pragmatic Operations) -->
     <div id="tab-next-steps" style="display:none;">
 
       <!-- Physical Storage Footprint & Space Calculator -->
@@ -1477,17 +1557,17 @@
         </div>
       </section>
 
-      <!-- Strategic Action Tiers -->
+      <!-- Pragmatic Ground Game & Operational Next Steps -->
       <div style="background:#fff; border:1px solid var(--wiki-border); padding:24px; border-radius:6px;">
         <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000; margin-bottom:16px;">
-          Strategic Next Steps: Pragmatic to Subversive
+          Operational Roadmap: Immediate Execution
         </h2>
 
         <!-- Tier 1 -->
         <div class="idea-tier">
           <div class="idea-tier-header">
             <div>
-              <h3 style="font-size:15px; font-weight:bold; color:#000;">Tier 1: Pragmatic Ground Game</h3>
+              <h3 style="font-size:15px; font-weight:bold; color:#000;">Phase 1: Pragmatic Vault Execution</h3>
               <div style="font-size:11.5px; color:var(--wiki-text-muted);">Sell some, store some, audit the vault.</div>
             </div>
             <span class="tier-badge badge-tier1">Immediate</span>
@@ -1514,6 +1594,13 @@
                 <p>Send a bespoke private preview link to Nike creative leaders, W+K alumni, and Four Oceans patrons.</p>
               </div>
             </li>
+            <li class="idea-item">
+              <span class="idea-icon">📜</span>
+              <div class="idea-content">
+                <h4>Official Estate Certificate of Authenticity (COA)</h4>
+                <p>Produce an embossed, serialized Riswold Estate certificate signed by Jake & Haley Riswold, establishing airtight provenance.</p>
+              </div>
+            </li>
           </ul>
         </div>
 
@@ -1521,7 +1608,7 @@
         <div class="idea-tier">
           <div class="idea-tier-header">
             <div>
-              <h3 style="font-size:15px; font-weight:bold; color:#000;">Tier 2: Institutional Placement</h3>
+              <h3 style="font-size:15px; font-weight:bold; color:#000;">Phase 2: Institutional & Curatorial Placement</h3>
               <div style="font-size:11.5px; color:var(--wiki-text-muted);">Museums, cancer philanthropy, monographs.</div>
             </div>
             <span class="tier-badge badge-tier2">Curatorial</span>
@@ -1538,48 +1625,14 @@
               <span class="idea-icon">🖼️</span>
               <div class="idea-content">
                 <h4>"Things People Don't Want" Retrospective</h4>
-                <p>Curate a museum retrospective titled after Jim's iconic quote, co-curated with Peter Yue and Guy Overfelt.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Tier 3 & 4 -->
-        <div class="idea-tier">
-          <div class="idea-tier-header">
-            <div>
-              <h3 style="font-size:15px; font-weight:bold; color:#000;">Tier 3 & 4: Audacious Cultural Interventions & Absurdism</h3>
-              <div style="font-size:11.5px; color:var(--wiki-text-muted);">True to Jim's subversive humor and satire.</div>
-            </div>
-            <span class="tier-badge badge-tier4">Outlandish</span>
-          </div>
-          <ul class="idea-list">
-            <li class="idea-item">
-              <span class="idea-icon">🔥</span>
-              <div class="idea-content">
-                <h4>"Burn-to-Earn" Posthumous Incineration Gala</h4>
-                <p>Auction 1-of-1 digital editions and publicly incinerate the physical original at a black-tie gala. The ashes are canned as limited-edition <em>"Riswold's Canned Owies"</em> to benefit adult leukemia research.</p>
+                <p>Curate a museum retrospective titled after Jim's iconic quote, co-curated with Peter Yue and Guy Overfelt, debuting in the Pacific Northwest and traveling to SF/NYC.</p>
               </div>
             </li>
             <li class="idea-item">
-              <span class="idea-icon">📢</span>
+              <span class="idea-icon">📚</span>
               <div class="idea-content">
-                <h4>Posthumous Anti-Ad Billboard Campaign</h4>
-                <p>Billboards near Nike HQ: <em>"Buy This Art Because I'm Dead and Can't Stop You."</em></p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">🏆</span>
-              <div class="idea-content">
-                <h4>W+K Atrium Trophy Guerrilla Heist</h4>
-                <p>Secretly swapping the agency's gold Cannes Lions for miniature figurines of Göring eating lunch and Mao in a jester hat.</p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">🤖</span>
-              <div class="idea-content">
-                <h4>The "Jim Riswold AI Creative Director"</h4>
-                <p>Trained on Jim's sarcastic emails; prospective art buyers must justify their purchase while AI Jim ruthlessly roasts them.</p>
+                <h4>The Definitive Hardcover Monograph</h4>
+                <p>Publish a deluxe catalogue raisonné book documenting all 23 series with Jim's essays, artist statements, and critical writings.</p>
               </div>
             </li>
           </ul>
@@ -1588,7 +1641,181 @@
       </div>
     </div><!-- End Tab 3 -->
 
-    <!-- TAB 4: NOTES & PROVENANCE -->
+    <!-- TAB 4: SUBVERSIVE IDEAS & JIM'S VOICE (DEDICATED NEW TAB) -->
+    <div id="tab-zany" style="display:none;">
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:26px; border-radius:6px;">
+
+        <!-- The Iconic Instagram Post Recreation -->
+        <div class="instagram-quote-card">
+          <div class="instagram-quote-text">“Okay, I'm dead now.”</div>
+          <div class="instagram-quote-sub">— Jim Riswold's official announcement, Instagram (@jimriswold), August 9, 2024</div>
+        </div>
+
+        <!-- SECTION 1: IN JIM'S VOICE -->
+        <div class="jims-voice-manifesto">
+          <div class="jims-voice-header">
+            <div>
+              <h3 class="jims-voice-title">Posthumous Transmission: In Jim's Voice</h3>
+              <div style="font-size:12px; color:#775533;">Dictated from the Afterlife (or wherever they put people who made too many Nike commercials)</div>
+            </div>
+            <span class="jims-voice-badge">Archival Persona</span>
+          </div>
+
+          <div class="jims-voice-body">
+            <p>
+              Okay. I’m dead now. You saw the Instagram post. It was in white Helvetica on a black square, because if you’re going to announce you’ve checked out after sixty-six years, you might as well use a typeface that doesn’t beg for sympathy. Sympathy is for people who didn’t get to spend two decades playing with plastic figurines of Adolf Hitler.
+            </p>
+            <p>
+              For twenty-four years, cancer tried to kill me. Chronic myelogenous leukemia, prostate cancer, chemotherapy, radiation, pills that made me look like an over-boiled turnip. All it really accomplished was giving me an ironclad excuse to quit advertising. I went from a career of selling people things they don't need to making things that people don't want. It was the best trade of my life.
+            </p>
+            <p>
+              People used to ask me why I put dictators in bunny ears or had Hermann Göring eat sausages on a doily. Because dictators are pompous, pathetic bullies. And you don’t destroy a bully with a stern academic thesis. You point at his ridiculous boots, put a jester hat on his head, and laugh until he shrinks down to the size of a Happy Meal toy.
+            </p>
+            <p>
+              Now I leave behind 578 pieces of art in various flat files, vaults, and drawer units between Portland and San Francisco. Let’s make one thing abundantly clear to Jake, Haley, Peter, Guy, and Benji: <strong>Do not put this work in an ivory tower. Do not treat it like precious, untouchable holy relics.</strong>
+            </p>
+            <p>
+              Send the invoices to the foreign embassies. Charge the dictators for twenty-four years of childcare and plastic upkeep. Prank the agencies. Sneak toys into the Cannes Lion trophy cases. And if some billionaire with more money than sense wants to pay fifty thousand dollars for a framed picture of Joseph Stalin in pink boxing shorts, take his check, give half of it to the cancer doctors at OHSU so someone else can survive twenty-four years, and spend the other half on a decent lunch.
+            </p>
+          </div>
+        </div>
+
+        <!-- SECTION 2: EMBASSY REPATRIATION & CHILDCARE INVOICES (DEEP EXPLORATION) -->
+        <div class="idea-tier" style="border: 1.5px solid #b06000;">
+          <div class="idea-tier-header" style="background:#fff8ee;">
+            <div>
+              <h3 style="font-size:16px; font-weight:bold; color:#7a3e00;">Operation Diplomatic Childcare: The Embassy Repatriations</h3>
+              <div style="font-size:12px; color:#885522;">Direct international diplomatic interventions itemizing 24 years of plastic upkeep.</div>
+            </div>
+            <span class="tier-badge badge-tier3">Diplomatic Performance</span>
+          </div>
+          <div style="padding:18px;">
+            <p style="font-size:13.5px; line-height:1.7; color:var(--wiki-text); margin-bottom:14px;">
+              <strong>The Premise:</strong> Jim Riswold spent over two decades housing, grooming, staging, and caring for miniature representations of history's worst authoritarians. Now that Jim has passed, the Estate formally notifies their countries of origin that the babysitting agreement has expired.
+            </p>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-bottom:16px;">
+              <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
+                <h4 style="font-size:13.5px; font-weight:bold; margin-bottom:6px;">📦 The Shipment</h4>
+                <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+                  A museum-grade wooden crate dispatched via diplomatic courier to foreign embassies in Washington D.C., containing a framed miniature portrait of their respective 20th-century dictator (e.g. Stalin to Moscow, Göring to Berlin, Mussolini to Rome, Mao to Beijing).
+                </p>
+              </div>
+              <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
+                <h4 style="font-size:13.5px; font-weight:bold; margin-bottom:6px;">📜 The Official Invoice</h4>
+                <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+                  Printed on engraved estate letterhead: Itemizing <strong>24 Years of Childcare, Psychological Distress & Toy Maintenance Fees</strong> ($183,750.00). Terms: <em>"Payable upon receipt in un-embargoed currency or certified public denunciation of authoritarian megalomania."</em>
+                </p>
+              </div>
+              <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
+                <h4 style="font-size:13.5px; font-weight:bold; margin-bottom:6px;">🏛️ The Exhibition</h4>
+                <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+                  Frame the registered postal tracking receipts, customs declaration forms, and inevitable bewildered diplomatic responses as a live conceptual installation: <em>"Diplomatic Incident: The Childcare Audits."</em>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: BRAND SUBVERSIONS & THE WIEDEN+KENNEDY PLAYBOOK -->
+        <div class="idea-tier">
+          <div class="idea-tier-header">
+            <div>
+              <h3 style="font-size:16px; font-weight:bold; color:#000;">Brand Subversions: The Wieden+Kennedy Playbook Reimagined</h3>
+              <div style="font-size:12px; color:var(--wiki-text-muted);">How Jim's greatest advertising campaigns can be turned inside-out for his fine art.</div>
+            </div>
+            <span class="tier-badge badge-tier2">Brand Interventions</span>
+          </div>
+          <ul class="idea-list">
+            <li class="idea-item">
+              <span class="idea-icon">👟</span>
+              <div class="idea-content">
+                <h4>"It's Gotta Be the Dictator" (The Mike & Spike Parody)</h4>
+                <p>Riffing on Jim's legendary Mars Blackmon campaign with Spike Lee and Michael Jordan. Stage miniature Stalin in tiny Air Jordan 1s with classic Riswold dialogue: <em>"Is it the moustache? No, Mars. Is it the gulag? No, Mars. It's gotta be the plastic toys!"</em> Produce a faux commercial starring Spike Lee narrating the absurdity of totalitarianism.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">⚾</span>
+              <div class="idea-content">
+                <h4>"Bo Knows Totalitarianism"</h4>
+                <p>Channeling Jim's iconic 1989 "Bo Knows" multi-sport campaign: A stark photographic series placing miniature dictators across absurd athletic disciplines: <em>"Stalin plays hockey. Hitler surfs. Mao does gymnastics. Göring eats the ball."</em> Accompanied by Bo Jackson making a posthumous guest commentary video.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🏀</span>
+              <div class="idea-content">
+                <h4>"I Am Not a Role Model" (The Charles Barkley Dictator Manifesto)</h4>
+                <p>Re-staging Jim's controversial 1993 Charles Barkley campaign with miniature Adolf Hitler: <em>"I am not a role model. I am not paid to be a role model. Just because I terrorized the twentieth century does not mean I should raise your kids."</em></p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🚗</span>
+              <div class="idea-content">
+                <h4>The Subaru "Inexpensive & Built to Disappoint" Campaign</h4>
+                <p>Honoring Jim's subversive early 90s Subaru commercials. Wrap a vintage 1992 Subaru GL wagon in Jim's dictator motifs, drive it across Portland and San Francisco, and park it outside major museums with the original Riswold copy: <em>"Inexpensive, and built to stay that way."</em></p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🥕</span>
+              <div class="idea-content">
+                <h4>The "Hare Jordan" Looney Tunes Infiltration</h4>
+                <p>Before Space Jam existed, Jim put Bugs Bunny alongside Michael Jordan. Stage a limited photographic print series featuring vintage 1990s Marvin the Martian and Bugs Bunny formally interrogating miniature Hermann Göring over stolen carrots.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- SECTION 4: OUTLANDISH RISWOLDIAN CONCEPTUAL STUNTS -->
+        <div class="idea-tier">
+          <div class="idea-tier-header">
+            <div>
+              <h3 style="font-size:16px; font-weight:bold; color:#000;">Outlandish Conceptual Stunts & Radical Performances</h3>
+              <div style="font-size:12px; color:var(--wiki-text-muted);">High-voltage stunts celebrating Jim's fearless disrespect for convention.</div>
+            </div>
+            <span class="tier-badge badge-tier4">Legendary Stunts</span>
+          </div>
+          <ul class="idea-list">
+            <li class="idea-item">
+              <span class="idea-icon">🔥</span>
+              <div class="idea-content">
+                <h4>The "Burn-to-Earn" Posthumous Incineration Gala & Canned Owies</h4>
+                <p>Mint 1-of-1 digital editions of select works. Host a black-tie benefit gala in Portland or San Francisco with Peter Yue and Guy Overfelt. Auction the tokenized edition, and publicly incinerate the physical original in an ornate brass incinerator. The physical ashes are canned, vacuum-sealed, and sold as limited-edition <em>"Riswold's Canned Owies (Net Wt. 4 oz)"</em> to fund adult leukemia research at OHSU Knight Cancer Institute.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🏆</span>
+              <div class="idea-content">
+                <h4>The Wieden+Kennedy Atrium Trophy Guerrilla Heist</h4>
+                <p>Stage an unannounced guerrilla pop-up exhibition inside the Wieden+Kennedy Portland headquarters atrium, secretly swapping out the agency's gold Cannes Lions and One Show pencils with miniature plastic figurines of Hermann Göring eating lunch and Chairman Mao in a jester hat.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🏢</span>
+              <div class="idea-content">
+                <h4>The "Rent-a-Dictator" Corporate HR Lending Program</h4>
+                <p>Establish a subscription lease program renting framed photographs of Stalin, Mao, Göring, and Putin to high-flying tech startups and creative agencies. Mandatory condition: Whenever a CEO announces layoffs or stock buybacks, they must pose for the official press release standing directly in front of Jim's miniature Göring eating sausages.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">📉</span>
+              <div class="idea-content">
+                <h4>The Reverse "Dutch Auction" Liquidation Event</h4>
+                <p>Hold a live performance auction where artwork prices drop $100 every 10 seconds until someone can't stand the anxiety and bids. Only accepted forms of payment: vintage 1985 Air Jordans, half-empty chemotherapy vials, or expired 1990s issues of Adweek.</p>
+              </div>
+            </li>
+            <li class="idea-item">
+              <span class="idea-icon">🤖</span>
+              <div class="idea-content">
+                <h4>The "Jim Riswold AI Creative Director" Bot</h4>
+                <p>Train an interactive AI persona strictly on Jim's sarcastic emails, legendary rejection letters, and irreverent obituaries. Prospective art buyers must submit a justification for why they deserve the artwork, and the AI Jim ruthlessly roasts them before approving the sale.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div><!-- End Tab 4 (Zany Ideas) -->
+
+    <!-- TAB 5: NOTES & PROVENANCE -->
     <div id="tab-notes" style="display:none;">
       <div class="notes-nav-pills">
         <button class="notes-nav-btn" onclick="scrollToNote('notes-bio')">📖 Biography</button>
@@ -1761,7 +1988,7 @@
         </div>
       </section>
 
-    </div><!-- End Tab 4 -->
+    </div><!-- End Tab 5 -->
 
   </div><!-- End Main Container -->
 
@@ -2297,13 +2524,13 @@
       document.getElementById('metric-sold').textContent = sold;
     }
 
-    // Switch Tabs
+    // Switch Tabs: Supporting all 5 distinct tabs
     function switchTab(tabId) {
       document.querySelectorAll('.wiki-tabs .wiki-tab-frame').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tabbtn-${tabId}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      const tabs = ['inventory', 'family-ask', 'next-steps', 'notes'];
+      const tabs = ['inventory', 'family-ask', 'next-steps', 'zany', 'notes'];
       tabs.forEach(t => {
         const el = document.getElementById(`tab-${t}`);
         if (el) el.style.display = (t === tabId ? 'block' : 'none');
