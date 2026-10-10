@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Jim Riswold (1957–2024) — Complete Art Inventory & Estate Catalog</title>
   <meta name="description" content="Comprehensive estate catalog and art inventory index for contemporary artist Jim Riswold. Curated with Jake Riswold, Haley Riswold, Peter Yue, and Guy Overfelt.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💣</text></svg>">
@@ -26,16 +26,16 @@
       --color-sold-text: #c5221f;
       --color-sold-border: #ea4335;
       --font-serif: "Linux Libertine", "Georgia", "Times New Roman", serif;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Lato, Helvetica, Arial, sans-serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, -apple-system, system-ui, Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: var(--font-sans);
       color: var(--wiki-text);
       background: #fdfdfd;
-      line-height: 1.6;
+      line-height: 1.5;
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
     }
@@ -43,7 +43,7 @@
     a { color: var(--wiki-link); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--wiki-link-hover); }
 
-    /* Top Wikipedia-style Bar */
+    /* Top Navigation Header */
     .wiki-topbar {
       border-bottom: 1px solid var(--wiki-border-light);
       background: #fff;
@@ -55,96 +55,118 @@
     .topbar-inner {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 8px 24px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 12px;
     }
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
     .wiki-globe {
-      font-size: 26px;
+      font-size: 22px;
       line-height: 1;
     }
     .wiki-site-title {
       font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: normal;
+      font-size: 18px;
+      font-weight: bold;
       color: #000;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
     .wiki-site-subtitle {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--wiki-text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .wiki-site-subtitle { display: block; }
+    }
+    .topbar-contact-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #3366cc;
+      color: #fff !important;
+      border-radius: 4px;
+      text-decoration: none !important;
+      white-space: nowrap;
     }
 
-    /* Container */
+    /* Main Container */
     .main-container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 12px 16px;
+    }
+    @media (min-width: 768px) {
+      .main-container { padding: 20px 24px; }
     }
 
-    /* Article Header */
+    /* Article Title Header (Desktop) */
     .article-header {
       border-bottom: 1px solid var(--wiki-border);
-      padding-bottom: 12px;
-      margin-bottom: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 8px;
     }
     .article-title {
       font-family: var(--font-serif);
-      font-size: 32px;
+      font-size: 26px;
       font-weight: normal;
       color: #000;
       line-height: 1.2;
     }
     .article-subline {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--wiki-text-muted);
-      margin-top: 4px;
+      margin-top: 2px;
+    }
+    @media (max-width: 640px) {
+      .article-header { display: none; } /* Hide large title on mobile to maximize image viewport */
     }
 
-    /* Navigation Tabs */
+    /* Tabs Bar */
     .wiki-tabs {
       display: flex;
       gap: 4px;
       border-bottom: 1px solid var(--wiki-border);
-      margin-bottom: 24px;
+      margin-bottom: 12px;
       overflow-x: auto;
       white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .wiki-tabs::-webkit-scrollbar { display: none; }
     .wiki-tab-btn {
-      padding: 9px 18px;
+      padding: 8px 14px;
       background: none;
       border: 1px solid transparent;
       border-bottom: none;
       cursor: pointer;
-      font-size: 13.5px;
+      font-size: 13px;
       font-family: var(--font-sans);
       color: var(--wiki-link);
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      user-select: none;
+      white-space: nowrap;
       transition: background 0.15s ease;
     }
-    .wiki-tab-btn:hover {
-      background: var(--wiki-bg-hover);
-      text-decoration: none;
-    }
+    .wiki-tab-btn:hover { background: var(--wiki-bg-hover); text-decoration: none; }
     .wiki-tab-btn.active {
       background: #fff;
       color: #000;
@@ -154,67 +176,71 @@
       margin-bottom: -1px;
     }
 
-    /* Metrics Bar */
+    /* Metrics Bar - Tight Horizontal Row */
     .metrics-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
     }
     .metric-card {
       background: #fff;
       border: 1px solid var(--wiki-border-light);
-      padding: 14px 18px;
+      padding: 6px 4px;
       border-radius: 4px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      text-align: center;
+      transition: all 0.12s ease;
+      user-select: none;
     }
-    .metric-card:hover {
-      border-color: var(--wiki-border);
+    .metric-card:hover, .metric-card.active {
       background: var(--wiki-bg-subtle);
-      transform: translateY(-1px);
+      border-color: var(--wiki-border);
     }
     .metric-val {
-      font-size: 26px;
-      font-weight: bold;
-      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 800;
       line-height: 1.1;
+      font-family: var(--font-sans);
     }
     .metric-label {
-      font-size: 11.5px;
+      font-size: 10px;
       color: var(--wiki-text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-top: 4px;
+      letter-spacing: 0.03em;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .metric-card.avail { border-left: 4px solid var(--color-avail-border); }
-    .metric-card.pending { border-left: 4px solid var(--color-pending-border); }
-    .metric-card.sold { border-left: 4px solid var(--color-sold-border); }
+    .metric-card.avail .metric-val { color: var(--color-avail-text); }
+    .metric-card.pending .metric-val { color: var(--color-pending-text); }
+    .metric-card.sold .metric-val { color: var(--color-sold-text); }
+    .metric-card.avail { border-bottom: 3px solid var(--color-avail-border); }
+    .metric-card.pending { border-bottom: 3px solid var(--color-pending-border); }
+    .metric-card.sold { border-bottom: 3px solid var(--color-sold-border); }
 
-    /* Filter Controls Panel */
+    /* Compact Search & Filter Control Bar */
     .filter-panel {
       background: #fff;
       border: 1px solid var(--wiki-border);
-      border-radius: 4px;
-      padding: 18px;
-      margin-bottom: 24px;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
     }
     .search-row {
       display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 8px;
       align-items: center;
-      flex-wrap: wrap;
     }
     .search-input-wrapper {
       position: relative;
       flex: 1;
-      min-width: 280px;
     }
     .search-input {
       width: 100%;
-      padding: 10px 14px 10px 36px;
-      font-size: 14.5px;
+      padding: 8px 12px 8px 32px;
+      font-size: 14px;
       border: 1px solid var(--wiki-border);
       border-radius: 20px;
       outline: none;
@@ -223,34 +249,53 @@
     }
     .search-input:focus {
       border-color: #3366cc;
-      box-shadow: 0 0 0 2px rgba(51, 102, 204, 0.2);
+      box-shadow: 0 0 0 2px rgba(51, 102, 204, 0.15);
     }
     .search-icon {
       position: absolute;
-      left: 12px;
+      left: 10px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--wiki-text-muted);
-      font-size: 16px;
+      font-size: 14px;
       pointer-events: none;
     }
     .clear-search-btn {
       position: absolute;
-      right: 12px;
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       background: none;
       border: none;
-      font-size: 18px;
+      font-size: 16px;
       color: var(--wiki-text-muted);
       cursor: pointer;
       display: none;
     }
 
-    /* Reset All Pill Button */
+    /* Filter Action Buttons */
+    .filter-toggle-btn {
+      padding: 8px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid var(--wiki-border);
+      border-radius: 20px;
+      background: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .filter-toggle-btn.has-filters {
+      background: #eaf3ff;
+      border-color: #3366cc;
+      color: #3366cc;
+    }
     .reset-all-pill {
-      padding: 8px 16px;
-      font-size: 13px;
+      padding: 8px 10px;
+      font-size: 12px;
       border: 1px solid #d33;
       border-radius: 20px;
       background: #fff5f5;
@@ -259,27 +304,34 @@
       font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
+      gap: 4px;
       white-space: nowrap;
+      user-select: none;
     }
-    .reset-all-pill:hover {
-      background: #fce8e6;
-      border-color: #c5221f;
-      transform: translateY(-1px);
+    .reset-all-pill:hover { background: #fce8e6; }
+
+    /* Collapsible Advanced Filters Drawer */
+    #advanced-filters-drawer {
+      display: none;
+      padding-top: 12px;
+      margin-top: 10px;
+      border-top: 1px solid var(--wiki-border-light);
+    }
+    #advanced-filters-drawer.open {
+      display: block;
     }
 
     /* Pills Groups */
     .pills-group {
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .pills-label {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       color: var(--wiki-text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -287,25 +339,20 @@
     .pills-flex {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
     }
     .pill-btn {
-      padding: 5px 12px;
-      font-size: 12.5px;
+      padding: 4px 10px;
+      font-size: 11.5px;
       border: 1px solid var(--wiki-border-light);
-      border-radius: 16px;
+      border-radius: 14px;
       background: #fff;
       color: var(--wiki-text);
       cursor: pointer;
-      transition: all 0.12s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       user-select: none;
-    }
-    .pill-btn:hover {
-      background: var(--wiki-bg-hover);
-      border-color: var(--wiki-border);
     }
     .pill-btn.active {
       background: #3366cc;
@@ -314,9 +361,9 @@
       font-weight: 600;
     }
     .pill-count {
-      font-size: 11px;
-      padding: 1px 6px;
-      border-radius: 10px;
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 8px;
       background: rgba(0,0,0,0.06);
     }
     .pill-btn.active .pill-count {
@@ -324,176 +371,177 @@
       color: #fff;
     }
 
-    /* Select Dropdowns Row */
+    /* Dropdowns Row */
     .dropdowns-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      padding-top: 14px;
-      border-top: 1px solid var(--wiki-border-light);
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
     }
     .select-group {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
     .select-group label {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
       color: var(--wiki-text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
     }
     .select-dropdown {
-      padding: 7px 10px;
-      font-size: 13px;
+      padding: 6px 8px;
+      font-size: 12.5px;
       border: 1px solid var(--wiki-border);
       border-radius: 3px;
       background: #fff;
       outline: none;
       font-family: var(--font-sans);
     }
-    .select-dropdown:focus {
-      border-color: #3366cc;
-    }
 
-    /* Views & Actions Bar */
+    /* Views Bar */
     .view-actions-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .results-count {
-      font-size: 13px;
+      margin-bottom: 12px;
+      font-size: 12px;
       color: var(--wiki-text-muted);
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .view-toggles {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .view-toggle-btn {
-      padding: 6px 12px;
+      padding: 4px 8px;
       border: 1px solid var(--wiki-border);
       background: #fff;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      border-radius: 3px;
     }
     .view-toggle-btn.active {
       background: #eaf3ff;
       border-color: #3366cc;
       color: #3366cc;
-      font-weight: 600;
-    }
-    .btn-action {
-      padding: 6px 12px;
-      border: 1px solid var(--wiki-border);
-      border-radius: 3px;
-      background: #fff;
-      font-size: 12.5px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--wiki-text);
-    }
-    .btn-action:hover {
-      background: var(--wiki-bg-hover);
+      font-weight: bold;
     }
 
-    /* Grid Layout */
+    /* Artworks Grid: Exactly 2-Across on Mobile, 3–4 across on larger screens */
     .art-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
     }
+    @media (min-width: 640px) {
+      .art-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 14px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .art-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 18px;
+      }
+    }
+
+    /* Artwork Card: Mobile Optimized */
     .art-card {
       background: #fff;
-      border: 1px solid var(--wiki-border);
-      border-radius: 4px;
+      border: 1px solid var(--wiki-border-light);
+      border-radius: 6px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: all 0.2s ease;
       cursor: pointer;
       position: relative;
+      transition: all 0.15s ease;
     }
     .art-card:hover {
       border-color: #72777d;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
     }
     .art-img-box {
       width: 100%;
-      height: 240px;
-      background: #f0f2f5;
+      height: 150px;
+      background: #f7f8f9;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--wiki-border-light);
+      padding: 4px;
+    }
+    @media (min-width: 640px) {
+      .art-img-box { height: 210px; }
     }
     .art-img {
-      max-width: 92%;
-      max-height: 92%;
+      max-width: 94%;
+      max-height: 94%;
       object-fit: contain;
-      transition: transform 0.2s ease;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    }
-    .art-card:hover .art-img {
-      transform: scale(1.02);
-    }
-    .art-img-fallback {
-      font-size: 36px;
-      color: #b0b4b8;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
     }
     .art-card-body {
-      padding: 14px 16px;
+      padding: 8px 10px;
       flex: 1;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
     }
     .art-card-series {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      color: #888;
+      color: #777;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .art-card-title {
       font-family: var(--font-serif);
-      font-size: 17px;
+      font-size: 13.5px;
       font-weight: bold;
       color: #000;
       line-height: 1.25;
       margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 34px;
+    }
+    @media (min-width: 640px) {
+      .art-card-title { font-size: 16px; min-height: 40px; }
     }
     .art-card-meta {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--wiki-text-muted);
-      margin-top: auto;
       display: flex;
       flex-direction: column;
       gap: 3px;
-      padding-top: 8px;
+      padding-top: 6px;
       border-top: 1px dotted var(--wiki-border-light);
+    }
+    .card-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .status-badge {
       display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 9.5px;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
     .status-badge.available {
       background: var(--color-avail-bg);
@@ -517,41 +565,35 @@
       border: 1px solid var(--wiki-border);
       border-radius: 4px;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .wiki-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
+      font-size: 12.5px;
       text-align: left;
     }
     .wiki-table th {
       background: var(--wiki-bg-subtle);
       border-bottom: 2px solid var(--wiki-border);
-      padding: 10px 12px;
+      padding: 8px 10px;
       font-weight: bold;
       white-space: nowrap;
-      cursor: pointer;
       user-select: none;
     }
-    .wiki-table th:hover {
-      background: var(--wiki-bg-hover);
-    }
     .wiki-table td {
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-bottom: 1px solid var(--wiki-border-light);
       vertical-align: middle;
     }
-    .wiki-table tr:hover td {
-      background: #fdfaf2;
-    }
+    .wiki-table tr:hover td { background: #fdfaf2; }
     .table-thumb {
-      width: 44px;
-      height: 44px;
+      width: 38px;
+      height: 38px;
       object-fit: contain;
       background: #f8f9fa;
       border: 1px solid var(--wiki-border-light);
       border-radius: 2px;
-      cursor: pointer;
     }
 
     /* Pagination */
@@ -559,16 +601,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      margin-top: 28px;
-      margin-bottom: 28px;
+      gap: 6px;
+      margin: 20px 0;
       flex-wrap: wrap;
     }
     .page-btn {
-      padding: 6px 12px;
+      padding: 5px 10px;
       border: 1px solid var(--wiki-border);
       background: #fff;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       border-radius: 3px;
     }
@@ -579,238 +620,251 @@
       font-weight: bold;
     }
 
-    /* Modal Dialog */
+    /* Modal / Bottom Sheet on Mobile */
     .wiki-modal {
       border: none;
-      border-radius: 6px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      max-width: 960px;
-      width: 92vw;
-      margin: auto;
       padding: 0;
       overflow: hidden;
       background: #fff;
     }
     .wiki-modal::backdrop {
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(2px);
     }
+    /* Mobile: Slide-Up Bottom Sheet */
+    @media (max-width: 768px) {
+      .wiki-modal {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 90vh;
+        margin: 0;
+        border-radius: 18px 18px 0 0;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    /* Desktop: Centered Dialog */
+    @media (min-width: 769px) {
+      .wiki-modal {
+        border-radius: 6px;
+        max-width: 900px;
+        width: 90vw;
+        margin: auto;
+      }
+    }
+    .bottom-sheet-handle {
+      width: 40px;
+      height: 4px;
+      background: #d1d5db;
+      border-radius: 2px;
+      margin: 8px auto 2px auto;
+    }
+    @media (min-width: 769px) {
+      .bottom-sheet-handle { display: none; }
+    }
     .modal-header {
-      padding: 14px 20px;
+      padding: 10px 16px;
       background: var(--wiki-bg-subtle);
-      border-bottom: 1px solid var(--wiki-border);
+      border-bottom: 1px solid var(--wiki-border-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .modal-header-title {
       font-family: var(--font-serif);
-      font-size: 19px;
+      font-size: 17px;
       font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .modal-close-btn {
       background: none;
       border: none;
-      font-size: 24px;
+      font-size: 22px;
       cursor: pointer;
       color: var(--wiki-text-muted);
+      padding: 0 6px;
       line-height: 1;
     }
     .modal-body {
-      padding: 24px;
+      padding: 16px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      max-height: 80vh;
+      grid-template-columns: 1fr;
+      gap: 16px;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      max-height: calc(88vh - 60px);
     }
-    @media (max-width: 768px) {
-      .modal-body { grid-template-columns: 1fr; }
+    @media (min-width: 769px) {
+      .modal-body {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        max-height: 75vh;
+        padding: 24px;
+      }
     }
     .modal-img-area {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #fafafa;
+      background: #f7f8f9;
       border: 1px solid var(--wiki-border-light);
       border-radius: 4px;
-      padding: 16px;
-      min-height: 320px;
+      padding: 12px;
+      min-height: 220px;
     }
     .modal-artwork-img {
       max-width: 100%;
-      max-height: 480px;
+      max-height: 380px;
       object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
       cursor: zoom-in;
     }
     .modal-img-zoom-hint {
       font-size: 11px;
       color: var(--wiki-text-muted);
-      margin-top: 8px;
-    }
-    .modal-spec-card {
-      display: flex;
-      flex-direction: column;
+      margin-top: 6px;
     }
     .modal-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 12px;
+      font-size: 12.5px;
+      margin-top: 10px;
     }
     .modal-table th {
       text-align: left;
-      padding: 7px 10px;
+      padding: 5px 8px;
       background: var(--wiki-bg-subtle);
       border-top: 1px solid var(--wiki-border-light);
       border-bottom: 1px solid var(--wiki-border-light);
-      width: 32%;
+      width: 34%;
       color: var(--wiki-text-muted);
       font-weight: 600;
     }
     .modal-table td {
-      padding: 7px 10px;
+      padding: 5px 8px;
       border-top: 1px solid var(--wiki-border-light);
       border-bottom: 1px solid var(--wiki-border-light);
     }
     .modal-actions {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      margin-top: 16px;
+      position: sticky;
+      bottom: 0;
+      background: #fff;
+      padding-top: 8px;
     }
     .btn-inquire {
-      flex: 1;
+      width: 100%;
       padding: 10px 16px;
       background: #3366cc;
-      color: #fff;
-      border: 1px solid #3366cc;
-      border-radius: 4px;
+      color: #fff !important;
+      border-radius: 6px;
       font-size: 14px;
       font-weight: bold;
       text-align: center;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      text-decoration: none !important;
     }
-    .btn-inquire:hover {
-      background: #0645ad;
-      color: #fff;
-      text-decoration: none;
-    }
+    .btn-inquire:hover { background: #0645ad; }
 
-    /* Status Toggle inside modal */
-    .status-toggle-box {
-      margin-top: 16px;
-      padding: 12px;
-      background: var(--wiki-bg-subtle);
-      border: 1px solid var(--wiki-border-light);
-      border-radius: 4px;
-    }
-    .status-toggle-label {
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: var(--wiki-text-muted);
-      margin-bottom: 8px;
-    }
-    .status-radio-group {
-      display: flex;
-      gap: 12px;
-    }
-    .status-radio-group label {
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-    }
-
-    /* Storage Analysis & Space Calculator Styles */
+    /* Storage Analysis Dashboard Styles */
     .storage-dashboard {
       background: #fff;
       border: 1px solid var(--wiki-border);
-      border-radius: 4px;
-      padding: 24px;
-      margin-bottom: 28px;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 768px) {
+      .storage-dashboard { padding: 24px; }
     }
     .storage-metric-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-      margin: 18px 0 24px 0;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin: 14px 0 18px 0;
+    }
+    @media (min-width: 768px) {
+      .storage-metric-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
     }
     .storage-stat-card {
       background: var(--wiki-bg-subtle);
       border: 1px solid var(--wiki-border-light);
       border-radius: 4px;
-      padding: 16px;
+      padding: 12px;
       border-top: 3px solid #3366cc;
     }
     .storage-stat-num {
-      font-size: 24px;
+      font-size: 19px;
       font-weight: bold;
       color: #000;
       line-height: 1.1;
     }
+    @media (min-width: 768px) {
+      .storage-stat-num { font-size: 22px; }
+    }
     .storage-stat-label {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
       color: var(--wiki-text-muted);
-      margin-top: 4px;
+      margin-top: 3px;
     }
     .storage-stat-sub {
-      font-size: 12px;
-      color: #444;
-      margin-top: 6px;
+      font-size: 11px;
+      color: #555;
+      margin-top: 4px;
     }
 
     .equivalents-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (min-width: 640px) {
+      .equivalents-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
     }
     .equiv-card {
       background: #fff;
       border: 1px solid var(--wiki-border-light);
-      border-radius: 4px;
-      padding: 18px;
+      border-radius: 6px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      gap: 6px;
     }
     .equiv-card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
-    .equiv-icon {
-      font-size: 24px;
-      line-height: 1;
-    }
-    .equiv-title {
-      font-size: 15px;
-      font-weight: bold;
-      color: #000;
-    }
-    .equiv-body {
-      font-size: 13px;
-      color: var(--wiki-text-muted);
-      line-height: 1.5;
-    }
+    .equiv-icon { font-size: 20px; line-height: 1; }
+    .equiv-title { font-size: 14px; font-weight: bold; color: #000; }
+    .equiv-body { font-size: 12.5px; color: var(--wiki-text-muted); line-height: 1.5; }
     .equiv-tag {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      padding: 2px 8px;
-      border-radius: 10px;
+      padding: 2px 7px;
+      border-radius: 8px;
       align-self: flex-start;
       margin-top: auto;
     }
@@ -818,173 +872,121 @@
     .tag-alt { background: #eaf3ff; color: #1a73e8; border: 1px solid #4285f4; }
     .tag-transport { background: #fef7e0; color: #b06000; border: 1px solid #fbbc04; }
 
-    /* Next Steps / Idea Tiers */
+    /* Next Steps Idea Tiers */
     .idea-tier {
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       border: 1px solid var(--wiki-border-light);
-      border-radius: 4px;
+      border-radius: 6px;
       background: #fff;
       overflow: hidden;
     }
     .idea-tier-header {
-      padding: 14px 20px;
+      padding: 12px 16px;
       background: var(--wiki-bg-subtle);
       border-bottom: 1px solid var(--wiki-border-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
     .tier-badge {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: bold;
-      padding: 3px 8px;
-      border-radius: 12px;
+      padding: 2px 7px;
+      border-radius: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
     }
     .badge-tier1 { background: #e6f4ea; color: #137333; border: 1px solid #34a853; }
     .badge-tier2 { background: #eaf3ff; color: #1a73e8; border: 1px solid #4285f4; }
     .badge-tier3 { background: #fef7e0; color: #b06000; border: 1px solid #fbbc04; }
     .badge-tier4 { background: #fce8e6; color: #c5221f; border: 1px solid #ea4335; }
-    .idea-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    .idea-list { list-style: none; padding: 0; margin: 0; }
     .idea-item {
-      padding: 16px 20px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--wiki-border-light);
       display: flex;
-      gap: 16px;
+      gap: 12px;
       align-items: flex-start;
     }
     .idea-item:last-child { border-bottom: none; }
-    .idea-icon {
-      font-size: 22px;
-      line-height: 1.2;
-      flex-shrink: 0;
-    }
-    .idea-content h4 {
-      font-size: 15px;
-      font-weight: bold;
-      color: #000;
-      margin-bottom: 4px;
-    }
-    .idea-content p {
-      font-size: 13.5px;
-      color: var(--wiki-text-muted);
-      line-height: 1.6;
-    }
+    .idea-icon { font-size: 20px; line-height: 1.2; flex-shrink: 0; }
+    .idea-content h4 { font-size: 14px; font-weight: bold; color: #000; margin-bottom: 3px; }
+    .idea-content p { font-size: 12.5px; color: var(--wiki-text-muted); line-height: 1.5; }
 
     /* Notes Sections Layout */
     .notes-section {
       background: #fff;
       border: 1px solid var(--wiki-border);
-      border-radius: 4px;
-      padding: 28px;
-      margin-bottom: 24px;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    @media (min-width: 768px) {
+      .notes-section { padding: 24px; }
     }
     .notes-nav-pills {
       display: flex;
-      gap: 8px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
     .notes-nav-btn {
-      padding: 7px 14px;
+      padding: 6px 12px;
       border: 1px solid var(--wiki-border);
       border-radius: 16px;
       background: var(--wiki-bg-subtle);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--wiki-link);
       cursor: pointer;
       font-weight: 500;
-    }
-    .notes-nav-btn:hover {
-      background: var(--wiki-bg-hover);
-      text-decoration: underline;
+      white-space: nowrap;
     }
 
-    /* Overview Section */
+    /* Lead Bio Section */
     .lead-section {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 28px;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
-    @media (max-width: 900px) {
-      .lead-section { grid-template-columns: 1fr; }
+    @media (min-width: 860px) {
+      .lead-section { grid-template-columns: 2fr 1fr; gap: 24px; }
     }
-    .lead-text p {
-      margin-bottom: 14px;
-      font-size: 14.5px;
-      line-height: 1.7;
-    }
+    .lead-text p { margin-bottom: 12px; font-size: 13.5px; line-height: 1.6; }
     .wiki-infobox {
       background: var(--wiki-bg-subtle);
       border: 1px solid var(--wiki-border);
-      padding: 16px;
-      border-radius: 3px;
+      padding: 12px;
+      border-radius: 4px;
     }
     .infobox-title {
       font-family: var(--font-serif);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: bold;
       text-align: center;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
       border-bottom: 1px solid var(--wiki-border-light);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .infobox-img-container {
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .infobox-img {
-      max-width: 100%;
-      height: auto;
-      border: 1px solid var(--wiki-border-light);
-      border-radius: 2px;
-    }
-    .infobox-caption {
-      font-size: 11px;
-      color: var(--wiki-text-muted);
-      margin-top: 4px;
-    }
-    .infobox-table {
-      width: 100%;
-      font-size: 12.5px;
-      border-collapse: collapse;
-    }
-    .infobox-table th {
-      text-align: left;
-      padding: 4px 6px;
-      vertical-align: top;
-      color: var(--wiki-text-muted);
-      width: 35%;
-      font-weight: 600;
-    }
-    .infobox-table td {
-      padding: 4px 6px;
-      vertical-align: top;
-    }
+    .infobox-img-container { text-align: center; margin-bottom: 10px; }
+    .infobox-img { max-width: 100%; height: auto; border: 1px solid var(--wiki-border-light); border-radius: 2px; }
+    .infobox-caption { font-size: 11px; color: var(--wiki-text-muted); margin-top: 3px; }
+    .infobox-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+    .infobox-table th { text-align: left; padding: 4px 6px; color: var(--wiki-text-muted); width: 34%; font-weight: 600; }
+    .infobox-table td { padding: 4px 6px; }
 
     /* Footer */
     .wiki-footer {
       max-width: 1440px;
-      margin: 40px auto 20px auto;
-      padding: 24px;
+      margin: 30px auto 16px auto;
+      padding: 16px;
       border-top: 1px solid var(--wiki-border);
       color: var(--wiki-text-muted);
-      font-size: 12px;
+      font-size: 11.5px;
       text-align: center;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
     }
   </style>
 </head>
@@ -997,63 +999,61 @@
         <span class="wiki-globe">💣</span>
         <div>
           <div class="wiki-site-title">Jim Riswold Archive</div>
-          <div class="wiki-site-subtitle">Encyclopedic Estate Catalog & Provenance Index</div>
+          <div class="wiki-site-subtitle">Estate Catalog & Provenance Index</div>
         </div>
       </div>
-      <div style="display:flex; gap:12px; align-items:center;">
-        <span style="font-size:12px; color:var(--wiki-text-muted);">Estate of Jim Riswold (1957–2024)</span>
-        <a href="mailto:jimriswoldart@gmail.com" class="btn-action" style="background:#3366cc; color:#fff; border-color:#3366cc;">Contact Estate</a>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <a href="mailto:jimriswoldart@gmail.com" class="topbar-contact-btn">✉️ Contact Estate</a>
       </div>
     </div>
   </header>
 
   <div class="main-container">
 
-    <!-- Article Header -->
+    <!-- Desktop Article Header -->
     <div class="article-header">
       <div>
-        <h1 class="article-title">Jim Riswold</h1>
-        <div class="article-subline">From Wikipedia & Estate Archives, the collaborative inventory index</div>
+        <h1 class="article-title">Jim Riswold (1957–2024)</h1>
+        <div class="article-subline">Collaborative fine art catalog with Jake Riswold, Haley Riswold, Peter Yue, and Guy Overfelt</div>
       </div>
-      <div style="font-size:13px; color:var(--wiki-text-muted);">
-        Curated with: <strong>Jake Riswold</strong>, <strong>Haley Riswold</strong>, <strong>Peter Yue</strong>, and <strong>Guy Overfelt</strong>
+      <div style="font-size:12px; color:var(--wiki-text-muted);">
+        Gallery Archive: <em>Four Oceans, One Family</em>
       </div>
     </div>
 
-    <!-- Navigation Tabs: Streamlined 4-Tab Grouping -->
+    <!-- Top Navigation Tabs -->
     <nav class="wiki-tabs">
-      <button class="wiki-tab-btn active" id="tabbtn-inventory" onclick="switchTab('inventory')">🎨 Inventory Index (578 Works)</button>
-      <button class="wiki-tab-btn" id="tabbtn-family-ask" onclick="switchTab('family-ask')">📋 Family Objectives & The Ask</button>
-      <button class="wiki-tab-btn" id="tabbtn-next-steps" onclick="switchTab('next-steps')">💡 Next Steps & Storage Plan</button>
+      <button class="wiki-tab-btn active" id="tabbtn-inventory" onclick="switchTab('inventory')">🎨 Artworks (578)</button>
+      <button class="wiki-tab-btn" id="tabbtn-family-ask" onclick="switchTab('family-ask')">📋 Family Ask</button>
+      <button class="wiki-tab-btn" id="tabbtn-next-steps" onclick="switchTab('next-steps')">💡 Next Steps & Space</button>
       <button class="wiki-tab-btn" id="tabbtn-notes" onclick="switchTab('notes')">📝 Notes & Provenance</button>
     </nav>
 
     <!-- TAB 1: INVENTORY (Default Active) -->
     <div id="tab-inventory">
 
-      <!-- Metrics -->
+      <!-- Metrics: Tight Horizontal Row -->
       <div class="metrics-bar">
-        <div class="metric-card" onclick="filterStatus('all')">
+        <div class="metric-card active" id="mcard-all" onclick="filterStatus('all')">
           <div class="metric-val" id="metric-total">578</div>
-          <div class="metric-label">Total Works Cataloged</div>
+          <div class="metric-label">All Works</div>
         </div>
-        <div class="metric-card avail" onclick="filterStatus('available')">
-          <div class="metric-val" id="metric-avail" style="color:var(--color-avail-text);">558</div>
-          <div class="metric-label">Definitely Available (Unsold)</div>
+        <div class="metric-card avail" id="mcard-available" onclick="filterStatus('available')">
+          <div class="metric-val" id="metric-avail">558</div>
+          <div class="metric-label">Available</div>
         </div>
-        <div class="metric-card pending" onclick="filterStatus('pending')">
-          <div class="metric-val" id="metric-pending" style="color:var(--color-pending-text);">7</div>
-          <div class="metric-label">Might Be Sold / In Review</div>
+        <div class="metric-card pending" id="mcard-pending" onclick="filterStatus('pending')">
+          <div class="metric-val" id="metric-pending">7</div>
+          <div class="metric-label">In Review</div>
         </div>
-        <div class="metric-card sold" onclick="filterStatus('sold')">
-          <div class="metric-val" id="metric-sold" style="color:var(--color-sold-text);">13</div>
-          <div class="metric-label">Definitely Sold / Private Hands</div>
+        <div class="metric-card sold" id="mcard-sold" onclick="filterStatus('sold')">
+          <div class="metric-val" id="metric-sold">13</div>
+          <div class="metric-label">Sold</div>
         </div>
       </div>
 
-      <!-- Filter Controls Panel -->
+      <!-- Compact Search & Controls Bar -->
       <section class="filter-panel">
-        <!-- Search Row with Autofill Datalist + Reset All Button -->
         <div class="search-row">
           <div class="search-input-wrapper">
             <span class="search-icon">🔍</span>
@@ -1061,137 +1061,109 @@
               type="search" 
               id="search-input" 
               class="search-input" 
-              placeholder="Search by artwork title, series, accession # (e.g. '2024.47.051'), subject, or vault room..." 
+              placeholder="Search 578 works, series, room..." 
               list="artworks-datalist"
               autocomplete="off"
             >
             <button id="clear-search" class="clear-search-btn" title="Clear search text">&times;</button>
           </div>
-          <!-- Native HTML5 Datalist for Autofill suggestions -->
           <datalist id="artworks-datalist"></datalist>
 
-          <!-- The Reset All Pill Button -->
-          <button class="reset-all-pill" onclick="resetAllFilters()" title="Reset all search terms, pills, and dropdown filters to default">
-            ↺ Reset All Filters
+          <!-- Toggle Advanced Filters Drawer Button -->
+          <button class="filter-toggle-btn" id="filter-toggle-btn" onclick="toggleAdvancedFilters()">
+            ⚙️ <span id="filter-btn-label">Filters</span>
+          </button>
+
+          <!-- Reset All Filters Pill Button -->
+          <button class="reset-all-pill" onclick="resetAllFilters()" title="Reset all filters">
+            ↺ Reset
           </button>
         </div>
 
-        <!-- Sales Status Pills -->
-        <div class="pills-group">
-          <div class="pills-label">
-            <span>Commercial / Estate Status:</span>
-            <span style="font-size:11px; text-transform:none; font-weight:normal;">Select to isolate available, sold, or under inquiry</span>
-          </div>
-          <div class="pills-flex" id="status-pills-container">
-            <button class="pill-btn active" data-status="all" onclick="setStatusPill('all')">
-              All Items <span class="pill-count" id="pill-count-all">578</span>
-            </button>
-            <button class="pill-btn" data-status="available" onclick="setStatusPill('available')">
-              🟢 Definitely Available <span class="pill-count" id="pill-count-avail">558</span>
-            </button>
-            <button class="pill-btn" data-status="pending" onclick="setStatusPill('pending')">
-              🟡 Might Be Sold / In Review <span class="pill-count" id="pill-count-pending">7</span>
-            </button>
-            <button class="pill-btn" data-status="sold" onclick="setStatusPill('sold')">
-              🔴 Definitely Sold <span class="pill-count" id="pill-count-sold">13</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Conceptual Genres Filter Pills -->
-        <div class="pills-group">
-          <div class="pills-label">
-            <span>Conceptual Series & Themes:</span>
-            <span style="font-size:11px; text-transform:none; font-weight:normal;">Filter by Jim's thematic genres</span>
-          </div>
-          <div class="pills-flex" id="genre-pills-container"></div>
-        </div>
-
-        <!-- Dropdowns Selection Row -->
-        <div class="dropdowns-row">
-          <div class="select-group">
-            <label for="select-collection">Inventory Section</label>
-            <select id="select-collection" class="select-dropdown" onchange="applyFilters()">
-              <option value="all">All Sections (578)</option>
-              <option value="Framed Art">Framed Art on Racks (245)</option>
-              <option value="Unframed Prints">Unframed Prints / Flat Files (246)</option>
-              <option value="Extra Large (XL) Art">Extra Large (XL) Art (37)</option>
-              <option value="Sculptures & Rugs">Sculptures & Custom Rugs (50)</option>
-            </select>
+        <!-- Collapsible Drawer for Advanced Filters -->
+        <div id="advanced-filters-drawer">
+          <!-- Conceptual Genres Filter Pills -->
+          <div class="pills-group">
+            <div class="pills-label">
+              <span>Conceptual Themes / Genres:</span>
+            </div>
+            <div class="pills-flex" id="genre-pills-container"></div>
           </div>
 
-          <div class="select-group">
-            <label for="select-series">Series Title</label>
-            <select id="select-series" class="select-dropdown" onchange="applyFilters()">
-              <option value="all">All Series</option>
-            </select>
-          </div>
+          <!-- Dropdowns Selection Row -->
+          <div class="dropdowns-row">
+            <div class="select-group">
+              <label for="select-collection">Section</label>
+              <select id="select-collection" class="select-dropdown" onchange="applyFilters()">
+                <option value="all">All Sections (578)</option>
+                <option value="Framed Art">Framed Art (245)</option>
+                <option value="Unframed Prints">Flat Prints (246)</option>
+                <option value="Extra Large (XL) Art">XL Monumental (37)</option>
+                <option value="Sculptures & Rugs">Sculptures & Rugs (50)</option>
+              </select>
+            </div>
 
-          <div class="select-group">
-            <label for="select-size">Size Class</label>
-            <select id="select-size" class="select-dropdown" onchange="applyFilters()">
-              <option value="all">All Sizes</option>
-              <option value="Small (< 30 in)">Small (< 30")</option>
-              <option value="Medium (30–50 in)">Medium (30–50")</option>
-              <option value="Large (50–70 in)">Large (50–70")</option>
-              <option value="Extra Large (> 70 in)">Extra Large (> 70")</option>
-            </select>
-          </div>
+            <div class="select-group">
+              <label for="select-series">Series</label>
+              <select id="select-series" class="select-dropdown" onchange="applyFilters()">
+                <option value="all">All Series</option>
+              </select>
+            </div>
 
-          <div class="select-group">
-            <label for="select-framed">Framing</label>
-            <select id="select-framed" class="select-dropdown" onchange="applyFilters()">
-              <option value="all">Framed & Unframed</option>
-              <option value="Framed">Framed Only</option>
-              <option value="Unframed">Unframed Only</option>
-            </select>
-          </div>
+            <div class="select-group">
+              <label for="select-size">Size Class</label>
+              <select id="select-size" class="select-dropdown" onchange="applyFilters()">
+                <option value="all">All Sizes</option>
+                <option value="Small (< 30 in)">Small (< 30")</option>
+                <option value="Medium (30–50 in)">Medium (30–50")</option>
+                <option value="Large (50–70 in)">Large (50–70")</option>
+                <option value="Extra Large (> 70 in)">Extra Large (> 70")</option>
+              </select>
+            </div>
 
-          <div class="select-group">
-            <label for="select-signed">Signature</label>
-            <select id="select-signed" class="select-dropdown" onchange="applyFilters()">
-              <option value="all">All Signatures</option>
-              <option value="Signed">Signed by Artist</option>
-              <option value="Unsigned / Unconfirmed">Unsigned / Unconfirmed</option>
-            </select>
-          </div>
+            <div class="select-group">
+              <label for="select-framed">Framing</label>
+              <select id="select-framed" class="select-dropdown" onchange="applyFilters()">
+                <option value="all">All</option>
+                <option value="Framed">Framed</option>
+                <option value="Unframed">Unframed</option>
+              </select>
+            </div>
 
-          <div class="select-group">
-            <label for="select-sort">Sort Order</label>
-            <select id="select-sort" class="select-dropdown" onchange="applyFilters()">
-              <option value="default">Default Inventory Order</option>
-              <option value="title-asc">Title (A to Z)</option>
-              <option value="title-desc">Title (Z to A)</option>
-              <option value="year-desc">Year (Newest First)</option>
-              <option value="year-asc">Year (Oldest First)</option>
-              <option value="status">Status (Available First)</option>
-            </select>
+            <div class="select-group">
+              <label for="select-signed">Signature</label>
+              <select id="select-signed" class="select-dropdown" onchange="applyFilters()">
+                <option value="all">All</option>
+                <option value="Signed">Signed</option>
+                <option value="Unsigned / Unconfirmed">Unsigned</option>
+              </select>
+            </div>
+
+            <div class="select-group">
+              <label for="select-sort">Sort Order</label>
+              <select id="select-sort" class="select-dropdown" onchange="applyFilters()">
+                <option value="default">Default Catalog Order</option>
+                <option value="title-asc">Title (A to Z)</option>
+                <option value="title-desc">Title (Z to A)</option>
+                <option value="year-desc">Year (Newest First)</option>
+                <option value="year-asc">Year (Oldest First)</option>
+                <option value="status">Status (Available First)</option>
+              </select>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- View and Action Bar -->
+      <!-- View and Count Bar -->
       <div class="view-actions-bar">
-        <div class="results-count" id="results-count-text">Showing 578 of 578 artworks</div>
+        <div id="results-count-text">Showing 578 of 578 works</div>
         <div class="view-toggles">
-          <button class="btn-action" onclick="exportFilteredCSV()" title="Download filtered results as spreadsheet">
-            📥 Export CSV
-          </button>
-          <button class="btn-action" onclick="exportJSON()" title="Export raw JSON">
-            💾 Export JSON
-          </button>
-          <div style="display:flex; border:1px solid var(--wiki-border); border-radius:3px; overflow:hidden;">
-            <button class="view-toggle-btn active" id="btn-view-grid" onclick="setView('grid')" title="Grid Card View">
-              🖼️ Grid
-            </button>
-            <button class="view-toggle-btn" id="btn-view-table" onclick="setView('table')" title="Spreadsheet Archive Table View">
-              📑 Archive Table
-            </button>
-          </div>
+          <button class="view-toggle-btn active" id="btn-view-grid" onclick="setView('grid')">🖼️ 2-Grid</button>
+          <button class="view-toggle-btn" id="btn-view-table" onclick="setView('table')">📑 Table</button>
         </div>
       </div>
 
-      <!-- Container for Artworks (Grid View) -->
+      <!-- Container for Artworks (Grid View: 2 across on mobile) -->
       <div class="art-grid" id="art-grid-view"></div>
 
       <!-- Container for Artworks (Table View) -->
@@ -1199,16 +1171,13 @@
         <table class="wiki-table" id="art-table">
           <thead>
             <tr>
-              <th style="width:60px;">Thumb</th>
-              <th onclick="setTableSort('title')">Title & Accession ↕</th>
-              <th onclick="setTableSort('series')">Series / Genre ↕</th>
+              <th style="width:44px;">Thumb</th>
+              <th onclick="setTableSort('title')">Title ↕</th>
+              <th onclick="setTableSort('series')">Series ↕</th>
               <th onclick="setTableSort('year')">Year ↕</th>
-              <th>Medium & Paper</th>
               <th>Dimensions</th>
-              <th>Framing</th>
-              <th>Vault Location</th>
+              <th>Vault</th>
               <th onclick="setTableSort('status')">Status ↕</th>
-              <th>Buyer / Notes</th>
             </tr>
           </thead>
           <tbody id="art-table-body"></tbody>
@@ -1222,439 +1191,378 @@
 
     <!-- TAB 2: FAMILY OBJECTIVES & THE ASK -->
     <div id="tab-family-ask" style="display:none;">
-      <div style="background:#fff; border:1px solid var(--wiki-border); padding:32px; border-radius:4px;">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:16px; margin-bottom:24px;">
-          <h2 style="font-family:var(--font-serif); font-size:26px; font-weight:normal; color:#000;">Family Objectives & The Ask</h2>
-          <div style="font-size:13px; color:var(--wiki-text-muted); margin-top:4px;">
-            Working brief from Jake Riswold & Haley Riswold with Peter Yue, Guy Overfelt, and Benji Brucker. <em>(Living document — continually refined as discussions progress)</em>
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:20px; border-radius:6px;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:18px;">
+          <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">Family Objectives & The Ask</h2>
+          <div style="font-size:12px; color:var(--wiki-text-muted); margin-top:3px;">
+            Working brief from Jake Riswold & Haley Riswold with Peter Yue, Guy Overfelt, and Benji Brucker.
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; margin-bottom:28px;">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:20px;">
           
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
-            <div style="font-size:20px; margin-bottom:8px;">📦</div>
-            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">1. Physical Storage & Vault Consolidation</h3>
-            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
-              The physical collection encompasses <strong>578 items</strong> across 245 framed works, 246 flat-file prints, 37 monumental XL pieces, and 50 sculptures/rugs. Currently dispersed across multiple vault rooms (Rooms 2.A2 through 3.C1) and flat files. The immediate family priority is consolidating and securing these assets in a cost-efficient, climate-controlled preservation space.
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+            <div style="font-size:18px; margin-bottom:6px;">📦</div>
+            <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">1. Storage & Vault Consolidation</h3>
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+              The physical collection spans <strong>578 items</strong> across 245 framed works, 246 flat-file prints, 37 monumental XL pieces, and 50 sculptures/rugs. Currently dispersed across multiple vault rooms (Rooms 2.A2 through 3.C1) and flat files. The immediate family priority is consolidating into a single cost-effective, climate-controlled space.
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
-            <div style="font-size:20px; margin-bottom:8px;">💰</div>
-            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">2. Strategic Liquidation & Estate Proceeds</h3>
-            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
-              Establish an active, dignified sales mechanism to generate estate proceeds and fund ongoing storage and preservation. The family seeks to balance liquidating accessible pieces with retaining key cultural masterpieces for museum and foundation bequests.
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+            <div style="font-size:18px; margin-bottom:6px;">💰</div>
+            <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">2. Strategic Estate Liquidation</h3>
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+              Establish an active sales mechanism to generate estate proceeds and fund ongoing storage and preservation. Balancing liquidating accessible pieces with retaining key cultural masterpieces for museum and foundation bequests.
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
-            <div style="font-size:20px; margin-bottom:8px;">🔍</div>
-            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">3. Definitive Title & Discrepancy Resolution</h3>
-            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
-              Transition from conflicting, fragmented spreadsheets into this single verified source of truth. Resolve ambiguities: confirm completed sales (Drew Martin, Alicia Kuna, Benji, Jake, Haley), account for works currently checked out (such as the 7 pieces at Hot Box Betty), and verify clear title for remaining works.
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+            <div style="font-size:18px; margin-bottom:6px;">🔍</div>
+            <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">3. Definitive Title Resolution</h3>
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+              Transition from fragmented spreadsheets into this single verified source of truth. Confirm completed sales (Drew Martin, Alicia Kuna, Benji, Jake, Haley), account for works currently checked out (7 pieces at Hot Box Betty), and verify clear title for remaining works.
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:20px; border-radius:4px;">
-            <div style="font-size:20px; margin-bottom:8px;">🏛️</div>
-            <h3 style="font-size:16px; font-weight:bold; margin-bottom:8px;">4. Institutional Placement & Curatorial Legacy</h3>
-            <p style="font-size:13.5px; color:var(--wiki-text-muted); line-height:1.6;">
-              Ensure Jim's place as an advertising icon and subversive fine artist is cemented in American art history. Target prominent placements in the Portland Art Museum, Seattle Art Museum, The One Club Archive, and hospital oncology wings (e.g. OHSU Knight Cancer Institute).
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+            <div style="font-size:18px; margin-bottom:6px;">🏛️</div>
+            <h3 style="font-size:15px; font-weight:bold; margin-bottom:6px;">4. Museum & Institutional Legacy</h3>
+            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.5;">
+              Cement Jim's place as an advertising icon and subversive fine artist. Target permanent placements in the Portland Art Museum, Seattle Art Museum, The One Club, and hospital oncology wings (OHSU Knight Cancer Institute).
             </p>
           </div>
 
         </div>
 
-        <div style="background:#fff; border:1px solid var(--wiki-border); padding:20px; border-radius:4px;">
-          <h3 style="font-size:16px; font-weight:bold; margin-bottom:10px;">Immediate Working Questions for the Next Family & Gallery Check-In</h3>
-          <ul style="padding-left:20px; font-size:14px; line-height:1.8; color:var(--wiki-text);">
-            <li><strong>Storage Budget & Footprint:</strong> What is the current monthly overhead for the existing vault rooms, and what target monthly budget does the estate wish to achieve?</li>
-            <li><strong>Immediate Liquidation Target:</strong> Should we identify a first "Wave 1" cohort of 30–50 works (focusing on accessible sizes in flat files) for private placement to establish early liquidity?</li>
-            <li><strong>Checking Out Status:</strong> Has "Hot Box Betty" officially purchased the 7 works from <em>Stalin Sketches Great</em>, or should they be returned to vault storage?</li>
-            <li><strong>Pricing Standard:</strong> Should we establish fixed public price tiers by size and edition (e.g., Small Prints $1,500; Large Framed $4,500; XL Works $8,500–$15,000; Sculptures $3,500)?</li>
-            <li><strong>Direct Estate Contact Protocol:</strong> All inquiries currently route to <a href="mailto:jimriswoldart@gmail.com">jimriswoldart@gmail.com</a>. Would Jake & Haley like automated inquiry logging or a shared inbox review?</li>
+        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:16px; border-radius:4px;">
+          <h3 style="font-size:14px; font-weight:bold; margin-bottom:8px;">Key Questions for Family Check-In</h3>
+          <ul style="padding-left:18px; font-size:12.5px; line-height:1.7; color:var(--wiki-text);">
+            <li><strong>Storage Budget:</strong> What target monthly overhead does the estate wish to achieve?</li>
+            <li><strong>Wave 1 Drop:</strong> Should we identify an initial cohort of 30–50 flat-file prints to establish early liquidity?</li>
+            <li><strong>Hot Box Betty Status:</strong> Have the 7 works from <em>Stalin Sketches Great</em> been purchased, or should they return to storage?</li>
+            <li><strong>Price Standardization:</strong> Standardize tiers (Small Prints $1,500; Large Framed $4,500; XL Works $8,500+)?</li>
           </ul>
         </div>
       </div>
-    </div><!-- End Tab 2 (Family Ask) -->
+    </div><!-- End Tab 2 -->
 
     <!-- TAB 3: NEXT STEPS & STORAGE PLAN -->
     <div id="tab-next-steps" style="display:none;">
 
-      <!-- PART 1: PHYSICAL STORAGE FOOTPRINT & SPACE CALCULATOR -->
+      <!-- Physical Storage Footprint & Space Calculator -->
       <section class="storage-dashboard">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:16px; margin-bottom:20px;">
-          <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
-            <h2 style="font-family:var(--font-serif); font-size:26px; font-weight:normal; color:#000;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px;">
+            <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000;">
               Physical Storage Footprint & Space Calculator
             </h2>
-            <span class="status-badge available" style="font-size:12px;">Archival Analysis</span>
+            <span class="status-badge available" style="font-size:11px;">Archival Analysis</span>
           </div>
-          <p style="font-size:13.5px; color:var(--wiki-text-muted); margin-top:6px; line-height:1.6;">
-            A rigorous spatial breakdown of the 578 physical artworks across all four collection categories. Calculated using actual piece dimensions, museum-standard packing buffers, vertical bin dividers, and active inspection aisle requirements.
+          <p style="font-size:12.5px; color:var(--wiki-text-muted); margin-top:4px;">
+            Spatial calculations based on actual piece measurements, protective crating buffers, vertical picture racks, and walkway clearance.
           </p>
         </div>
 
-        <!-- High-Level Storage Metrics Banner -->
+        <!-- 4-Stat Metric Cluster (2x2 on Mobile, 4x1 on Desktop) -->
         <div class="storage-metric-grid">
           <div class="storage-stat-card">
             <div class="storage-stat-num">578 Pieces</div>
-            <div class="storage-stat-label">Total Archival Objects</div>
-            <div class="storage-stat-sub">Across 4 distinct physical form factors</div>
+            <div class="storage-stat-label">Total Objects</div>
+            <div class="storage-stat-sub">Across 4 collections</div>
           </div>
           <div class="storage-stat-card" style="border-top-color:#137333;">
-            <div class="storage-stat-num">~1,150 – 1,450 cu. ft.</div>
-            <div class="storage-stat-label">Combined Storage Volume</div>
-            <div class="storage-stat-sub">With archival padding & crate clearance</div>
+            <div class="storage-stat-num">~1,300 cu. ft.</div>
+            <div class="storage-stat-label">Packed Volume</div>
+            <div class="storage-stat-sub">~1,150–1,450 cu. ft.</div>
           </div>
           <div class="storage-stat-card" style="border-top-color:#fbbc04;">
-            <div class="storage-stat-num">~185 – 225 sq. ft.</div>
-            <div class="storage-stat-label">Floor Footprint Required</div>
-            <div class="storage-stat-sub">Assuming 7–8 ft vertical racking & walkway</div>
+            <div class="storage-stat-num">~200 sq. ft.</div>
+            <div class="storage-stat-label">Floor Area</div>
+            <div class="storage-stat-sub">With access aisle</div>
           </div>
           <div class="storage-stat-card" style="border-top-color:#ea4335;">
-            <div class="storage-stat-num">One 10' × 20' Unit</div>
-            <div class="storage-stat-label">Facility Space Equivalent</div>
-            <div class="storage-stat-sub">Standard single-car garage footprint</div>
+            <div class="storage-stat-num">10' × 20' Unit</div>
+            <div class="storage-stat-label">Target Facility</div>
+            <div class="storage-stat-sub">Single garage size</div>
           </div>
         </div>
 
-        <!-- Dimensional Space Breakdown Table -->
-        <h3 style="font-size:16px; font-weight:bold; margin-bottom:12px; color:#000;">Collection-by-Collection Spatial Breakdown</h3>
-        <div style="overflow-x:auto; margin-bottom:24px;">
+        <!-- Spatial Breakdown Table -->
+        <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#555;">Collection Space Distribution:</div>
+        <div class="table-container" style="margin-bottom:18px;">
           <table class="wiki-table">
             <thead>
               <tr>
-                <th>Collection Category</th>
-                <th>Quantity</th>
-                <th>Physical Form Factor & Dims</th>
-                <th>Est. Pack Volume</th>
-                <th>Floor Footprint</th>
-                <th>Recommended Storage Method</th>
-                <th>% of Storage</th>
+                <th>Collection</th>
+                <th>Count</th>
+                <th>Average Dimensions</th>
+                <th>Est. Volume</th>
+                <th>Floor Space</th>
+                <th>Storage Fixture</th>
+                <th>Space %</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Framed Art on Racks</strong></td>
-                <td><strong>245 pieces</strong></td>
-                <td>Finished glazed/acrylic frames.<br>Avg: 28.6" × 29.0" × 1.5–2.0" D</td>
-                <td><strong>~600 – 750 cu. ft.</strong></td>
-                <td><strong>~90 – 110 sq. ft.</strong></td>
-                <td>Vertical slotted art bin racks or mirror cartons with foam corners (must be kept upright).</td>
-                <td><span class="status-badge sold" style="font-size:11px;">~52%</span></td>
+                <td><strong>Framed Art</strong></td>
+                <td><strong>245</strong></td>
+                <td>Avg: 28.6" × 29.0" × 2"</td>
+                <td><strong>~675 cu. ft.</strong></td>
+                <td>~100 sq. ft.</td>
+                <td>Vertical slotted bin racks / cartons</td>
+                <td><span class="status-badge sold">52%</span></td>
               </tr>
               <tr>
-                <td><strong>Extra Large (XL) Art</strong></td>
-                <td><strong>37 pieces</strong></td>
-                <td>Monumental framed & mounted works.<br>Avg: 51.3" × 57.4" (up to 76" H × 169" W)</td>
-                <td><strong>~350 – 450 cu. ft.</strong></td>
-                <td><strong>~50 – 65 sq. ft.</strong></td>
-                <td>Heavy-duty A-frame art carts, wall leaning racks, or custom exhibition wooden crates.</td>
-                <td><span class="status-badge sold" style="font-size:11px;">~31%</span></td>
+                <td><strong>Extra Large (XL)</strong></td>
+                <td><strong>37</strong></td>
+                <td>Avg: 51" × 57" (up to 76"×169")</td>
+                <td><strong>~400 cu. ft.</strong></td>
+                <td>~60 sq. ft.</td>
+                <td>A-frame art carts / custom crates</td>
+                <td><span class="status-badge sold">31%</span></td>
               </tr>
               <tr>
-                <td><strong>Sculptures & Custom Rugs</strong></td>
-                <td><strong>50 pieces</strong></td>
-                <td>Resin, bronze, figurines, plastic toys, dioramas + rolled wool rugs (up to 56" × 89")</td>
-                <td><strong>~150 – 200 cu. ft.</strong></td>
-                <td><strong>~30 – 40 sq. ft.</strong></td>
-                <td>Three 4-tier commercial wire shelving racks (48" W × 24" D × 72" H) + upright rug bins.</td>
-                <td><span class="status-badge pending" style="font-size:11px;">~14%</span></td>
+                <td><strong>Sculptures & Rugs</strong></td>
+                <td><strong>50</strong></td>
+                <td>3D objects + rolled wool rugs</td>
+                <td><strong>~175 cu. ft.</strong></td>
+                <td>~35 sq. ft.</td>
+                <td>Three 4-tier steel shelving racks</td>
+                <td><span class="status-badge pending">14%</span></td>
               </tr>
               <tr>
-                <td><strong>Unframed Prints / Flat Files</strong></td>
-                <td><strong>246 pieces</strong></td>
-                <td>Archival prints on fine art paper.<br>Avg: 15.7" × 19.2" (up to 30" × 40")</td>
-                <td><strong>~45 – 60 cu. ft.</strong></td>
-                <td><strong>~15 – 18 sq. ft.</strong></td>
-                <td>Two stacked 5-drawer architectural flat-file metal cabinets (or 8–10 Solander print boxes).</td>
-                <td><span class="status-badge available" style="font-size:11px;">~3%</span></td>
+                <td><strong>Unframed Prints</strong></td>
+                <td><strong>246</strong></td>
+                <td>Flat paper (avg: 16" × 19")</td>
+                <td><strong>~50 cu. ft.</strong></td>
+                <td>~16 sq. ft.</td>
+                <td>Two 5-drawer architectural flat files</td>
+                <td><span class="status-badge available">3%</span></td>
               </tr>
               <tr style="background:#f0f4f8; font-weight:bold;">
-                <td>COMBINED ENTIRE ESTATE</td>
-                <td>578 pieces</td>
-                <td>Complete Archive (Framed, Flat, XL, 3D)</td>
-                <td>~1,150 – 1,450 cu. ft.</td>
-                <td>~185 – 225 sq. ft.</td>
-                <td>Unified Climate-Controlled Storage Space</td>
+                <td>TOTAL ESTATE</td>
+                <td>578</td>
+                <td>All Works Reconciled</td>
+                <td>~1,300 cu. ft.</td>
+                <td>~200 sq. ft.</td>
+                <td>Unified Climate Vault</td>
                 <td>100%</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- Real-World Storage Equivalents / Context Cards -->
-        <h3 style="font-size:16px; font-weight:bold; margin-bottom:12px; color:#000;">Real-World Storage Unit & Transportation Equivalents</h3>
+        <!-- Real-World Storage Equivalents Cards -->
+        <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#555;">Real-World Storage & Transport Comparisons:</div>
         <div class="equivalents-grid">
           
           <div class="equiv-card">
             <div class="equiv-card-header">
               <span class="equiv-icon">🏢</span>
-              <div class="equiv-title">One 10' × 20' Standard Storage Unit</div>
+              <div class="equiv-title">One 10' × 20' Storage Unit</div>
             </div>
             <div class="equiv-body">
-              <strong>200 sq. ft. floor space | ~1,600 cu. ft. volume (8 ft ceiling)</strong><br>
-              Equivalent to a standard single-car garage. Accommodates the <strong>entire 578-piece collection in a single footprint</strong> while maintaining a central 3-foot walking aisle for safe piece retrieval and inspection without shifting crates.
+              <strong>200 sq. ft. floor | ~1,600 cu. ft. volume (8 ft ceiling)</strong><br>
+              Standard single-car garage footprint. Holds the <strong>entire 578-piece archive</strong> with a central 3-foot walking aisle for pulling pieces safely without moving stacked crates.
             </div>
-            <span class="equiv-tag tag-ideal">★ Recommended Single Solution</span>
+            <span class="equiv-tag tag-ideal">★ Recommended Solution</span>
           </div>
 
           <div class="equiv-card">
             <div class="equiv-card-header">
               <span class="equiv-icon">🏬</span>
-              <div class="equiv-title">Two 10' × 10' Adjacent Storage Units</div>
+              <div class="equiv-title">Two 10' × 10' Adjacent Units</div>
             </div>
             <div class="equiv-body">
-              <strong>100 sq. ft. each = 200 sq. ft. combined (~1,600 cu. ft. total)</strong><br>
-              Strategic operational separation: <em>Unit A</em> holds the 282 Framed and XL works in vertical racks; <em>Unit B</em> holds Flat Files, Sculptures, and an active packing/shipping staging table for estate sales orders.
+              <strong>100 sq. ft. each = 200 sq. ft. combined</strong><br>
+              Unit A holds the 282 Framed and XL works in vertical racks; Unit B holds Flat Files, Sculptures, and an active packing/shipping staging table.
             </div>
-            <span class="equiv-tag tag-alt">★ Flexible Operational Alternative</span>
+            <span class="equiv-tag tag-alt">★ Flexible Alternative</span>
           </div>
 
           <div class="equiv-card">
             <div class="equiv-card-header">
               <span class="equiv-icon">🚚</span>
-              <div class="equiv-title">One 16-ft to 20-ft Box Truck (U-Haul / Penske)</div>
+              <div class="equiv-title">One 16-ft to 20-ft Box Truck</div>
             </div>
             <div class="equiv-body">
-              <strong>800 to 1,000 cu. ft. usable cargo volume</strong><br>
-              Can transport the entire collection in 1 to 2 blanket-wrapped runs, or in a single trip using a commercial 24-ft climate-controlled, air-ride fine art logistics truck.
+              <strong>800 to 1,000 cu. ft. cargo capacity</strong><br>
+              Transports the entire collection in 1 to 2 blanket-wrapped runs, or a single trip in a 24-ft commercial air-ride museum truck.
             </div>
-            <span class="equiv-tag tag-transport">Transport Benchmark</span>
+            <span class="equiv-tag tag-transport">Logistics Standard</span>
           </div>
 
           <div class="equiv-card">
             <div class="equiv-card-header">
               <span class="equiv-icon">🚢</span>
-              <div class="equiv-title">One 20-Foot Standard Shipping Container</div>
+              <div class="equiv-title">One 20-Foot Shipping Container</div>
             </div>
             <div class="equiv-body">
-              <strong>20' L × 8' W × 8.5' H (160 sq. ft., ~1,170 cu. ft. interior)</strong><br>
-              If packed dense for cross-country or international museum shipment, the entire physical archive would fill roughly one standard 20-ft intermodal shipping container.
+              <strong>20' L × 8' W × 8.5' H (160 sq. ft., ~1,170 cu. ft.)</strong><br>
+              If packed dense for cross-country shipment, the entire collection fits inside one standard 20-ft container.
             </div>
-            <span class="equiv-tag tag-alt">Shipping Standard</span>
+            <span class="equiv-tag tag-alt">Intermodal Freight</span>
           </div>
 
         </div>
 
         <!-- Strategic Takeaway Box -->
-        <div style="background:#eaf3ff; border:1px solid #b6d4fe; border-radius:4px; padding:18px; margin-top:24px;">
-          <h4 style="font-size:15px; font-weight:bold; color:#0b57d0; margin-bottom:8px;">
-            💡 Critical Estate Storage Insight: The 85% vs. 3% Space Disparity
+        <div style="background:#eaf3ff; border:1px solid #b6d4fe; border-radius:6px; padding:14px; margin-top:16px;">
+          <h4 style="font-size:13.5px; font-weight:bold; color:#0b57d0; margin-bottom:4px;">
+            💡 Storage Takeaway: The 85% vs. 3% Footprint Disparity
           </h4>
-          <p style="font-size:13.5px; color:#1e293b; line-height:1.6;">
-            <strong>The Framed (245) and Extra Large (37) works account for over 83% of the total storage footprint</strong> (~950 to 1,200 cu. ft.), driving almost all the monthly storage overhead. In contrast, <strong>the 246 Unframed Prints occupy less than 18 sq. ft.</strong> (two architectural flat file cabinets). 
+          <p style="font-size:12.5px; color:#1e293b; line-height:1.5;">
+            <strong>Framed (245) and XL (37) works account for >83% of the total storage footprint</strong> (~1,075 cu. ft.) and drive almost all monthly rent. In contrast, <strong>all 246 Unframed Prints occupy less than 16 sq. ft.</strong> (two architectural flat file cabinets).
             <br><br>
-            <strong>Strategic Implication:</strong> Selling, placing, or gifting 40–50 of the largest framed works immediately halves the estate's physical storage overhead, while retaining all 246 fine art prints costs almost nothing in ongoing storage rent.
+            <strong>Implication:</strong> Placing or liquidating 40–50 large framed pieces immediately cuts storage overhead in half, while preserving all 246 prints costs almost nothing.
           </p>
         </div>
       </section>
 
-      <!-- PART 2: STRATEGIC ACTION PLANS (FROM PRAGMATIC TO ZANY) -->
-      <div style="background:#fff; border:1px solid var(--wiki-border); padding:32px; border-radius:4px;">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:16px; margin-bottom:24px;">
-          <h2 style="font-family:var(--font-serif); font-size:26px; font-weight:normal; color:#000;">
-            Next Steps & Strategy: Pragmatic Operations to Outlandish Horizons
-          </h2>
-          <div style="font-size:13px; color:var(--wiki-text-muted); margin-top:4px;">
-            A strategic spectrum of possibilities—starting with low-lift estate operations and progressing into bold, subversive, Riswoldian conceptual ideas.
-          </div>
-        </div>
+      <!-- Strategic Action Tiers -->
+      <div style="background:#fff; border:1px solid var(--wiki-border); padding:20px; border-radius:6px;">
+        <h2 style="font-family:var(--font-serif); font-size:22px; font-weight:normal; color:#000; margin-bottom:14px;">
+          Strategic Next Steps: Pragmatic to Subversive
+        </h2>
 
-        <!-- Tier 1: Low-Lift & Practical -->
+        <!-- Tier 1 -->
         <div class="idea-tier">
           <div class="idea-tier-header">
             <div>
-              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 1: Pragmatic Ground Game & Low-Lift Execution</h3>
-              <div style="font-size:12.5px; color:var(--wiki-text-muted);">The immediate operational foundation — sell some, store some, clean up the books.</div>
+              <h3 style="font-size:15px; font-weight:bold; color:#000;">Tier 1: Pragmatic Ground Game</h3>
+              <div style="font-size:11.5px; color:var(--wiki-text-muted);">Sell some, store some, audit the vault.</div>
             </div>
-            <span class="tier-badge badge-tier1">Foundation / Immediate</span>
+            <span class="tier-badge badge-tier1">Immediate</span>
           </div>
           <ul class="idea-list">
             <li class="idea-item">
               <span class="idea-icon">📦</span>
               <div class="idea-content">
-                <h4>The "Sell a Batch, Store the Rest" Consolidation Model</h4>
-                <p>Curate a targeted first drop of 40–60 accessible works (unframed flat-file prints and popular series like <em>Andy in Heaven</em> and <em>Selling Jesus</em>). Channel initial sale proceeds into pre-paying a dedicated, high-security 3-year climate-controlled storage space for the core archival collection.</p>
+                <h4>"Sell a Batch, Store the Rest" Model</h4>
+                <p>Curate a targeted first drop of 40–60 accessible works from flat files. Use initial proceeds to pre-fund a 3-year climate-controlled storage unit for the core archive.</p>
               </div>
             </li>
             <li class="idea-item">
               <span class="idea-icon">🏷️</span>
               <div class="idea-content">
-                <h4>Physical Barcode / QR Vault Audit</h4>
-                <p>Conduct a physical walkthrough of Rooms 2.A2 through 3.C1 with this web catalog on an iPad. Affix tamper-evident archival barcode labels to crate exteriors and drawer folders, linking directly to each piece's digital URL in this archive.</p>
+                <h4>Physical QR Vault Audit</h4>
+                <p>Conduct a physical walkthrough of Rooms 2.A2–3.C1 with iPads, affixing archival QR labels linking crates directly to digital URLs in this archive.</p>
               </div>
             </li>
             <li class="idea-item">
               <span class="idea-icon">✉️</span>
               <div class="idea-content">
-                <h4>Wieden+Kennedy Alumni & VIP Collector Preview</h4>
-                <p>Send a bespoke, private preview link of this archive to Jim's former colleagues, Nike creative leaders, Four Oceans patrons, and Pacific Northwest collectors with a simple one-click acquisition portal.</p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">📜</span>
-              <div class="idea-content">
-                <h4>Official Estate Certificate of Authenticity (COA)</h4>
-                <p>Produce an embossed, serialized Riswold Estate certificate signed by Jake & Haley Riswold, providing collectors with airtight provenance and catalog accession verification.</p>
+                <h4>W+K Alumni & VIP Collector Preview</h4>
+                <p>Send a bespoke private preview link to Nike creative leaders, W+K alumni, and Four Oceans patrons.</p>
               </div>
             </li>
           </ul>
         </div>
 
-        <!-- Tier 2: Institutional & Curatorial -->
+        <!-- Tier 2 -->
         <div class="idea-tier">
           <div class="idea-tier-header">
             <div>
-              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 2: Curatorial Placement & Institutional Legacy</h3>
-              <div style="font-size:12.5px; color:var(--wiki-text-muted);">Cementing Jim's place in American art history and cancer philanthropy.</div>
+              <h3 style="font-size:15px; font-weight:bold; color:#000;">Tier 2: Institutional Placement</h3>
+              <div style="font-size:11.5px; color:var(--wiki-text-muted);">Museums, cancer philanthropy, monographs.</div>
             </div>
-            <span class="tier-badge badge-tier2">Institutional / Medium Lift</span>
+            <span class="tier-badge badge-tier2">Curatorial</span>
           </div>
           <ul class="idea-list">
             <li class="idea-item">
               <span class="idea-icon">🏥</span>
               <div class="idea-content">
-                <h4>Oncology Center Bequests & Charity Benefit</h4>
-                <p>Place Jim's poignant <em>Art for Oncologists</em> works (e.g. <em>Riswold's Owies</em>, <em>Cytoxan</em>) in major cancer research centers (OHSU Knight Cancer Institute in Portland, Fred Hutchinson in Seattle). Pair the installation with a limited estate print drop raising money for adult leukemia research.</p>
+                <h4>Oncology Center Bequests & Benefit</h4>
+                <p>Place Jim's <em>Art for Oncologists</em> works in major cancer research centers (OHSU Knight, Fred Hutchinson) paired with a charity benefit print drop.</p>
               </div>
             </li>
             <li class="idea-item">
               <span class="idea-icon">🖼️</span>
               <div class="idea-content">
-                <h4>"Things People Don't Want" — Major Museum Retrospective</h4>
-                <p>Curate a comprehensive posthumous retrospective titled after Jim's iconic quote: <em>"I went from selling people things they don't need to making things people don't want."</em> Co-curated with Peter Yue and Guy Overfelt, debuting in Portland/Seattle and traveling to SF/NYC.</p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">📚</span>
-              <div class="idea-content">
-                <h4>The Definitive Monograph & Catalogue Raisonné Book</h4>
-                <p>Publish a deluxe hardcover monograph documenting all 23 conceptual series, accompanied by high-resolution imagery, essays by contemporary critics, and Jim's sharp artist texts (such as his famous 2005 Esquire essay <em>Hitler Saved My Life</em>).</p>
+                <h4>"Things People Don't Want" Retrospective</h4>
+                <p>Curate a museum retrospective titled after Jim's iconic quote, co-curated with Peter Yue and Guy Overfelt.</p>
               </div>
             </li>
           </ul>
         </div>
 
-        <!-- Tier 3: Audacious & Cultural Interventions -->
+        <!-- Tier 3 & 4 -->
         <div class="idea-tier">
           <div class="idea-tier-header">
             <div>
-              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 3: Audacious Cultural & Commercial Interventions</h3>
-              <div style="font-size:12.5px; color:var(--wiki-text-muted);">Bold campaigns bridging Jim's advertising mastery and art subversion.</div>
+              <h3 style="font-size:15px; font-weight:bold; color:#000;">Tier 3 & 4: Audacious Cultural Interventions & Absurdism</h3>
+              <div style="font-size:11.5px; color:var(--wiki-text-muted);">True to Jim's subversive humor and satire.</div>
             </div>
-            <span class="tier-badge badge-tier3">Audacious / High Impact</span>
-          </div>
-          <ul class="idea-list">
-            <li class="idea-item">
-              <span class="idea-icon">📢</span>
-              <div class="idea-content">
-                <h4>Posthumous "Anti-Ad" Billboard Campaign</h4>
-                <p>Lease prominent billboard spaces near Nike World Headquarters in Beaverton and the Pearl District in Portland. Feature Jim's dictators and pop works paired with biting Riswoldian copywriting: <em>"Buy This Art Because I'm Dead and Can't Stop You"</em> or <em>"Stop Buying Stuff You Don't Need."</em></p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">🏢</span>
-              <div class="idea-content">
-                <h4>The "Rent-a-Dictator" Corporate Art Lending Program</h4>
-                <p>Establish a subscription lease program renting framed photographs of Stalin, Mao, Göring, and Putin to high-flying tech startups, creative agencies, and law firms. Condition: each leased artwork must hang next to an official estate plaque satirizing corporate executive power.</p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">🎁</span>
-              <div class="idea-content">
-                <h4>The Vault Mystery Crate / Blind Box Sale</h4>
-                <p>Offer collectors a sealed vault crate at a flat fee ($3,500) containing an unrevealed original work from the flat files, accompanied by an audio reading or manifesto letter in Jim's voice.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Tier 4: Zany & Outlandish Riswold-Level Satire -->
-        <div class="idea-tier">
-          <div class="idea-tier-header">
-            <div>
-              <h3 style="font-size:18px; font-weight:bold; color:#000;">Tier 4: Pure Riswoldian Absurdism & Outlandish Performance</h3>
-              <div style="font-size:12.5px; color:var(--wiki-text-muted);">Radical, headline-grabbing conceptual stunts honoring Jim's fearless sense of humor.</div>
-            </div>
-            <span class="tier-badge badge-tier4">Outlandish / Legendary</span>
+            <span class="tier-badge badge-tier4">Outlandish</span>
           </div>
           <ul class="idea-list">
             <li class="idea-item">
               <span class="idea-icon">🔥</span>
               <div class="idea-content">
-                <h4>The "Burn-to-Earn" Posthumous Incineration Performance</h4>
-                <p>Mint ultra-high-resolution 1-of-1 digital editions of select works. Host a black-tie gala in Portland or San Francisco with Peter Yue and Guy Overfelt. Auction the tokenized edition, and publicly incinerate the physical original in an ornate incinerator (Damien Hirst's <em>The Currency</em> meets Banksy's shredded frame). The physical ashes are canned and sold as limited-edition <em>"Riswold's Canned Owies"</em> to benefit charity.</p>
+                <h4>"Burn-to-Earn" Posthumous Incineration Gala</h4>
+                <p>Auction 1-of-1 digital editions and publicly incinerate the physical original at a black-tie gala. The ashes are canned as limited-edition <em>"Riswold's Canned Owies"</em> to benefit adult leukemia research.</p>
               </div>
             </li>
             <li class="idea-item">
-              <span class="idea-icon">📫</span>
+              <span class="idea-icon">📢</span>
               <div class="idea-content">
-                <h4>The Dictator Repatriation & "Childcare Invoices"</h4>
-                <p>Ship framed miniature prints of Hitler, Göring, and Stalin to authoritarian embassies worldwide, accompanied by an official invoice for 20 years of "Toy Babysitting & Psychological Upkeep Fees."</p>
+                <h4>Posthumous Anti-Ad Billboard Campaign</h4>
+                <p>Billboards near Nike HQ: <em>"Buy This Art Because I'm Dead and Can't Stop You."</em></p>
               </div>
             </li>
             <li class="idea-item">
               <span class="idea-icon">🏆</span>
               <div class="idea-content">
-                <h4>The Wieden+Kennedy Atrium Trophy Guerrilla Heist</h4>
-                <p>Stage an unannounced guerrilla pop-up exhibition in the W+K atrium, secretly swapping out the agency's gold Cannes Lions and One Show pencils with miniature plastic figurines of Hermann Göring eating lunch and Chairman Mao in a jester hat.</p>
-              </div>
-            </li>
-            <li class="idea-item">
-              <span class="idea-icon">📉</span>
-              <div class="idea-content">
-                <h4>The Reverse "Dutch Auction" Liquidation Event</h4>
-                <p>Hold a live performance auction where artwork prices start high and <em>drop</em> $100 every 10 seconds until someone can't stand the anxiety and bids. Only accepted forms of currency: vintage 1985 Air Jordans, half-empty chemotherapy vials, or expired 1990s issues of Adweek.</p>
+                <h4>W+K Atrium Trophy Guerrilla Heist</h4>
+                <p>Secretly swapping the agency's gold Cannes Lions for miniature figurines of Göring eating lunch and Mao in a jester hat.</p>
               </div>
             </li>
             <li class="idea-item">
               <span class="idea-icon">🤖</span>
               <div class="idea-content">
-                <h4>The "Jim Riswold AI Creative Director" Bot</h4>
-                <p>Train an interactive AI persona strictly on Jim's sarcastic emails, legendary rejection letters, and irreverent obituaries. Prospective art buyers must submit a justification for why they deserve the artwork, and the AI Jim ruthlessly roasts them before approving the sale.</p>
+                <h4>The "Jim Riswold AI Creative Director"</h4>
+                <p>Trained on Jim's sarcastic emails; prospective art buyers must justify their purchase while AI Jim ruthlessly roasts them.</p>
               </div>
             </li>
           </ul>
         </div>
 
       </div>
-    </div><!-- End Tab 3 (Next Steps & Storage) -->
+    </div><!-- End Tab 3 -->
 
-    <!-- TAB 4: NOTES & PROVENANCE (Consolidated Bio, Gallery, and Sheets) -->
+    <!-- TAB 4: NOTES & PROVENANCE -->
     <div id="tab-notes" style="display:none;">
 
-      <!-- Sub-Nav Anchor Links -->
+      <!-- Sub-Nav Pills -->
       <div class="notes-nav-pills">
-        <button class="notes-nav-btn" onclick="scrollToNote('notes-bio')">📖 Overview & Biography</button>
-        <button class="notes-nav-btn" onclick="scrollToNote('notes-fouroceans')">🏛️ Four Oceans, One Family Gallery</button>
-        <button class="notes-nav-btn" onclick="scrollToNote('notes-sheets')">🔄 Canonical Google Sheets Registry</button>
+        <button class="notes-nav-btn" onclick="scrollToNote('notes-bio')">📖 Biography</button>
+        <button class="notes-nav-btn" onclick="scrollToNote('notes-fouroceans')">🏛️ Four Oceans Gallery</button>
+        <button class="notes-nav-btn" onclick="scrollToNote('notes-sheets')">🔄 Source Google Sheets</button>
       </div>
 
       <!-- SECTION A: BIOGRAPHY & OVERVIEW -->
       <section class="notes-section" id="notes-bio">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:20px;">
-          <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:10px; margin-bottom:14px;">
+          <h2 style="font-family:var(--font-serif); font-size:20px; font-weight:normal; color:#000;">
             Overview & Encyclopedic Biography
           </h2>
-          <div style="font-size:12.5px; color:var(--wiki-text-muted);">From Wikipedia, The One Club Creative Hall of Fame, and estate archival records</div>
+          <div style="font-size:11.5px; color:var(--wiki-text-muted);">Wikipedia, The One Club Hall of Fame, and estate archival records</div>
         </div>
 
         <div class="lead-section">
           <div class="lead-text">
             <p>
-              <strong>James Paul Riswold</strong> (December 7, 1957 – August 9, 2024) was an acclaimed American creative director for advertising agency Wieden+Kennedy and later a prolific contemporary satirical artist. In his 14 years at W+K, he conceived legendary campaigns including the pairing of <strong>Michael Jordan and Spike Lee (Mars Blackmon)</strong>, Bugs Bunny & Hare Jordan, Bo Jackson’s <em>"Bo Knows"</em>, and Tiger Woods’ <em>"I Am Tiger Woods"</em>. In 2013, he was inducted into The One Club’s Creative Hall of Fame.
+              <strong>James Paul Riswold</strong> (December 7, 1957 – August 9, 2024) was an acclaimed American creative director for Wieden+Kennedy and later a prolific satirical fine artist. In his 14 years at W+K, he conceived legendary campaigns including <strong>Michael Jordan and Spike Lee (Mars Blackmon)</strong>, Bugs Bunny & Hare Jordan, Bo Jackson’s <em>"Bo Knows"</em>, and Tiger Woods’ <em>"I Am Tiger Woods"</em>. In 2013, he was inducted into The One Club’s Creative Hall of Fame.
             </p>
             <p>
-              Following a diagnosis of leukemia in 2000, Riswold retired from advertising to dedicate his life to fine art, humorously remarking that he moved from <em>"a career of selling people things they don't need to making things that people don't want."</em>
+              Following a diagnosis of leukemia in 2000, Riswold retired from advertising to dedicate his life to fine art, remarking that he moved from <em>"a career of selling people things they don't need to making things that people don't want."</em>
             </p>
             <p>
-              His photographic and sculptural work poked fierce, absurd fun at history’s most taboo dictators, tyrants, and monumental figures—including Adolf Hitler, Hermann Göring, Joseph Stalin, Mao Zedong, and Vladimir Putin—as well as modern pop culture and art history icons (Jeff Koons, Damien Hirst, Roy Lichtenstein). By staging small toy figurines in solemn, museum-scale environments, Riswold deflated megalomania: <em>"Instead of providing grand expositions mythologizing the dictator, toys, by definition, make their subjects seem small, childish, and trifling."</em>
+              His photographic and sculptural work poked fierce fun at history’s most taboo dictators, tyrants, and monumental figures—including Adolf Hitler, Hermann Göring, Joseph Stalin, Mao Zedong, and Vladimir Putin. By staging small toy figurines in solemn, museum-scale environments, Riswold deflated megalomania: <em>"Instead of providing grand expositions mythologizing the dictator, toys, by definition, make their subjects seem small, childish, and trifling."</em>
             </p>
             <p>
-              Following his passing on August 9, 2024, his estate is actively managed by his children, <strong>Jake Riswold</strong> and <strong>Haley Riswold</strong>, in collaboration with long-time gallery partners <strong>Peter Yue</strong> and <strong>Guy Overfelt</strong>.
+              Following his passing in 2024, his estate is actively managed by his children, <strong>Jake Riswold</strong> and <strong>Haley Riswold</strong>, in collaboration with long-time gallery partners <strong>Peter Yue</strong> and <strong>Guy Overfelt</strong>.
             </p>
           </div>
 
@@ -1666,14 +1574,12 @@
               <div class="infobox-caption">Jim Riswold in Portland, Oregon</div>
             </div>
             <table class="infobox-table">
-              <tr><th>Born</th><td>December 7, 1957<br>Seattle, Washington</td></tr>
-              <tr><th>Died</th><td>August 9, 2024 (aged 66)<br>Portland, Oregon</td></tr>
-              <tr><th>Alma mater</th><td>University of Washington (B.A. Communications, Philosophy, History)</td></tr>
-              <tr><th>Occupation</th><td>Creative Director, Fine Artist</td></tr>
+              <tr><th>Born</th><td>Dec 7, 1957<br>Seattle, WA</td></tr>
+              <tr><th>Died</th><td>Aug 9, 2024 (aged 66)<br>Portland, OR</td></tr>
+              <tr><th>Alma mater</th><td>Univ. of Washington</td></tr>
               <tr><th>Agency</th><td>Wieden+Kennedy (1984–2000)</td></tr>
               <tr><th>Known for</th><td>Air Jordan / Mars Blackmon, Bo Knows, Satirical Fine Art</td></tr>
-              <tr><th>Notable Series</th><td>Big Dumb Nazis, Selling Jesus, Stalin Dictator, Andy in Heaven</td></tr>
-              <tr><th>Estate</th><td>Jake Riswold & Haley Riswold</td></tr>
+              <tr><th>Estate</th><td>Jake & Haley Riswold</td></tr>
               <tr><th>Inquiries</th><td><a href="mailto:jimriswoldart@gmail.com">jimriswoldart@gmail.com</a></td></tr>
             </table>
           </aside>
@@ -1682,64 +1588,63 @@
 
       <!-- SECTION B: FOUR OCEANS ONE FAMILY GALLERY PROVENANCE -->
       <section class="notes-section" id="notes-fouroceans">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:20px;">
-          <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000;">
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:10px; margin-bottom:14px;">
+          <h2 style="font-family:var(--font-serif); font-size:20px; font-weight:normal; color:#000;">
             Exhibition Provenance: Four Oceans, One Family Gallery
           </h2>
-          <div style="font-size:12.5px; color:var(--wiki-text-muted);">Collaborative exhibition history and physical custody context</div>
+          <div style="font-size:11.5px; color:var(--wiki-text-muted);">Collaborative exhibition history and physical custody context</div>
         </div>
 
-        <p style="font-size:14.5px; line-height:1.7; margin-bottom:16px;">
+        <p style="font-size:13.5px; line-height:1.6; margin-bottom:12px;">
           Prior to his passing, Jim Riswold presented his final lifetime art exhibition through <strong>Four Oceans, One Family</strong>, a collaborative gallery endeavor founded by <strong>Peter Yue</strong>, <strong>Guy Overfelt</strong>, and <strong>Benji Brucker</strong>.
         </p>
-        <p style="font-size:14.5px; line-height:1.7; margin-bottom:20px;">
-          The gallery showcased Riswold’s sharp, witty work in an intimate setting that bridged West Coast contemporary art with his legendary creative philosophy. This digital archive acts as the master provenance bridge between the physical art pieces stored in the gallery vault, drawers, and rooms and the estate administration spearheaded by Jake and Haley Riswold.
+        <p style="font-size:13.5px; line-height:1.6; margin-bottom:16px;">
+          This digital archive acts as the master provenance bridge connecting the physical pieces stored in the gallery vault, drawers, and rooms with the estate administration spearheaded by Jake and Haley Riswold.
         </p>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
-            <h3 style="font-size:15px; font-weight:bold; margin-bottom:8px;">Physical Vault Organization</h3>
-            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.6;">
-              Every artwork in this catalog maps directly to verified physical storage coordinates:
-              <br>• <strong>Framed Works:</strong> Rooms 2.A2, 2.S1, 2.V1, 2.Y1, 2.CC1, 2.HH1, 3.C1
-              <br>• <strong>Flat File Works:</strong> Architectural Red Flat File Drawers D1–D14
-              <br>• <strong>Sculptural Objects & Rugs:</strong> Vault Shelving Racks & Crates
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
+            <h3 style="font-size:14px; font-weight:bold; margin-bottom:6px;">Physical Vault Coordinates</h3>
+            <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+              • <strong>Framed Works:</strong> Rooms 2.A2, 2.S1, 2.V1, 2.Y1, 2.CC1, 2.HH1, 3.C1<br>
+              • <strong>Flat File Works:</strong> Architectural Red Flat File Drawers D1–D14<br>
+              • <strong>Sculptures & Rugs:</strong> Vault Shelving Racks & Crates
             </p>
           </div>
 
-          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
-            <h3 style="font-size:15px; font-weight:bold; margin-bottom:8px;">Collaborative Estate Team</h3>
-            <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.6;">
-              • <strong>Children & Estate Executors:</strong> Jake Riswold & Haley Riswold<br>
-              • <strong>Founders, Four Oceans One Family:</strong> Peter Yue, Guy Overfelt, Benji Brucker<br>
-              • <strong>Official Estate Inquiry Channel:</strong> <a href="mailto:jimriswoldart@gmail.com">jimriswoldart@gmail.com</a>
+          <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
+            <h3 style="font-size:14px; font-weight:bold; margin-bottom:6px;">Collaborative Team</h3>
+            <p style="font-size:12.5px; color:var(--wiki-text-muted); line-height:1.5;">
+              • <strong>Estate Executors:</strong> Jake Riswold & Haley Riswold<br>
+              • <strong>Curators & Partners:</strong> Peter Yue, Guy Overfelt, Benji Brucker<br>
+              • <strong>Official Channel:</strong> <a href="mailto:jimriswoldart@gmail.com">jimriswoldart@gmail.com</a>
             </p>
           </div>
         </div>
       </section>
 
-      <!-- SECTION C: CANONICAL GOOGLE SHEETS REGISTRY & RECONCILIATION -->
+      <!-- SECTION C: CANONICAL GOOGLE SHEETS REGISTRY -->
       <section class="notes-section" id="notes-sheets">
-        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:12px; margin-bottom:20px;">
-          <h2 style="font-family:var(--font-serif); font-size:24px; font-weight:normal; color:#000;">
-            Source Data: Canonical Google Spreadsheets Registry
+        <div style="border-bottom:1px solid var(--wiki-border-light); padding-bottom:10px; margin-bottom:14px;">
+          <h2 style="font-family:var(--font-serif); font-size:20px; font-weight:normal; color:#000;">
+            Source Data: Canonical Google Spreadsheets
           </h2>
-          <div style="font-size:12.5px; color:var(--wiki-text-muted);">Direct links to verified estate spreadsheets and cross-sheet reconciliation data</div>
+          <div style="font-size:11.5px; color:var(--wiki-text-muted);">Direct links to verified estate spreadsheets and reconciliation</div>
         </div>
 
-        <p style="font-size:14px; color:var(--wiki-text-muted); margin-bottom:16px;">
-          The table below lists the <strong>four source-of-truth Google Spreadsheets</strong> ingested to build this unified 578-artwork estate catalog. Click any link to open the original live spreadsheet:
+        <p style="font-size:13px; color:var(--wiki-text-muted); margin-bottom:14px;">
+          Click any link below to open the canonical source-of-truth spreadsheet in Google Docs:
         </p>
 
-        <div style="overflow-x:auto; margin-bottom:24px;">
+        <div class="table-container" style="margin-bottom:16px;">
           <table class="wiki-table">
             <thead>
               <tr>
-                <th>Source Workbook & Link</th>
-                <th>Collection Scope</th>
+                <th>Source Spreadsheet</th>
+                <th>Scope</th>
                 <th>Artworks</th>
-                <th>Extracted Photos</th>
-                <th>Sync Status</th>
+                <th>Photos</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -1748,69 +1653,66 @@
                   <a href="https://docs.google.com/spreadsheets/d/15mXKmqd7f1wkEOP3EDXAQm3PnTvO2LGaKe0UovyQt48/edit?gid=0#gid=0" target="_blank" style="font-weight:bold;">
                     📄 Sheet 1: All Framed Art ↗
                   </a>
-                  <div style="font-size:11px; color:#888; font-family:var(--font-mono);">ID: 15mXKmqd7f1wkEOP3EDXAQm3PnTvO2LGaKe0UovyQt48</div>
                 </td>
-                <td>Framed art hanging on walls & stored in vertical vault racks</td>
-                <td><strong>245 works</strong></td>
-                <td>235 photos (96%)</td>
-                <td><span class="status-badge available">Reconciled</span></td>
+                <td>Framed art hanging on walls & storage racks</td>
+                <td><strong>245</strong></td>
+                <td>235</td>
+                <td><span class="status-badge available">Synced</span></td>
               </tr>
               <tr>
                 <td>
                   <a href="https://docs.google.com/spreadsheets/d/1OGSV0R8jXrVTcWv3ANnFYrJEwUmyNAbk0nzBVrQnK_U/edit?gid=0#gid=0" target="_blank" style="font-weight:bold;">
-                    📄 Sheet 2: Unframed Prints / Flat Files ↗
+                    📄 Sheet 2: Unframed Prints ↗
                   </a>
-                  <div style="font-size:11px; color:#888; font-family:var(--font-mono);">ID: 1OGSV0R8jXrVTcWv3ANnFYrJEwUmyNAbk0nzBVrQnK_U</div>
                 </td>
-                <td>Unframed archival prints stored flat in metal drawers D1–D14</td>
-                <td><strong>246 works</strong></td>
-                <td>241 photos (98%)</td>
-                <td><span class="status-badge available">Reconciled</span></td>
+                <td>Unframed archival prints in Drawers D1–D14</td>
+                <td><strong>246</strong></td>
+                <td>241</td>
+                <td><span class="status-badge available">Synced</span></td>
               </tr>
               <tr>
                 <td>
                   <a href="https://docs.google.com/spreadsheets/d/15hFbISb4WITmrvvCYz6J0G7HjI8ImcbV9QOxaArn1Pc/edit?gid=1124635016#gid=1124635016" target="_blank" style="font-weight:bold;">
                     📄 Sheet 3: Extra Large (XL) Art ↗
                   </a>
-                  <div style="font-size:11px; color:#888; font-family:var(--font-mono);">ID: 15hFbISb4WITmrvvCYz6J0G7HjI8ImcbV9QOxaArn1Pc</div>
                 </td>
-                <td>Oversized monumental works (>50 in) requiring special crating</td>
-                <td><strong>37 works</strong></td>
-                <td>33 photos (89%)</td>
-                <td><span class="status-badge available">Reconciled</span></td>
+                <td>Monumental exhibition works (>50 in)</td>
+                <td><strong>37</strong></td>
+                <td>33</td>
+                <td><span class="status-badge available">Synced</span></td>
               </tr>
               <tr>
                 <td>
                   <a href="https://docs.google.com/spreadsheets/d/1j-5RIjMOOQevJvh1EFzvM0gQJ_tUiV6b2nqpBU22noA/edit?gid=0#gid=0" target="_blank" style="font-weight:bold;">
-                    📄 Sheet 4: Sculptures & Custom Art Rugs ↗
+                    📄 Sheet 4: Sculptures & Rugs ↗
                   </a>
-                  <div style="font-size:11px; color:#888; font-family:var(--font-mono);">ID: 1j-5RIjMOOQevJvh1EFzvM0gQJ_tUiV6b2nqpBU22noA</div>
                 </td>
-                <td>3D figurines, dioramas, resin/bronze sculptures & tufted wool rugs</td>
-                <td><strong>50 works</strong></td>
-                <td>47 photos (94%)</td>
-                <td><span class="status-badge available">Reconciled</span></td>
+                <td>3D figurines, dioramas, and custom wool rugs</td>
+                <td><strong>50</strong></td>
+                <td>47</td>
+                <td><span class="status-badge available">Synced</span></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:18px; border-radius:4px;">
-          <h3 style="font-size:15px; font-weight:bold; margin-bottom:8px;">Sales Discrepancy & Status Resolution Protocol</h3>
-          <p style="font-size:13px; color:var(--wiki-text-muted); line-height:1.7;">
-            • <strong>Definitely Sold (13 Works):</strong> Explicitly recorded with buyer names across the sheets (Drew Martin, Alicia Kuna, Benji, Jake Riswold, Sheila & Dave, James Porter, Hallie).<br>
-            • <strong>Might Be Sold / In Review (7 Works):</strong> Logged with <em>Checked Out = 1</em> or under active inquiry (all 7 works from <em>Stalin Sketches Great</em> checked out to 'Hot Box Betty').<br>
-            • <strong>Definitely Available (558 Works):</strong> Fully cataloged inventory available for estate allocation, exhibition, or acquisition.
+        <div style="background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); padding:14px; border-radius:4px;">
+          <h3 style="font-size:13.5px; font-weight:bold; margin-bottom:6px;">Status Discrepancy Protocol</h3>
+          <p style="font-size:12px; color:var(--wiki-text-muted); line-height:1.6;">
+            • <strong>Definitely Sold (13 Works):</strong> Formally logged with buyer names (Drew Martin, Alicia Kuna, Benji, Jake Riswold, Sheila & Dave, James Porter, Hallie).<br>
+            • <strong>Might Be Sold / In Review (7 Works):</strong> Logged with <em>Checked Out = 1</em> (all 7 works from <em>Stalin Sketches Great</em> checked out to Hot Box Betty).<br>
+            • <strong>Definitely Available (558 Works):</strong> Fully cataloged inventory available for estate allocation.
           </p>
         </div>
       </section>
 
-    </div><!-- End Tab 4 (Notes) -->
+    </div><!-- End Tab 4 -->
 
   </div><!-- End Main Container -->
 
-  <!-- Accessible Modal Dialog (<dialog>) -->
+  <!-- Accessible Modal / Mobile Bottom Sheet (<dialog>) -->
   <dialog id="art-modal" class="wiki-modal" closedby="any">
+    <div class="bottom-sheet-handle"></div>
     <div class="modal-header">
       <div class="modal-header-title" id="modal-title">Artwork Details</div>
       <button class="modal-close-btn" onclick="closeModal()">&times;</button>
@@ -1819,46 +1721,43 @@
       <!-- Image side -->
       <div class="modal-img-area">
         <img id="modal-img" src="" alt="" class="modal-artwork-img">
-        <div class="modal-img-zoom-hint">Click or tap image to view full resolution</div>
+        <div class="modal-img-zoom-hint">Tap image to open high-resolution photo</div>
       </div>
       <!-- Spec side -->
       <div>
-        <div class="modal-spec-card">
-          <div style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
-            <span class="card-series" id="modal-series">SERIES</span>
-            <span id="modal-status-badge" class="status-badge available">AVAILABLE</span>
-          </div>
-          <h2 style="font-family:var(--font-serif); font-size:22px; margin-bottom:12px;" id="modal-art-title">Artwork Title</h2>
-          <table class="modal-table">
-            <tr><th>Year</th><td id="modal-year">—</td></tr>
-            <tr><th>Genre</th><td id="modal-genre">—</td></tr>
-            <tr><th>Medium</th><td id="modal-medium">—</td></tr>
-            <tr><th>Dimensions</th><td id="modal-dims">—</td></tr>
-            <tr><th>Edition</th><td id="modal-edition">—</td></tr>
-            <tr><th>Framing</th><td id="modal-framed">—</td></tr>
-            <tr><th>Signature</th><td id="modal-signed">—</td></tr>
-            <tr><th>Accession #</th><td id="modal-accession" style="font-family:var(--font-mono);">—</td></tr>
-            <tr><th>Vault Location</th><td id="modal-location" style="font-family:var(--font-mono); font-weight:bold;">—</td></tr>
-            <tr><th>Price</th><td id="modal-price">—</td></tr>
-            <tr><th>Buyer / Holder</th><td id="modal-buyer">None (In Storage)</td></tr>
-            <tr><th>Curator Notes</th><td id="modal-notes">—</td></tr>
-          </table>
+        <div style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:11px; font-weight:bold; color:#777; text-transform:uppercase;" id="modal-series">SERIES</span>
+          <span id="modal-status-badge" class="status-badge available">AVAILABLE</span>
+        </div>
+        <h2 style="font-family:var(--font-serif); font-size:18px; margin-bottom:10px; line-height:1.3;" id="modal-art-title">Artwork Title</h2>
+        <table class="modal-table">
+          <tr><th>Year</th><td id="modal-year">—</td></tr>
+          <tr><th>Genre</th><td id="modal-genre">—</td></tr>
+          <tr><th>Medium</th><td id="modal-medium">—</td></tr>
+          <tr><th>Dimensions</th><td id="modal-dims">—</td></tr>
+          <tr><th>Edition</th><td id="modal-edition">—</td></tr>
+          <tr><th>Framing</th><td id="modal-framed">—</td></tr>
+          <tr><th>Signature</th><td id="modal-signed">—</td></tr>
+          <tr><th>Accession #</th><td id="modal-accession" style="font-family:var(--font-mono);">—</td></tr>
+          <tr><th>Vault Room</th><td id="modal-location" style="font-family:var(--font-mono); font-weight:bold;">—</td></tr>
+          <tr><th>Price</th><td id="modal-price">—</td></tr>
+          <tr><th>Holder / Notes</th><td id="modal-buyer">In Estate Vault</td></tr>
+        </table>
 
-          <!-- Interactive Status Updater -->
-          <div class="status-toggle-box">
-            <div class="status-toggle-label">Update Estate Status (Local Session):</div>
-            <div class="status-radio-group">
-              <label><input type="radio" name="modal-status-radio" value="available" onchange="updateItemStatus('available')"> Available</label>
-              <label><input type="radio" name="modal-status-radio" value="pending" onchange="updateItemStatus('pending')"> In Review</label>
-              <label><input type="radio" name="modal-status-radio" value="sold" onchange="updateItemStatus('sold')"> Sold</label>
-            </div>
+        <!-- Interactive Status Updater -->
+        <div style="margin-top:12px; padding:10px; background:var(--wiki-bg-subtle); border:1px solid var(--wiki-border-light); border-radius:4px;">
+          <div style="font-size:10.5px; font-weight:bold; text-transform:uppercase; color:var(--wiki-text-muted); margin-bottom:6px;">Update Status (Session):</div>
+          <div style="display:flex; gap:12px; font-size:12px;">
+            <label><input type="radio" name="modal-status-radio" value="available" onchange="updateItemStatus('available')"> Avail</label>
+            <label><input type="radio" name="modal-status-radio" value="pending" onchange="updateItemStatus('pending')"> Review</label>
+            <label><input type="radio" name="modal-status-radio" value="sold" onchange="updateItemStatus('sold')"> Sold</label>
           </div>
+        </div>
 
-          <div class="modal-actions">
-            <a id="modal-email-btn" href="mailto:jimriswoldart@gmail.com" class="btn-inquire">
-              ✉️ Inquire / Request Piece from Estate
-            </a>
-          </div>
+        <div class="modal-actions">
+          <a id="modal-email-btn" href="mailto:jimriswoldart@gmail.com" class="btn-inquire">
+            ✉️ Inquire / Request Piece from Estate
+          </a>
         </div>
       </div>
     </div>
@@ -1866,16 +1765,16 @@
 
   <!-- Wikipedia-style Footer -->
   <footer class="wiki-footer">
-    <div class="footer-links">
-      <a href="https://en.wikipedia.org/wiki/Jim_Riswold" target="_blank">Wikipedia Entry</a>
+    <div style="display:flex; justify-content:center; gap:14px; margin-bottom:6px;">
+      <a href="https://en.wikipedia.org/wiki/Jim_Riswold" target="_blank">Wikipedia</a>
       <span>•</span>
-      <a href="https://www.jimriswold.com" target="_blank">Jim Riswold Official Site</a>
+      <a href="https://www.jimriswold.com" target="_blank">JimRiswold.com</a>
       <span>•</span>
       <a href="mailto:jimriswoldart@gmail.com">Estate Contact</a>
     </div>
     <p>
-      Jim Riswold Art Archive & Inventory Index. Text is available under the Creative Commons Attribution-ShareAlike License.<br>
-      All artwork imagery © The Estate of Jim Riswold. Curated with Jake Riswold, Haley Riswold, Peter Yue, and Guy Overfelt.
+      Jim Riswold Art Archive. All artwork imagery © The Estate of Jim Riswold.<br>
+      Curated with Jake Riswold, Haley Riswold, Peter Yue, and Guy Overfelt.
     </p>
   </footer>
 
@@ -1894,18 +1793,18 @@
     let activeModalItem = null;
     let tableSortCol = 'default';
     let tableSortAsc = true;
+    let advancedFiltersOpen = false;
 
     // Genres configuration
     const GENRES = [
-      { id: 'all', name: 'All Genres' },
-      { id: 'Dictators & Tyrants', name: 'Dictators & Tyrants' },
-      { id: 'War & Military', name: 'War & Military' },
-      { id: 'Art History & Parody', name: 'Art History & Parody' },
-      { id: 'Philosophy & Religion', name: 'Philosophy & Religion' },
-      { id: 'Medicine & Mortality', name: 'Medicine & Mortality' },
-      { id: 'American Politics', name: 'American Politics' },
-      { id: 'Objects & Sculptures', name: 'Objects & Sculptures' },
-      { id: 'Satirical Works', name: 'Other Works' }
+      { id: 'all', name: 'All' },
+      { id: 'Dictators & Tyrants', name: 'Dictators' },
+      { id: 'War & Military', name: 'Military' },
+      { id: 'Art History & Parody', name: 'Art Parody' },
+      { id: 'Philosophy & Religion', name: 'Religion' },
+      { id: 'Medicine & Mortality', name: 'Medicine' },
+      { id: 'American Politics', name: 'Politics' },
+      { id: 'Objects & Sculptures', name: 'Objects' }
     ];
 
     // Initialization
@@ -1917,7 +1816,7 @@
       applyFilters();
     });
 
-    // Populate Datalist with all titles & series
+    // Populate Datalist
     function initDatalist() {
       const datalist = document.getElementById('artworks-datalist');
       const uniqueNames = new Set();
@@ -1965,6 +1864,35 @@
       });
     }
 
+    // Toggle Advanced Filters Drawer
+    function toggleAdvancedFilters() {
+      advancedFiltersOpen = !advancedFiltersOpen;
+      const drawer = document.getElementById('advanced-filters-drawer');
+      const btn = document.getElementById('filter-toggle-btn');
+      drawer.classList.toggle('open', advancedFiltersOpen);
+      updateFilterButtonState();
+    }
+
+    function updateFilterButtonState() {
+      const btn = document.getElementById('filter-toggle-btn');
+      const label = document.getElementById('filter-btn-label');
+      let activeCount = 0;
+      if (currentGenreFilter !== 'all') activeCount++;
+      if (document.getElementById('select-collection').value !== 'all') activeCount++;
+      if (document.getElementById('select-series').value !== 'all') activeCount++;
+      if (document.getElementById('select-size').value !== 'all') activeCount++;
+      if (document.getElementById('select-framed').value !== 'all') activeCount++;
+      if (document.getElementById('select-signed').value !== 'all') activeCount++;
+
+      if (activeCount > 0) {
+        btn.classList.add('has-filters');
+        label.textContent = `Filters (${activeCount})`;
+      } else {
+        btn.classList.remove('has-filters');
+        label.textContent = advancedFiltersOpen ? 'Close Filters ▴' : 'Filters ▾';
+      }
+    }
+
     // Search Box Listener
     function initSearch() {
       const input = document.getElementById('search-input');
@@ -1981,20 +1909,15 @@
       });
     }
 
-    // Reset All Filters Function
+    // Reset All Filters
     function resetAllFilters() {
-      // Clear search
       const searchInput = document.getElementById('search-input');
       searchInput.value = '';
       document.getElementById('clear-search').style.display = 'none';
 
-      // Reset status filter
       setStatusPill('all');
-
-      // Reset genre filter
       setGenrePill('all');
 
-      // Reset all select dropdowns
       document.getElementById('select-collection').value = 'all';
       document.getElementById('select-series').value = 'all';
       document.getElementById('select-size').value = 'all';
@@ -2002,28 +1925,30 @@
       document.getElementById('select-signed').value = 'all';
       document.getElementById('select-sort').value = 'default';
 
-      // Reapply filters
+      updateFilterButtonState();
       applyFilters();
     }
 
-    // Filter Trigger: Status Pills
-    function setStatusPill(status) {
-      currentStatusFilter = status;
-      document.querySelectorAll('#status-pills-container .pill-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.status === status);
-      });
-      applyFilters();
-    }
+    // Filter Trigger: Status
     function filterStatus(status) {
       setStatusPill(status);
     }
+    function setStatusPill(status) {
+      currentStatusFilter = status;
+      ['all', 'available', 'pending', 'sold'].forEach(s => {
+        const card = document.getElementById(`mcard-${s}`);
+        if (card) card.classList.toggle('active', s === status);
+      });
+      applyFilters();
+    }
 
-    // Filter Trigger: Genre Pills
+    // Filter Trigger: Genre
     function setGenrePill(genre) {
       currentGenreFilter = genre;
       document.querySelectorAll('#genre-pills-container .pill-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.genre === genre);
       });
+      updateFilterButtonState();
       applyFilters();
     }
 
@@ -2038,51 +1963,33 @@
       const sortOrder = document.getElementById('select-sort').value;
 
       filteredItems = INVENTORY_DATA.filter(item => {
-        // Status filter
         if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) return false;
-
-        // Genre filter
         if (currentGenreFilter !== 'all' && item.genre !== currentGenreFilter) return false;
-
-        // Collection Section filter
         if (colFilter !== 'all' && item.collection_category !== colFilter) return false;
-
-        // Series filter
         if (seriesFilter !== 'all' && item.series !== seriesFilter) return false;
-
-        // Size filter
         if (sizeFilter !== 'all' && item.size_category !== sizeFilter) return false;
-
-        // Framed filter
         if (framedFilter !== 'all' && item.framed !== framedFilter) return false;
-
-        // Signed filter
         if (signedFilter !== 'all' && item.signed !== signedFilter) return false;
 
-        // Search text
         if (query) {
           const matchTitle = (item.title || '').toLowerCase().includes(query);
           const matchSeries = (item.series || '').toLowerCase().includes(query);
           const matchAccession = (item.accession || '').toLowerCase().includes(query);
           const matchLoc = (item.location || '').toLowerCase().includes(query);
+          const matchDrawer = (item.drawer || '').toLowerCase().includes(query);
           const matchMedium = (item.medium || '').toLowerCase().includes(query);
-          const matchNotes = (item.notes || '').toLowerCase().includes(query);
-          const matchBuyer = (item.sold_to || '').toLowerCase().includes(query);
-          if (!matchTitle && !matchSeries && !matchAccession && !matchLoc && !matchMedium && !matchNotes && !matchBuyer) {
+          if (!matchTitle && !matchSeries && !matchAccession && !matchLoc && !matchDrawer && !matchMedium) {
             return false;
           }
         }
-
         return true;
       });
 
-      // Sorting
       sortFilteredItems(sortOrder);
-
-      // Reset to page 1
       currentPage = 1;
       updateMetrics();
       renderCurrentView();
+      updateFilterButtonState();
     }
 
     // Sort items
@@ -2099,12 +2006,11 @@
         const order = { 'available': 1, 'pending': 2, 'sold': 3 };
         filteredItems.sort((a,b) => (order[a.status] || 9) - (order[b.status] || 9));
       } else {
-        // default by original index
         filteredItems.sort((a,b) => (a.index_num || 0) - (b.index_num || 0));
       }
     }
 
-    // View Switching (Grid vs Table)
+    // View Switching
     function setView(view) {
       currentView = view;
       document.getElementById('btn-view-grid').classList.toggle('active', view === 'grid');
@@ -2114,10 +2020,10 @@
       renderCurrentView();
     }
 
-    // Render View with Pagination
+    // Render Current View
     function renderCurrentView() {
       const total = filteredItems.length;
-      document.getElementById('results-count-text').textContent = `Showing ${Math.min(total, (currentPage - 1) * itemsPerPage + 1)}–${Math.min(total, currentPage * itemsPerPage)} of ${total} artworks`;
+      document.getElementById('results-count-text').textContent = `Showing ${Math.min(total, (currentPage - 1) * itemsPerPage + 1)}–${Math.min(total, currentPage * itemsPerPage)} of ${total} works`;
 
       const start = (currentPage - 1) * itemsPerPage;
       const end = start + itemsPerPage;
@@ -2131,12 +2037,12 @@
       renderPagination();
     }
 
-    // Render Grid
+    // Render 2-Across Grid
     function renderGrid(items) {
       const grid = document.getElementById('art-grid-view');
       grid.innerHTML = '';
       if (!items.length) {
-        grid.innerHTML = '<div style="grid-column:1/-1; padding:48px; text-align:center; color:var(--wiki-text-muted); font-size:16px;">No artworks found matching your filter criteria. Try clicking <strong>"↺ Reset All Filters"</strong>.</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1; padding:36px; text-align:center; color:var(--wiki-text-muted); font-size:14px;">No works found matching filters. Tap <strong>"↺ Reset"</strong> to view all.</div>';
         return;
       }
       items.forEach(item => {
@@ -2153,28 +2059,26 @@
           img.src = item.image;
           img.alt = item.title;
           img.loading = 'lazy';
-          img.onerror = () => { imgBox.innerHTML = '<div class="art-img-fallback">🖼️</div>'; };
+          img.onerror = () => { imgBox.innerHTML = '<span style="font-size:24px; color:#bbb;">🖼️</span>'; };
           imgBox.appendChild(img);
         } else {
-          imgBox.innerHTML = '<div class="art-img-fallback">🖼️</div>';
+          imgBox.innerHTML = '<span style="font-size:24px; color:#bbb;">🖼️</span>';
         }
 
         const body = document.createElement('div');
         body.className = 'art-card-body';
+        const locText = item.location ? item.location : (item.drawer ? item.drawer : '');
         body.innerHTML = `
-          <div class="art-card-series">${escapeHtml(item.series || item.collection_category || 'Independent')}</div>
-          <div class="art-card-title">${escapeHtml(item.title || 'Untitled')}</div>
+          <div>
+            <div class="art-card-series">${escapeHtml(item.series || item.collection_category || '')}</div>
+            <div class="art-card-title">${escapeHtml(item.title || 'Untitled')}</div>
+          </div>
           <div class="art-card-meta">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span>${item.year ? escapeHtml(item.year) : 'c. 2005–2024'}</span>
-              <span class="status-badge ${item.status}">${item.status.toUpperCase()}</span>
+            <div class="card-meta-row">
+              <span style="font-size:10.5px;">${item.year ? escapeHtml(item.year) : 'c. 2005–24'}</span>
+              <span class="status-badge ${item.status}">${item.status === 'available' ? 'Avail' : (item.status === 'pending' ? 'Review' : 'Sold')}</span>
             </div>
-            <div style="font-size:11.5px; color:#777;">
-              ${escapeHtml(item.size_category || '')} • ${escapeHtml(item.framed || 'Framed')}
-            </div>
-            <div style="font-size:11px; font-family:var(--font-mono); color:#555;">
-              ${item.location ? `Vault: ${escapeHtml(item.location)}` : (item.drawer ? `Drawer: ${escapeHtml(item.drawer)}` : '')}
-            </div>
+            ${locText ? `<div style="font-size:10px; font-family:var(--font-mono); color:#666; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(locText)}</div>` : ''}
           </div>
         `;
 
@@ -2189,7 +2093,7 @@
       const tbody = document.getElementById('art-table-body');
       tbody.innerHTML = '';
       if (!items.length) {
-        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:32px; color:var(--wiki-text-muted);">No artworks match your search criteria. Try clicking <strong>"↺ Reset All Filters"</strong>.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:24px; color:var(--wiki-text-muted);">No artworks match criteria.</td></tr>';
         return;
       }
       items.forEach(item => {
@@ -2200,34 +2104,23 @@
         tr.style.cursor = 'pointer';
 
         const thumbHtml = item.image 
-          ? `<img src="${item.image}" alt="" class="table-thumb" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22><text y=%229%22 font-size=%229%22>🖼️</text></svg>'">`
-          : `<div class="table-thumb" style="display:flex; align-items:center; justify-content:center;">🖼️</div>`;
+          ? `<img src="${item.image}" alt="" class="table-thumb" loading="lazy" onerror="this.style.display='none'">`
+          : `<span style="font-size:18px;">🖼️</span>`;
 
         tr.innerHTML = `
           <td>${thumbHtml}</td>
-          <td>
-            <strong>${escapeHtml(item.title || 'Untitled')}</strong>
-            <div style="font-size:11px; font-family:var(--font-mono); color:#777;">${escapeHtml(item.accession || '')}</div>
-          </td>
-          <td>
-            <div>${escapeHtml(item.series || '—')}</div>
-            <div style="font-size:11px; color:#888;">${escapeHtml(item.genre || '')}</div>
-          </td>
+          <td><strong>${escapeHtml(item.title || 'Untitled')}</strong></td>
+          <td><span style="font-size:11.5px; color:#666;">${escapeHtml(item.series || '—')}</span></td>
           <td>${escapeHtml(item.year || '—')}</td>
-          <td><span style="font-size:11.5px;">${escapeHtml(item.medium || '—')}</span></td>
-          <td><span style="font-size:11.5px;">${escapeHtml(item.dims_display || item.dims_paper || '—')}</span></td>
-          <td>${escapeHtml(item.framed || '—')}</td>
-          <td><code style="font-size:11.5px;">${escapeHtml(item.location || item.drawer || '—')}</code></td>
+          <td><span style="font-size:11px;">${escapeHtml(item.dims_display || item.dims_paper || '—')}</span></td>
+          <td><code style="font-size:11px;">${escapeHtml(item.location || item.drawer || '—')}</code></td>
           <td><span class="status-badge ${item.status}">${item.status.toUpperCase()}</span></td>
-          <td style="font-size:12px; color:#666;">
-            ${item.sold_to ? `<strong>Sold to:</strong> ${escapeHtml(item.sold_to)}` : (item.checked_by ? `<strong>Checked by:</strong> ${escapeHtml(item.checked_by)}` : (item.notes ? escapeHtml(item.notes) : '—'))}
-          </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    // Pagination Controls
+    // Pagination
     function renderPagination() {
       const container = document.getElementById('pagination-bar');
       container.innerHTML = '';
@@ -2236,31 +2129,31 @@
 
       const prevBtn = document.createElement('button');
       prevBtn.className = 'page-btn';
-      prevBtn.textContent = '« Prev';
+      prevBtn.textContent = '«';
       prevBtn.disabled = currentPage === 1;
-      prevBtn.onclick = () => { currentPage--; renderCurrentView(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+      prevBtn.onclick = () => { currentPage--; renderCurrentView(); window.scrollTo({top: 0, behavior: 'smooth'}); };
       container.appendChild(prevBtn);
 
-      let startPage = Math.max(1, currentPage - 3);
-      let endPage = Math.min(totalPages, currentPage + 3);
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, currentPage + 2);
 
       for (let p = startPage; p <= endPage; p++) {
         const btn = document.createElement('button');
         btn.className = `page-btn ${p === currentPage ? 'active' : ''}`;
         btn.textContent = p;
-        btn.onclick = () => { currentPage = p; renderCurrentView(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+        btn.onclick = () => { currentPage = p; renderCurrentView(); window.scrollTo({top: 0, behavior: 'smooth'}); };
         container.appendChild(btn);
       }
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'page-btn';
-      nextBtn.textContent = 'Next »';
+      nextBtn.textContent = '»';
       nextBtn.disabled = currentPage === totalPages;
-      nextBtn.onclick = () => { currentPage++; renderCurrentView(); window.scrollTo({top: 400, behavior: 'smooth'}); };
+      nextBtn.onclick = () => { currentPage++; renderCurrentView(); window.scrollTo({top: 0, behavior: 'smooth'}); };
       container.appendChild(nextBtn);
     }
 
-    // Modal Interaction
+    // Open Modal
     function openModal(item) {
       activeModalItem = item;
       const modal = document.getElementById('art-modal');
@@ -2275,27 +2168,22 @@
       document.getElementById('modal-framed').textContent = item.framed || '—';
       document.getElementById('modal-signed').textContent = item.signed || '—';
       document.getElementById('modal-accession').textContent = item.accession || 'N/A';
-      document.getElementById('modal-location').textContent = (item.location ? `Vault: ${item.location}` : '') + (item.drawer ? ` [${item.drawer}]` : '') || 'Vault Storage';
+      document.getElementById('modal-location').textContent = (item.location ? `Room: ${item.location}` : '') + (item.drawer ? ` [${item.drawer}]` : '') || 'Vault Storage';
       document.getElementById('modal-price').textContent = item.price || 'Inquire with Estate';
-      document.getElementById('modal-buyer').textContent = item.sold_to ? `Sold to: ${item.sold_to}` : (item.checked_by ? `Checked out: ${item.checked_by}` : 'Available in Estate Collection');
-      document.getElementById('modal-notes').textContent = item.notes || '—';
+      document.getElementById('modal-buyer').textContent = item.sold_to ? `Sold to: ${item.sold_to}` : (item.checked_by ? `Checked out: ${item.checked_by}` : (item.notes ? item.notes : 'Available in Estate Collection'));
 
-      // Status badge
       const badge = document.getElementById('modal-status-badge');
       badge.className = `status-badge ${item.status}`;
       badge.textContent = item.status.toUpperCase();
 
-      // Radio select in modal
       const radios = document.getElementsByName('modal-status-radio');
       radios.forEach(r => r.checked = (r.value === item.status));
 
-      // Image
       const img = document.getElementById('modal-img');
       img.src = item.image || '';
       img.style.display = item.image ? 'block' : 'none';
       img.onclick = () => { if (item.image) window.open(item.image, '_blank'); };
 
-      // Prefilled Mailto Link
       const mailBtn = document.getElementById('modal-email-btn');
       const subject = encodeURIComponent(`Artwork Inquiry: ${item.title || 'Artwork'} (Accession: ${item.accession || 'N/A'})`);
       const bodyText = encodeURIComponent(
@@ -2318,22 +2206,20 @@
       document.getElementById('art-modal').close();
     }
 
-    // Modal Status Updater (Local Session persistence)
+    // Modal Status Updater
     function updateItemStatus(newStatus) {
       if (!activeModalItem) return;
       activeModalItem.status = newStatus;
 
-      // Update badge
       const badge = document.getElementById('modal-status-badge');
       badge.className = `status-badge ${newStatus}`;
       badge.textContent = newStatus.toUpperCase();
 
-      // Refresh display
       updateMetrics();
       renderCurrentView();
     }
 
-    // Metrics Bar
+    // Update Metrics Bar
     function updateMetrics() {
       let avail = 0, pend = 0, sold = 0;
       INVENTORY_DATA.forEach(x => {
@@ -2345,14 +2231,9 @@
       document.getElementById('metric-avail').textContent = avail;
       document.getElementById('metric-pending').textContent = pend;
       document.getElementById('metric-sold').textContent = sold;
-
-      document.getElementById('pill-count-all').textContent = INVENTORY_DATA.length;
-      document.getElementById('pill-count-avail').textContent = avail;
-      document.getElementById('pill-count-pending').textContent = pend;
-      document.getElementById('pill-count-sold').textContent = sold;
     }
 
-    // Tabs Switcher: Streamlined 4-Tab Architecture
+    // Switch Tabs
     function switchTab(tabId) {
       document.querySelectorAll('.wiki-tabs .wiki-tab-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`tabbtn-${tabId}`);
@@ -2366,54 +2247,12 @@
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
-    // Scroll to specific section inside Notes tab
+    // Scroll to Note Section
     function scrollToNote(sectionId) {
       const target = document.getElementById(sectionId);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }
-
-    // Export to CSV
-    function exportFilteredCSV() {
-      const headers = ['Accession', 'Title', 'Series', 'Genre', 'Year', 'Medium', 'Dimensions', 'Framed', 'Signed', 'Vault Location', 'Status', 'Sold To', 'Checked Out By', 'Price', 'Notes'];
-      const rows = filteredItems.map(item => [
-        `"${(item.accession || '').replace(/"/g, '""')}"`,
-        `"${(item.title || '').replace(/"/g, '""')}"`,
-        `"${(item.series || '').replace(/"/g, '""')}"`,
-        `"${(item.genre || '').replace(/"/g, '""')}"`,
-        `"${(item.year || '').replace(/"/g, '""')}"`,
-        `"${(item.medium || '').replace(/"/g, '""')}"`,
-        `"${(item.dims_display || '').replace(/"/g, '""')}"`,
-        `"${(item.framed || '').replace(/"/g, '""')}"`,
-        `"${(item.signed || '').replace(/"/g, '""')}"`,
-        `"${(item.location || '').replace(/"/g, '""')}"`,
-        `"${(item.status || '').replace(/"/g, '""')}"`,
-        `"${(item.sold_to || '').replace(/"/g, '""')}"`,
-        `"${(item.checked_by || '').replace(/"/g, '""')}"`,
-        `"${(item.price || '').replace(/"/g, '""')}"`,
-        `"${(item.notes || '').replace(/"/g, '""')}"`,
-      ]);
-
-      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(',')).join('\n')];
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement('a');
-      link.setAttribute('href', encodedUri);
-      link.setAttribute('download', `jim_riswold_inventory_filtered_${new Date().toISOString().slice(0,10)}.csv`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    // Export JSON
-    function exportJSON() {
-      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(filteredItems, null, 2));
-      const link = document.createElement('a');
-      link.setAttribute('href', dataStr);
-      link.setAttribute('download', `jim_riswold_inventory_${new Date().toISOString().slice(0,10)}.json`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
 
     // Helper: Escape HTML
